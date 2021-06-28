@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    background-color: rgb(235, 235, 107);
+    font-size: 16px;
+    font-family: Yekan;
+}
+
+@font-face {
+    font-family: 'Yekan';
+    src: url('Yekan-Font-2/Yekan.eot'); /* IE9 Compat Modes */
+    src: url('Yekan-Font-2/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Yekan-Font-2/Yekan.woff2') format('woff2'), /* Modern Browsers */
+    url('Yekan-Font-2/Yekan.woff') format('woff'), /* Modern Browsers */
+    url('Yekan-Font-2/Yekan.otf') format('opentype'), /* Open Type Font */
+    url('Yekan-Font-2/Yekan.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('Yekan-Font-2/Yekan.svg#Yekan') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    min-height: 100%;
+}
+body{min-height: 100vh;}
+
+.grid-container {
+    min-height: 100vh;
+    display: grid;
+    width: 1fr;
+    grid-template-columns: minmax(0px,1fr) minmax(auto, 1280px) minmax(0px, 1fr);
+    justify-items: stretch;
+    border: solid;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 50px;
+    border: solid;
+}
+
+.side-bar{
+    background-color: #fff;
+    padding: 5px;
+}
+
+.main > div{
+    align-content: center;
+    border: solid;
+
+}
