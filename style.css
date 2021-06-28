@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     /* box-sizing: border-box; */
-    background-color: rgb(235, 235, 107);
     font-size: 16px;
     font-family: Yekan;
 }
@@ -36,18 +35,38 @@ body{min-height: 100vh;}
 
 .main{
     display: grid;
+    background-color: rgb(89, 174, 180);
     grid-template-columns: 1fr;
-    grid-template-rows: 50px auto 50px;
+    grid-template-rows: 65px auto 50px;
     border: solid;
 }
 
 .side-bar{
-    background-color: #fff;
+    background-color: rgb(135, 182, 138);
     padding: 5px;
 }
 
 .main > div{
     align-content: center;
-    border: solid;
+    /* border: solid; */
+}
 
+.main__menu{
+    background-color: aliceblue;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+
+.main__menu__shop{
+    color: aqua;
+    font-size: 19.2px;
+}
+
+.sign-in{
+    width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    border: solid rgb(253, 196, 8);
 }
