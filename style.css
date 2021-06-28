@@ -42,7 +42,7 @@ body{min-height: 100vh;}
 }
 
 .side-bar{
-    background-color: rgb(135, 182, 138);
+    background-color: rgb(209, 208, 131);
     padding: 5px;
 }
 
@@ -55,7 +55,22 @@ body{min-height: 100vh;}
     background-color: aliceblue;
     align-items: center;
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.main__menu__items{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.main__menu__items > button{
+    background-color: aliceblue;
+    border: none;
+    margin: 25px;
+}
+
+.main__menu__items > button:hover{
+    color: aqua;
 }
 
 .main__menu__shop{
@@ -65,8 +80,25 @@ body{min-height: 100vh;}
 
 .sign-in{
     width: fit-content;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin: 25px;
+    border-radius: 24px;
     border: solid rgb(253, 196, 8);
+}
+
+.main__footer{
+    display: table;
+    background-color: rgb(58, 55, 55);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.main__footer__text{
+    display: table-cell;
+    vertical-align: middle;
+    color: aliceblue;
 }
