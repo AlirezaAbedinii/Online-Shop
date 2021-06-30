@@ -35,14 +35,14 @@ body{min-height: 100vh;}
 
 .main{
     display: grid;
-    background-color: rgb(89, 174, 180);
+    background-color: rgb(249, 89, 58);
     grid-template-columns: 1fr;
-    grid-template-rows: 65px auto 50px;
-    border: solid;
+    grid-row-start:auto;
+    /* grid-template-rows: auto; */
 }
 
 .side-bar{
-    background-color: rgb(209, 208, 131);
+    background-color: aliceblue;
     padding: 5px;
 }
 
@@ -55,12 +55,13 @@ body{min-height: 100vh;}
     background-color: aliceblue;
     align-items: center;
     display: grid;
+    height: 65px;
     grid-template-columns: 1fr 1.5fr;
 }
 
 .main__menu__items{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr) 1.2fr;
 }
 
 .main__menu__items > button{
@@ -86,7 +87,11 @@ body{min-height: 100vh;}
     padding-left: 20px;
     margin: 25px;
     border-radius: 24px;
-    border: solid rgb(253, 196, 8);
+    border: solid rgb(255, 200, 10) 2px;
+}
+
+.sign-in:hover{
+    background-color: rgb(255, 200, 10);
 }
 
 .main__footer{
@@ -95,10 +100,61 @@ body{min-height: 100vh;}
     height: 100%;
     width: 100%;
     text-align: center;
+    height: 40px;
+    /* padding-top: 0px; */
+    /* margin-top: 0px; */
+    margin: 0px;
+    padding: 0px;
+
 }
 
 .main__footer__text{
     display: table-cell;
     vertical-align: middle;
     color: aliceblue;
+}
+
+.main__main{
+    display: grid;
+    text-align: center;
+    vertical-align: middle;
+    justify-items: center;
+    align-items: center;
+    grid-row-start: center;
+    padding-top: 10%;
+    height: auto;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.main__main__p--search{
+    font-size: 32px;
+    color: aliceblue;
+}
+
+.main__main__input--search{
+    margin-top: 40px;
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: 24px;
+    width: 450px;
+    border: none;
+}
+
+.main__main__button--search{
+    margin-top: 35px;
+    color: black;
+    background-color: rgb(255, 200, 10);
+    border-radius: 24px;
+    border: none;
+    width: 150px;
+    margin-bottom: 35px;
+}
+
+.main__main > img{
+    margin-top: 55px;
+}
+
+.main__main__button--search:hover{
+    box-shadow: 1px 1px 10px rgb(255, 200, 10);
 }
