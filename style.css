@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     font-size: 16px;
     font-family: Yekan;
 }
@@ -35,7 +35,6 @@ body{min-height: 100vh;}
 
 .main{
     display: grid;
-    background-color: rgb(249, 89, 58);
     grid-template-columns: 1fr;
     grid-row-start:auto;
     /* grid-template-rows: auto; */
@@ -115,6 +114,7 @@ body{min-height: 100vh;}
 }
 
 .main__main{
+    background-color: rgb(249, 89, 58);
     display: grid;
     text-align: center;
     vertical-align: middle;
@@ -157,4 +157,102 @@ body{min-height: 100vh;}
 
 .main__main__button--search:hover{
     box-shadow: 1px 1px 10px rgb(255, 200, 10);
+}
+
+.main__bottom{
+    display: grid;
+    background-color: rgb(232, 233, 237);
+}
+
+.main__bottom__sort{
+    display: grid;
+    margin: 15px;
+    background-color: white;
+    grid-template-columns: 15% 20% 20%;
+    align-items: center;
+    justify-items: start;
+    justify-content: end;
+    height: 50px;    
+}
+
+.main__bottom__sort__button--sales{
+    width: 120px;
+    border-radius: 24px;
+    background-color: rgb(0, 156, 255);
+    color: aliceblue;
+    border: none;
+}
+
+.main__bottom__sort__button--price{
+    width: 100px;
+    border-radius: 24px;
+    background-color: inherit;
+    /* background-color: rgb(0, 156, 255); */
+    color: black;
+    border: none;
+}
+
+.main__bottom__lower{
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+.main__bottom__lower__filter{
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 15px;
+}
+.main__bottom__lower__filter--categories{
+    display: grid;
+    background-color: white;
+    box-shadow: 2px 2px 10px rgb(148, 176, 201);
+    grid-template-rows: 1fr;
+    row-gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-items: end stretch;
+    /* justify-content: end stretch; */
+    border-radius: 2px;
+     
+}
+
+.main__bottom__lower__filter--categories>p{
+    border-bottom: solid rgb(232, 233, 237);
+    text-align: right;
+    padding: 5px;
+    padding-right: 15px;
+    
+
+}
+
+.main__bottom__lower__filter--categories--choices{
+    padding: 15px;
+}
+
+.choice{
+    display: grid;
+    background-color: white;
+    grid-template-columns: 8fr 1fr;
+    justify-items: end;
+    /* justify-items: strech; */
+    padding-right: 10px;
+    padding: 5px;
+}
+.choice>label{
+    text-align: right;
+}
+.choice > input{
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.choice > input:checked{
+    background-color: rgb(0, 156, 255);
 }
