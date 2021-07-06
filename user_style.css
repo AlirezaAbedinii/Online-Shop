@@ -108,7 +108,7 @@ body{min-height: 100vh;}
     justify-items: center;
     align-items: center;
     grid-row-start: center;
-    padding-top: 10%;
+    /* padding-top: 10%; */
     height: auto;
     margin-bottom: 0px;
     padding-bottom: 0px;
@@ -209,3 +209,114 @@ body{min-height: 100vh;}
     border-radius: 24px;
     border: solid rgb(255, 200, 10) 2px;
 }
+
+.profile__name{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    direction: rtl;
+    column-gap: 30px;
+   
+}
+
+.profile__fname{
+    display: flex;
+}
+
+.profile__fname__input{
+    width: 250px !important;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    padding:3px;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.profile__lname{
+    display: flex;
+}
+.profile__lname__input{
+    width: 250px !important;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    padding:3px;
+    padding-right: 10px;
+    font-size: 14px;
+
+}
+
+
+.profile__password{
+    margin-top: 15px;
+    display: flex;
+    direction: rtl;
+    align-items: flex-start;
+    justify-content: stretch;
+    text-align: right;
+}
+
+.profile__password__input{
+    width: 610px !important;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    padding:3px;
+    padding-right: 10px;
+    font-size: 14px;
+    
+}
+
+.profile__address{
+    display: flex;
+    margin-top: 15px;
+    text-align: right;
+    direction: rtl;    
+}
+
+.profile__address__input{
+    width: 610px !important;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    padding:3px;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+i{
+    /* background-color: rgb(14,186,197);
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    padding:3px;
+    padding-left: 20px;
+    padding-right: 20px; */
+    font-size: 14px;
+    /* padding-right: 20px; */
+    color: aliceblue;
+}
+
+.profile__button--edit{
+    width: fit-content;
+    background-color: rgb(255, 200, 10);
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 30px;
+    border-radius: 24px;
+    border: solid rgb(255, 200, 10) 2px;
+}
+
+.label__div{
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(14,186,197);
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    /* padding:3px; */
+    text-align: center;
+}
+
