@@ -176,8 +176,8 @@ body{min-height: 100vh;}
 }
 
 #receipt__header{
-    /* display: none; */
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -187,19 +187,19 @@ body{min-height: 100vh;}
 }
 
 #receipt__content{
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
     direction: rtl;
 }
 
 #profile__content{
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
 }
 
 #profile__header{
-    display: none;
-    /* display: flex; */
+    /* display: none; */
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -347,7 +347,7 @@ i{
 
 .receipt__table{
    width: 100vh; 
-   max-height: 350px !important;
+   height: 350px;
    padding-right: 25px;
    padding-left: 25px;
    padding-bottom: 25px;
