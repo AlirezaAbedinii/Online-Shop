@@ -99,7 +99,7 @@ body{min-height: 100vh;}
 
 /* Main Part */
 .main__main{
-    background-color: rgb(249, 89, 58);
+    background-color: rgb(247, 247, 247);
     min-height: 616px;
     height: 100vh;
     display: grid;
@@ -132,4 +132,37 @@ body{min-height: 100vh;}
     display: table-cell;
     vertical-align: middle;
     color: aliceblue;
+}
+
+.tab{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tab > div{
+    margin: 15px;
+}
+
+.tab__buttons{
+    display: flex;
+    gap: 0px;
+
+}
+
+.profile__button{
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-right: none;
+    width: 100px;
+    background-color: rgb(238, 238, 238);
+    border: solid rgb(238, 238, 238);
+}
+
+.receipt__button{
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    width: 100px;
+    background-color: rgb(247, 247, 247);
+    border: solid rgb(238, 238, 238);
 }
