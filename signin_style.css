@@ -26,6 +26,7 @@ body{min-height: 100vh;}
 
 .grid-container {
     min-height: 100vh;
+    height:100%;
     display: grid;
     width: 1fr;
     grid-template-columns: minmax(0px,1fr) minmax(auto, 1280px) minmax(0px, 1fr);
@@ -41,7 +42,7 @@ body{min-height: 100vh;}
 }
 
 .side-bar{
-    background-color: aliceblue;
+    background-color: white;
     padding: 5px;
 }
 
@@ -51,7 +52,7 @@ body{min-height: 100vh;}
 }
 
 .main__menu{
-    background-color: aliceblue;
+    background-color:white;
     align-items: center;
     display: grid;
     height: 65px;
@@ -64,7 +65,7 @@ body{min-height: 100vh;}
 }
 
 .main__menu__items > button{
-    background-color: aliceblue;
+    background-color: white;
     border: none;
     margin: 25px;
 }
@@ -143,7 +144,8 @@ body{min-height: 100vh;}
     background-color: rgb(255, 200, 10);
     border-radius: 24px;
     border: none;
-    width: 140px;
+    width: 120px;
+    height: 35;
     align-self: center;
     /*margin-bottom: 35px;*/
 
@@ -157,21 +159,40 @@ body{min-height: 100vh;}
    border-top-left-radius: 6px;
    border-bottom-left-radius: 6px;
     border: none;
+    padding:3px;
+    font-size: 14px;
 }
 .form__pass--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border: none;
+    padding:3px;
+    font-size: 14px;
 }
 .form__mail--label{
     background-color: rgb(14,186,197);
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
+    padding:3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    
 }
 .form__pass--label{
     background-color: rgb(14,186,197);
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
+    padding: 3px;
+    font-size: 14px;
+}
+.main__form__mail{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.main__form__pass{
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 
