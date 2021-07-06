@@ -70,11 +70,11 @@ body{min-height: 100vh;}
 }
 
 .main__menu__items > button:hover{
-    color: aqua;
+    color: rgb(14,186,197);
 }
 
 .main__menu__shop{
-    color: aqua;
+    color: rgb(14,186,197);
     font-size: 19.2px;
 }
 
@@ -118,7 +118,8 @@ body{min-height: 100vh;}
     display:grid ;
     grid-template-rows: repeat(3,auto);
     grid-row-gap: 30px;
-    align-self: center;
+    align-self:stretch;
+    justify-self:stretch;
 
     
 }
@@ -150,11 +151,28 @@ body{min-height: 100vh;}
 .main__main__form{
     display: grid;
     grid-template-rows: repeat(2,auto);
-    justify-content: space-between;
-    
+    grid-row-gap: 10px;  
 }
-
-
+.form__mail--input{
+   border-top-left-radius: 6px;
+   border-bottom-left-radius: 6px;
+    border: none;
+}
+.form__pass--input{
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+}
+.form__mail--label{
+    background-color: rgb(14,186,197);
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.form__pass--label{
+    background-color: rgb(14,186,197);
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
 
 
 
