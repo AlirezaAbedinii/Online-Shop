@@ -285,6 +285,26 @@ body{min-height: 100vh;}
     color: dimgrey;
 }
 
+.augmented-product{
+    position: relative;
+}
+
+.product__sold{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background-color: white;
+    border-radius: 100%;
+    /* padding: 5px; */
+    width: 40px;
+    height: 40px;
+    color: rgb(0, 156, 255);
+    font-size: 20px;
+    padding-top: 5px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 2px 2px 10px rgb(148, 176, 201);
+}
 
 
 /* category Part */
@@ -379,3 +399,6 @@ input{
    .receipt__table tr:hover{
        background-color: rgb(247, 247, 247);
     }
+
+
+    
