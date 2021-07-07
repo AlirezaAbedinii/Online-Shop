@@ -160,21 +160,28 @@ body{min-height: 100vh;}
     display: grid;
     grid-template-rows: repeat(2,auto);
     grid-row-gap: 10px;  
+
 }
 .main__form__upper{
-    width: 600px;
+    width: 610px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 5px;
+    grid-gap: 10px;
 }
 .main__form__upper >div{
     display: grid;
     grid-template-columns: auto auto;
+    width: 250px;
+   
 }
-.main__form__address{
-    width: 600px;
+
+.main__form__bottom > div{
     display: grid;
     grid-template-columns: auto auto;
+    
+}
+.main__form__address{
+    width: 610px;
 }
 .form__mail--input{
    border-top-left-radius: 6px;
@@ -258,6 +265,7 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    
 }
 .form__address--label{
     font-size: 14px;
