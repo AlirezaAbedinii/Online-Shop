@@ -140,6 +140,12 @@ body{min-height: 100vh;}
 .main__main__title{
     text-align: center;
 }
+
+.main__main__title p{
+    font-size: 19.2px;
+}
+
+
 .main__main__button{
     justify-content: center;
     align-items: center;
@@ -164,10 +170,11 @@ body{min-height: 100vh;}
 
 }
 .main__form__upper{
-    width: 610px;
+    width: 690px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    column-gap: 30px;
+    row-gap: 10px;
 }
 .main__form__upper >div{
     display: grid;
@@ -179,7 +186,7 @@ body{min-height: 100vh;}
 .main__form__bottom{
     display: grid;
     grid-template-columns: auto;
-   width: 610px;
+   width: 690px;
     
 }
 .main__form__address{
@@ -188,6 +195,7 @@ body{min-height: 100vh;}
     grid-template-columns: auto auto;
     grid-gap: 0px;
     width: 610 !important;
+    justify-content: end;
 
 }
 .form__mail--input{
@@ -196,6 +204,7 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
 }
 .form__pass--input{
     border-top-left-radius: 6px;
@@ -203,6 +212,7 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
 }
 .form__mail--label{
     font-size: 14px;
@@ -236,6 +246,7 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
 }
 .form__name--label{
     font-size: 14px;
@@ -254,6 +265,7 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
 }
 .form__lname--label{
     font-size: 14px;
@@ -272,7 +284,7 @@ body{min-height: 100vh;}
     border: none;
     padding:15px;
     font-size: 14px;
-    width:auto;
+    width:610px;
     
 }
 .form__address--label{

@@ -184,7 +184,6 @@ body{min-height: 100vh;}
 
 /* Header */
 #admin__header{
-    /* display: none; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -203,8 +202,8 @@ body{min-height: 100vh;}
 /* product Part */
 
 #product__content{
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
 }
 .product__content__upper button{
     margin-top: 10px;
@@ -309,8 +308,8 @@ body{min-height: 100vh;}
 
 /* category Part */
 #category__content{
-    /* display: block; */
-    display: none;
+    display: block;
+    /* display: none; */
 }
 .category__table__div button{
     border: none;

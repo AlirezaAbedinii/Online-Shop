@@ -140,6 +140,11 @@ body{min-height: 100vh;}
 .main__main__title{
     text-align: center;
 }
+
+.main__main__title p{
+    font-size: 19.2px !important;
+}
+
 .main__main__button{
     justify-content: center;
     align-items: center;
@@ -162,11 +167,10 @@ body{min-height: 100vh;}
     grid-row-gap: 10px;  
 }
 .main__form__mail{
-   
-    width: 250px !important;
+    justify-content: center;
 }
 .main__form__pass{
-    width: 250px !important;
+    justify-content: center;
 }
 .form__mail--input{
    border-top-left-radius: 6px;
@@ -174,6 +178,8 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
+    
 }
 .form__pass--input{
     border-top-left-radius: 6px;
@@ -181,6 +187,8 @@ body{min-height: 100vh;}
     border: none;
     padding:3px;
     font-size: 14px;
+    width: 250px;
+    
 }
 .form__mail--label{
     font-size: 14px;
