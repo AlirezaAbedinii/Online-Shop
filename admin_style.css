@@ -158,26 +158,26 @@ body{min-height: 100vh;}
 
 }
 
-.product__button{
+.tab__product__button{
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
-    width: 100px;
+    width: 150px;
     background-color: rgb(247, 247, 247);
     border: solid rgb(238, 238, 238);
     border-left: none;
 }
 
-.category__button{
-    width: 100px;
+.tab__category__button{
+    width: 150px;
     background-color: rgb(247, 247, 247);
     border: solid rgb(238, 238, 238);
     border-right: none;
 }
 
-.receipt__button{
+.tab__receipt__button{
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
-    width: 100px;
+    width: 150px;
     background-color: rgb(238, 238, 238);
     border: solid rgb(238, 238, 238);
 }
@@ -203,14 +203,94 @@ body{min-height: 100vh;}
 /* product Part */
 
 #product__content{
-    display: none;
+    /* display: none; */
+    display: block;
 }
+.product__content__upper button{
+    margin-top: 10px;
+    width: 200px;
+    height: 45px;
+    border-radius: 24px;
+    background-color: rgb(0, 156, 255);
+    box-shadow: 1px 1px 10px rgb(7, 156, 248);
+    color: aliceblue;
+    border: none;
+    direction: rtl;
+}
+
+.product__content__lower{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 70px;
+    row-gap: 70px;
+}
+
+/* product card */
+.product{
+    width: 270px;
+    display: grid;
+    background-color: white;
+    grid-template-rows: 5fr 1fr;
+    padding: 15px;
+    height: 350px;
+    box-shadow: 2px 2px 10px rgb(148, 176, 201);
+    /* width: 270px; */
+}
+
+.product__upper{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    /* justify-items: end; */
+}
+
+.product__image{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.product__lower{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: solid rgb(232, 233, 237);
+    justify-items: end;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.product__button{
+    width: 120px;
+    height: 50px;
+    border-radius: 24px;
+    background-color: rgb(0, 156, 255);
+    box-shadow: 1px 1px 10px rgb(7, 156, 248);
+    color: aliceblue;
+    border: none;
+}
+
+.product__details{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 15px;
+    justify-items:end;
+}
+
+.product__details--name{
+    font-weight: bold;
+}
+
+.product__details--category{
+    color: dimgrey;
+}
+
 
 
 /* category Part */
 #category__content{
-    display: block;
-    /* display: none; */
+    /* display: block; */
+    display: none;
 }
 .category__table__div button{
     border: none;
