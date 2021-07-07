@@ -162,10 +162,11 @@ body{min-height: 100vh;}
     grid-row-gap: 10px;  
 }
 .main__form__mail{
-    width: 250px;
+   
+    width: 250px !important;
 }
 .main__form__pass{
-    width: 250px;
+    width: 250px !important;
 }
 .form__mail--input{
    border-top-left-radius: 6px;

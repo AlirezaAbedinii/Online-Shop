@@ -160,6 +160,7 @@ body{min-height: 100vh;}
     display: grid;
     grid-template-rows: repeat(2,auto);
     grid-row-gap: 10px;  
+    align-items:stretch;
 
 }
 .main__form__upper{
@@ -171,17 +172,23 @@ body{min-height: 100vh;}
 .main__form__upper >div{
     display: grid;
     grid-template-columns: auto auto;
-    width: 250px;
+    width: 250px !important;
    
 }
 
-.main__form__bottom > div{
+.main__form__bottom{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
+   width: 610px;
     
 }
 .main__form__address{
-    width: 610px;
+    
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0px;
+    width: 610 !important;
+
 }
 .form__mail--input{
    border-top-left-radius: 6px;
@@ -263,8 +270,9 @@ body{min-height: 100vh;}
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border: none;
-    padding:3px;
+    padding:15px;
     font-size: 14px;
+    width:auto;
     
 }
 .form__address--label{
@@ -275,6 +283,6 @@ body{min-height: 100vh;}
     background-color: rgb(14,186,197);
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
-    /* padding:3px; */
+    padding:15px;
     text-align: center;
 }
