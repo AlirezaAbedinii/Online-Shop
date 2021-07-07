@@ -182,11 +182,10 @@ body{min-height: 100vh;}
     border: solid rgb(238, 238, 238);
 }
 
-/* Headers */
-
-#product__header, #category__header, #receipt__header{
+/* Header */
+#admin__header{
     /* display: none; */
-    /* display: flex; */
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -194,38 +193,41 @@ body{min-height: 100vh;}
     direction: rtl;
 }
 
-/* product header */
-#product__header{
-    display: none;
-    /* display: flex; */
-}
-
-#product__content{
-    display: none;
-}
-
-
-/* category header */
-#category__header{
-    display: none;
-    /* display: flex; */
-}
-
-
-/* receipt*/
-#receipt__header{
-    /* display: none; */
-    display: flex;
-}
-
-.receipt__header__welcome{
+.admin__header__welcome{
     font-size: 24px;
     font-weight: bold;
     padding-left: 5px;
     margin-left: 5px;
 }
 
-.receipt__search{
+/* product Part */
+
+#product__content{
+    display: none;
+}
+
+
+/* category Part */
+#category__content{
+    display: block;
+    /* display: none; */
+}
+.category__table__div button{
+    border: none;
+    background-color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 12px;
+}
+
+.category__table__div button:hover{
+    color: aqua;
+    background-color: none;
+}
+
+
+/* receipt*/
+.receipt__search, .category__add{
     display: flex;
     direction: rtl;
     justify-content: center;
@@ -259,20 +261,20 @@ input{
 }
 
 #receipt__content{
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
     direction: rtl;
 }
 
-.receipt__table__div{
+.receipt__table__div, .category__table__div{
     max-height: 300px;
     overflow: auto;
-    padding-left: 50px;
-    padding-right: 50px;
+    /* padding-left: 50px; */
+    /* padding-right: 50px; */
     background-color: white;
 }
 
-.receipt__table{
+.receipt__table, .category__table{
     width: 100vh; 
     padding-right: 25px;
     padding-left: 25px;
@@ -282,7 +284,7 @@ input{
     direction: rtl;
  }
  
- .receipt__table th, .receipt__table td {
+ .receipt__table th, .receipt__table td , .category__table th, .category__table td{
      padding-top: 12px;
      padding-bottom: 12px;
      color: gray;
@@ -290,8 +292,10 @@ input{
      border-bottom: 1px solid #ddd;
    }
  
-   .receipt__table td{
+   .receipt__table td, .category__table td{
        color: rgb(37, 33, 33);
    }
  
-   .receipt__table tr:hover {background-color: rgb(247, 247, 247);}
+   .receipt__table tr:hover{
+       background-color: rgb(247, 247, 247);
+    }

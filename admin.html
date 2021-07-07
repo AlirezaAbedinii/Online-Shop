@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحه پروفایل ادمین</title>
     <link rel="stylesheet" href="admin_style.css">
+    <script>function toFarsiNumber(n) {
+        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    
+        return n
+          .toString()
+          .split('')
+          .map(x => farsiDigits[x])
+          .join('');
+      }</script>
 </head>
 <body>
 
@@ -25,17 +34,8 @@
                 <div class="main__main">
                     <div
                      class="tab">
-                        <div id="product__header" class="tabcontent">
-                    
-                        </div>
-                        <div id="category__header" class="tabcontent">
-                            <p class="profile__header__welcome">علیرضا عزیز، خوش آمدید</p>
-                            <p class="profile__header__credit__text">موجودی حساب شما:</p>
-                            <p class="profile__header__credit__amount">100,000</p>
-                            <button class="profile__header__credit__button">افزایش موجودی</button>
-                        </div>
-                        <div id="receipt__header" class="tabcontent1">
-                            <p class="receipt__header__welcome">ادمین عزیز، خوش آمدید</p>
+                        <div id="admin__header" class="tabcontent1">
+                            <p class="admin__header__welcome">ادمین عزیز، خوش آمدید</p>
                         </div>
                         <!-- Tab Buttons -->
                         <div class="tab__buttons">
@@ -71,7 +71,52 @@
                             </div>
 
                         </div>
-                        <div id="receipt__content" class="tabcontent1">
+                        <div id="category__content" class="tabcontent">
+                            <div class="category__add">
+                                <div class="label__div"><i class="category__add__label">ایجاد دسته بندی جدید</i></div>
+                                <input type="text" class="category__add__input" placeholder="دسته بندی خود را وارد کنید">
+                            
+                        </div>
+                        <div class="category__table__div">
+                            <table class="category__table">
+                                <tr>
+                                <th>نام دسته بندی</th>
+                                <th>عملیات</th>
+                                </tr>
+
+                                <tr>
+                                <td>ُدسته بندی ۱</td>
+                                <td><div class="action__div">
+                                    <button>ویرایش دسته بندی</button>
+                                    <button>Xحذف دسته بندی</button>
+                                </div></td>
+                                </tr>
+                                <tr>
+                                <td>ُدسته بندی ۲</td>
+                                <td><div class="action__div">
+                                    <button>ویرایش دسته بندی</button>
+                                    <button>Xحذف دسته بندی</button>
+                                </div></td>
+                                </tr>
+                                <tr>
+                                <td>ُدسته بندی ۳</td>
+                                <td><div class="action__div">
+                                    <button>ویرایش دسته بندی</button>
+                                    <button>Xحذف دسته بندی</button>
+                                </div></td>
+                                </tr>
+                                <tr>
+                                <td>ُدسته بندی ۴</td>
+                                <td><div class="action__div">
+                                    <button>ویرایش دسته بندی</button>
+                                    <button>Xحذف دسته بندی</button>
+                                </div></td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                        </div>
+                        <div id="receipt__content" class="tabcontent">
                             <div class="receipt__search">
                                     <div class="label__div"><i class="receipt__search__label">جستجوی کد پیگیری</i></div>
                                     <input type="text" class="recept__search__input" placeholder="کد پیگیری را برای جستجو وارد کنید">
