@@ -264,15 +264,21 @@ input{
     direction: rtl;
 }
 
+.receipt__table__div{
+    max-height: 300px;
+    overflow: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: white;
+}
+
 .receipt__table{
     width: 100vh; 
-    max-height: 250px;
     padding-right: 25px;
     padding-left: 25px;
     padding-bottom: 25px;
     background-color: white;
     border-spacing: 0px;
-    overflow: auto;
     direction: rtl;
  }
  
