@@ -83,8 +83,8 @@ body{min-height: 100vh;}
 
 /* Sign in */
 .sign-in{
-    display: none;
-    /* width: fit-content; */
+    /* display: none; */
+    width: fit-content;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 20px;
