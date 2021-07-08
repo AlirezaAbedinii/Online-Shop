@@ -214,6 +214,19 @@ body{min-height: 100vh;}
 
 .main__main > img{
     margin-top: 55px;
+    /* padding-top: 55px; */
+}
+
+.slider{
+    /* padding-top: 100px; */
+    display: grid;
+
+    /* margin-top: 55px; */
+    justify-content: center;
+}
+
+img{
+    max-height: 230px;
 }
 
 .main__main__button--search:hover{
