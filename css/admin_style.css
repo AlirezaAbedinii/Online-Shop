@@ -210,6 +210,10 @@ body{min-height: 100vh;}
 }
 
 /* Buttons */
+button{
+    cursor: pointer !important;
+}
+
 .tab__buttons{
     display: flex;
     align-items: center;

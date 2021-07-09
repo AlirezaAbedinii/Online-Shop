@@ -435,3 +435,7 @@ i{
   }
 
   .receipt__table tr:hover {background-color: rgb(247, 247, 247);}
+
+  button{
+    cursor: pointer !important;
+}
