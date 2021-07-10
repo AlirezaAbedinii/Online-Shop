@@ -11,15 +11,31 @@ form.addEventListener('keyup',(event)=>{
 
 const checkInputs = () => {
     const emailValue = email.value.trim(); //removing whitespace from end and begining
-    if (emailValue === ''){
-        setError(email,'ایمیل را وارد کنید');
-    }else if (ValidateEmail(emailValue)===false) {
+    const passValue=pass.value;
+    if (emailValue === ''){ //error if input is deleted(empty)
+        setError(email,'ایمیل نمی‌تواند خالی باشد');
+    }else if (ValidateEmail(emailValue)===false) { //email structure validation
         setError(email,'ایمیل نامعتبر');
     }
-    else if(emailValue.length >255){
+    else if(emailValue.length >255){//max 255 charachters
         setError(email,'ایمیل باید کمتر از ۲۵۵ کاراکتر باشد')
     } else{
         setSuccess(email)
+    }
+
+    if(passValue===''){
+        setError(pass,"رمز عبور نمی‌تواند خالی باشد")
+    }else if(passValue.length<8){
+        setError(pass,"رمز عبور باید حداقل ۸ کاراکتر باشد")
+    }
+    else if(passValue.length>255){
+        setError(pass,"رمز باید کمتر از ۲۵۵ کاراکتر باشد")
+    }else if(passValue.search(/\d/) == -1){
+        setError(pass,'رمز عبور باید شامل اعداد نیز باشد')
+    }else if(passValue.search(/[a-zA-Z]/) == -1){
+        setError(pass,'رمز عبور باید شامل حروف نیز باشد')
+    }else{
+        setSuccess(pass)
     }
 
 }
@@ -49,3 +65,5 @@ function ValidateEmail(mail)
     //alert("You have entered an invalid email address!")
     return (false);
 }
+
+

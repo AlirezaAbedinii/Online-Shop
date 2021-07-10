@@ -229,13 +229,7 @@ body{min-height: 100vh;}
     grid-row-gap: 8px; 
     position: relative; 
 }
-.main__form__mail{
-    justify-content: center;
-    position: relative;
-    padding-bottom: 17px;
-    
-    
-}
+
 /*javascript*/
 
 .main__form__mail input:focus {
@@ -264,6 +258,29 @@ body{min-height: 100vh;}
 .main__form__mail.error small{
     visibility: visible;
 }
+.main__form__pass input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__pass.success input{
+    border-color:#2ecc71;
+}
+.main__form__pass.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__pass small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__pass.error small{
+    visibility: visible;
+}
 
 .form__mail--input{
    border-top-left-radius: 6px;
@@ -278,7 +295,7 @@ body{min-height: 100vh;}
 .form__pass--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border-color: white;
+    border: 2px solid #ffffff;
     padding:3px;
     font-size: 14px;
     width: 250px;
@@ -310,10 +327,16 @@ body{min-height: 100vh;}
 .main__form__mail{
     display: grid;
     grid-template-columns: auto auto;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 17px;
 }
 .main__form__pass{
     display: grid;
     grid-template-columns: auto auto;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 17px;
 }
 
 
