@@ -4,14 +4,17 @@ const pass= document.getElementById('pass');
 const button=document.getElementById('button');
 console.log(email);
 
-form.addEventListener('keyup',(event)=>{
+email.addEventListener('keyup',(event)=>{
     //event.preventDefault();
-    checkInputs();
+    checkMail();
+});
+pass.addEventListener('keyup',(event)=>{
+    //event.preventDefault();
+    checkPass();
 });
 
-const checkInputs = () => {
+const checkMail = () => {
     const emailValue = email.value.trim(); //removing whitespace from end and begining
-    const passValue=pass.value;
     if (emailValue === ''){ //error if input is deleted(empty)
         setError(email,'ایمیل نمی‌تواند خالی باشد');
     }else if (ValidateEmail(emailValue)===false) { //email structure validation
@@ -23,6 +26,10 @@ const checkInputs = () => {
         setSuccess(email)
     }
 
+
+}
+const checkPass=() => {
+    const passValue=pass.value;
     if(passValue===''){
         setError(pass,"رمز عبور نمی‌تواند خالی باشد")
     }else if(passValue.length<8){
@@ -37,7 +44,6 @@ const checkInputs = () => {
     }else{
         setSuccess(pass)
     }
-
 }
 
 const setError = (input, msg) => {
