@@ -1,8 +1,9 @@
-const form = document.getElementById('form');
+const fname = document.getElementById('name');
+const lname = document.getElementById('lname');
 const email= document.getElementById('email');
 const pass= document.getElementById('pass');
-const button=document.getElementById('button');
-console.log(email);
+const address=document.getElementById('address');
+
 
 email.addEventListener('keyup',(event)=>{
     //event.preventDefault();
@@ -11,6 +12,18 @@ email.addEventListener('keyup',(event)=>{
 pass.addEventListener('keyup',(event)=>{
     //event.preventDefault();
     checkPass();
+});
+fname.addEventListener('keyup',(event)=>{
+    //event.preventDefault();
+    checkName();
+});
+lname.addEventListener('keyup',(event)=>{
+    //event.preventDefault();
+    checkLName();
+});
+address.addEventListener('keyup',(event)=>{
+    //event.preventDefault();
+    checkAddress();
 });
 
 const checkMail = () => {
@@ -25,8 +38,6 @@ const checkMail = () => {
     } else{
         setSuccess(email);
     }
-
-
 }
 const checkPass=() => {
     const passValue=pass.value;
@@ -45,12 +56,46 @@ const checkPass=() => {
         setSuccess(pass);
     }
 }
+const checkName = () => {
+    const nameValue = fname.value.trim(); //removing whitespace from end and begining
+    if (nameValue === ''){ //error if input is deleted(empty)
+        setError(fname,'نام نمی‌تواند خالی باشد');
+    }
+    else if(nameValue.length >255){//max 255 charachters
+        setError(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
+    } else{
+        setSuccess(fname);
+    }
+}
+
+const checkLName = () => {
+    const lnameValue = lname.value.trim(); //removing whitespace from end and begining
+    if (lnameValue === ''){ //error if input is deleted(empty)
+        setError(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
+    }
+    else if(lnameValue.length >255){//max 255 charachters
+        setError(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
+    } else{
+        setSuccess(lname);
+    }
+}
+
+const checkAddress = () => {
+    const addressValue = address.value; 
+    if (addressValue === ''){ //error if input is deleted(empty)
+        setError(address,'آدرس نمی‌تواند خالی باشد');
+    }
+    else if(addressValue.length >1000){//max 1000 charachters
+        setError(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
+    } else{
+        setSuccess(address);
+    }
+}
+
 
 const setError = (input, msg) => {
     const inputType = input.parentElement;
-    console.log(inputType);
     const small = inputType.querySelector('small');
-    console.log(small);
     inputType.className = 'main__form__mail error';
     small.innerText = msg;
     console.log("err");

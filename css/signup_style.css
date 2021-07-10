@@ -231,7 +231,8 @@ body{min-height: 100vh;}
 .main__main__form{
     display: grid;
     grid-template-rows: repeat(2,auto);
-    grid-row-gap: 10px;  
+    grid-row-gap: 10px; 
+
     
 
 }
@@ -240,37 +241,40 @@ body{min-height: 100vh;}
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
-    row-gap: 10px;
+    row-gap: 7px;
 }
 .main__form__upper >div{
     display: grid;
     grid-template-columns: auto auto;
     width: 250px !important;
+    /*new*/
+    padding-bottom: 17px;
+    position: relative;
    
 }
 
 .main__form__bottom{
     display: grid;
     grid-template-columns: auto;
-   width: 610px !important;
-   width: 690px;
+    width: 690px;
     
 }
 .main__form__address{
     
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap: 0px;
+    grid-column-gap: 0px;
     justify-content: right;
     padding-right:20px;
-    width: 610 !important;
-    justify-content: end;
+    /*new*/
+    padding-bottom: 17px;
+    position: relative;
 
 }
 .form__mail--input{
    border-top-left-radius: 6px;
    border-bottom-left-radius: 6px;
-    border: none;
+   border: 2px solid #ffffff;
     padding:3px;
     font-size: 14px;
     width: 250px;
@@ -278,7 +282,7 @@ body{min-height: 100vh;}
 .form__pass--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     font-size: 14px;
     width: 250px;
@@ -312,7 +316,7 @@ body{min-height: 100vh;}
 .form__name--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     font-size: 14px;
     width: 250px;
@@ -331,7 +335,7 @@ body{min-height: 100vh;}
 .form__lname--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     font-size: 14px;
     width: 250px;
@@ -350,7 +354,7 @@ body{min-height: 100vh;}
 .form__address--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:15px;
     font-size: 14px;
     width:610px;
@@ -367,3 +371,125 @@ body{min-height: 100vh;}
     padding:15px;
     text-align: center;
 }
+/*javascript*/
+.main__form__pass input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__pass.success input{
+    border-color:#2ecc71;
+}
+.main__form__pass.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__pass small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__pass.error small{
+    visibility: visible;
+}
+/*------*/
+.main__form__mail input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__mail.success input{
+    border-color:#2ecc71;
+}
+.main__form__mail.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__mail small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__mail.error small{
+    visibility: visible;
+}
+/*------*/
+.main__form__name input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__name.success input{
+    border-color:#2ecc71;
+}
+.main__form__name.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__name small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__name.error small{
+    visibility: visible;
+}
+/*------*/
+.main__form__lname input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__lname.success input{
+    border-color:#2ecc71;
+}
+.main__form__lname.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__lname small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__lname.error small{
+    visibility: visible;
+}
+/*------*/
+.main__form__address input:focus {
+	outline: 0;
+	border-color:rgb(247, 247, 247);
+}
+.main__form__address.success input{
+    border-color:#2ecc71;
+}
+.main__form__address.error input{
+    border-color:#e74c3c;
+}
+
+.main__form__address small{
+    color: #ef5350;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.main__form__address.error small{
+    visibility: visible;
+}
+
+/*javascript*/
