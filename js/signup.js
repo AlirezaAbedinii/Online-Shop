@@ -132,7 +132,7 @@ const checkAddress = () => {
     else if(addressValue.length >1000){//max 1000 charachters
         setErrorAddress(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
     } else{
-        setSuccess(address);
+        setSuccessAddress(address,"success");
         check=true;
     }
     return check;
@@ -163,6 +163,12 @@ const setSuccess = (input) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
     inputType.className = 'main__form__mail success';
+}
+const setSuccessAddress = (input,msg) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    inputType.className = 'main__form__address success';
+    small.innerText = msg;
 }
 
 //checks email format by comparing tho regex
