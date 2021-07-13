@@ -568,3 +568,7 @@ body{min-height: 100vh;}
   #modal__msg{
       color: #000;
   }
+
+button{
+    cursor: pointer !important;
+}

@@ -175,6 +175,7 @@ body{min-height: 100vh;}
 }
 
 .main__main{
+    position: relative;
     background-color: rgb(249, 89, 58);
     display: grid;
     text-align: center;
@@ -210,6 +211,27 @@ body{min-height: 100vh;}
     border: none;
     width: 150px;
     margin-bottom: 35px;
+}
+
+.change-slider{
+    position: absolute;
+    bottom: 300px;
+    background-color: inherit;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#next{
+    right: 50px;
+
+}
+#prev{
+    left: 50px;
 }
 
 .main__main > img{
@@ -398,4 +420,50 @@ img{
 
 .product__details--category{
     color: dimgrey;
+}
+
+
+
+/* Paging */
+.paging{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5px;
+    margin: 20px;
+    margin-top: 20px;
+}
+
+.page__buttons{
+    display: flex;
+    font-display: center;
+    column-gap: 5px;
+}
+
+.page__buttons button, .paging button{
+    background-color: white;
+    padding: 5px;
+    border: 1px rgb(255, 200, 10);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.page__buttons button:hover, .paging button:hover{
+    background-color: rgb(255, 200, 10);
+}
+
+#item-per-page__select{
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.item-per-page__div{
+    text-align: center;
+    column-gap: 5px;
+}
+
+button{
+    cursor: pointer !important;
 }
