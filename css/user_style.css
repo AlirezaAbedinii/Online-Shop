@@ -623,4 +623,10 @@ i{
     visibility: visible;
 }
 /*------*/
-
+#lname_small{
+    position:absolute;
+    top: 30px;
+}
+.profile__lname{
+    position: relative;
+}
