@@ -545,18 +545,20 @@ i{
     visibility: visible;
 }
 /*------*/
-.profile__name input:focus {
+.profile__fname input:focus {
 	outline: 0;
 	border-color:rgb(247, 247, 247);
 }
-.profile__name.success input{
+.profile__fname.success input{
     border-color:#2ecc71;
+
 }
-.profile__name.error input{
+
+.profile__fname.error input{
     border-color:#e74c3c;
 }
 
-.profile__name small{
+.profile__fname small{
     color: #ef5350;
     position: absolute;
     bottom: 0;
@@ -565,7 +567,7 @@ i{
     font-size: 14px;
 }
 
-.profile__name.error small{
+.profile__fname.error small{
     visibility: visible;
 }
 /*------*/

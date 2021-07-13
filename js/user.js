@@ -108,12 +108,12 @@ const checkName = () => {
     let check=false;
     const nameValue = fname.value.trim(); //removing whitespace from end and begining
     if (nameValue === ''){ //error if input is deleted(empty)
-        setError(fname,'نام نمی‌تواند خالی باشد');
+        setErrorName(fname,'نام نمی‌تواند خالی باشد');
     }
     else if(nameValue.length >255){//max 255 charachters
-        setError(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
+        setErrorName(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
     } else{
-        setSuccess(fname);
+        setSuccessName(fname);
         check=true;
     }
     return check;
@@ -125,12 +125,12 @@ const checkLName = () => {
     let check=false;
     const lnameValue = lname.value.trim(); //removing whitespace from end and begining
     if (lnameValue === ''){ //error if input is deleted(empty)
-        setError(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
+        setErrorLName(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
     }
     else if(lnameValue.length >255){//max 255 charachters
-        setError(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
+        setErrorLName(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
     } else{
-        setSuccess(lname);
+        setSuccessLName(lname);
         check=true;
     }
     return check;
@@ -159,7 +159,25 @@ const setError = (input, msg) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__name error';
+    inputType.className = 'profile__password error';
+    small.innerText = msg;
+    console.log("err");
+
+}
+const setErrorName = (input, msg) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    //importanttt! changes all classes to main__from__mail error
+    inputType.className = 'profile__fname error';
+    small.innerText = msg;
+    console.log("err");
+
+}
+const setErrorLName = (input, msg) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    //importanttt! changes all classes to main__from__mail error
+    inputType.className = 'profile__lname error';
     small.innerText = msg;
     console.log("err");
 
@@ -169,7 +187,18 @@ const setError = (input, msg) => {
 const setSuccess = (input) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
-    inputType.className = 'profile__name success';
+    inputType.className = 'profile__password success';
+}
+//sets state to correct=> green border and no message
+const setSuccessName = (input) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    inputType.className = 'profile__fname success';
+}
+const setSuccessLName = (input) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    inputType.className = 'profile__lname success';
 }
 
 
