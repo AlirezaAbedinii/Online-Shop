@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فروشگاه آنلاین</title>
-    <link rel="stylesheet" href="/css/main_style.css">
+    <link rel="stylesheet" href= "{{url_for('static', filename='/css/main_style.css')}}">
 </head>
 <body>
       <div class="grid-container">
@@ -36,9 +36,9 @@
                     <button class="change-slider" id="next">></button>
                     <button class="change-slider" id="prev"><</button>
                     <div class = "slider">
-                        <img class ="slider__image" src="/Pictures/clock.png">
-                        <img class ="slider__image" src="/Pictures/back 2.png">
-                        <img class ="slider__image" src="/Pictures/PngItem_6791981.png">
+                        <img class ="slider__image" src="{{url_for('static', filename='/Pictures/clock.png')}}">
+                        <img class ="slider__image" src="{{url_for('static', filename='/Pictures/back 2.png')}}">
+                        <img class ="slider__image" src="{{url_for('static', filename='/Pictures/PngItem_6791981.png')}}">
                     </div>
                     
                     
@@ -54,7 +54,7 @@
                         <div class="main__bottom__lower__products">
                                 <!-- <div class ="product">
                                     <div class="product__upper">
-                                        <div class="product__image"><img src="/Pictures/Product sample picture.png">
+                                        <div class="product__image"><img src="/website/static/Pictures/Product sample picture.png">
                                         </div>
                                         <div class="product__details">
                                             <p class="product__details--name">موس گیمینگ ریزر</p>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class ="product">
                                     <div class="product__upper">
-                                        <div class="product__image"><img src="/Pictures/Product sample picture.png">
+                                        <div class="product__image"><img src="/website/static/Pictures/Product sample picture.png">
                                         </div>
                                         <div class="product__details">
                                             <p class="product__details--name">موس گیمینگ ریزر</p>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class ="product">
                                     <div class="product__upper">
-                                        <div class="product__image"><img src="/Pictures/Product sample picture.png">
+                                        <div class="product__image"><img src="/website/static/Pictures/Product sample picture.png">
                                         </div>
                                         <div class="product__details">
                                             <p class="product__details--name">موس گیمینگ ریزر</p>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class ="product">
                                     <div class="product__upper">
-                                        <div class="product__image"><img src="/Pictures/Product sample picture.png">
+                                        <div class="product__image"><img src="/website/static/Pictures/Product sample picture.png">
                                         </div>
                                         <div class="product__details">
                                             <p class="product__details--name">موس گیمینگ ریزر</p>
@@ -164,6 +164,6 @@
           <div class="side-bar"></div>
       </div>
 
-      <script src="/js/main.js"></script>
+      <script src="{{url_for('static', filename='/js/main.js')}}"></script>
 </body>
 </html>

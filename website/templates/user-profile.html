@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه پروفایل کاربر</title>
-    <link rel="stylesheet" href="/css/user_style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="/website/static/css/user-profile_style.css">
 
 </head>
 <body>
@@ -52,47 +52,27 @@
                         <div id="profile__content" class="tabcontent">
                             <div class="profile__content__upper">
                                 <div class="profile__name">
-                                    <div  class="profile__fname">
+                                    <div class="profile__fname">
                                         <div class="label__div"><i class="profile__fname__label">نام</i></div>
-                                        <input type="text" id='fname' class="profile__fname__input" placeholder="علیرضا">
-                                        <small></small>
+                                        <input type="text" class="profile__fname__input" placeholder="علیرضا">
                                     </div>
                                     <div class="profile__lname">
                                         <div class="label__div"><i class="profile__lname__label">نام خانوادگی</i></div>
-                                        <input type="text" id='lname' class="profile__lname__input" placeholder="عابدینی">
-                                        <small id="lname_small"></small>
+                                        <input type="text" class="profile__lname__input" placeholder="عابدینی">
                                     </div>
                                 </div>
                                 <div class="profile__password">
                                     <div class="label__div"><i class="profile__password__label">رمز عبور</i></div>
-                                    <input type="password" id='pass' class="profile__password__input" placeholder="رمز عبور خود را وارد کنید">
-                                    <small></small>
+                                    <input type="password" class="profile__password__input" placeholder="رمز عبور خود را وارد کنید">
                                 </div>
                                 <div class="profile__address">
                                     <div class="label__div" id="label__div--address"><i class="profile__address__label">آدرس</i></div>
-                                    <input type="text" id='address' class="profile__address__input" placeholder="لطفا آدرس خود را وارد کنید">
-                                    <small></small>
+                                    <input type="text" class="profile__address__input" placeholder="لطفا آدرس خود را وارد کنید">
                                 </div>
                             </div>
 
                             <div class="profile__content__lower">
-                                <button id='edit' class="profile__button--edit">ثبت و ویرایش</button>
-                                <!-- The Modal -->
-                                <div id="myModal" class="modal">
-                                <!-- Modal content -->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <span class="close">&times;</span>
-                                            <h2>Modal Header</h2>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p id='modal__msg'></p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <h3>Modal Footer</h3>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button class="profile__button--edit">ثبت و ویرایش</button>
                             </div>
 
                         </div>
@@ -145,6 +125,5 @@
         <div class="side-bar"></div>
     </div>
 
-    <script src="/js/user.js"></script>
 </body>
 </html>
