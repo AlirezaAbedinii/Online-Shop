@@ -306,7 +306,7 @@ body{min-height: 100vh;}
     width: 250px !important;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     padding-right: 10px;
     font-size: 14px;
@@ -319,7 +319,7 @@ body{min-height: 100vh;}
     width: 250px !important;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     padding-right: 10px;
     font-size: 14px;
@@ -340,7 +340,7 @@ body{min-height: 100vh;}
     width: 610px !important;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:3px;
     padding-right: 10px;
     font-size: 14px;
@@ -358,7 +358,7 @@ body{min-height: 100vh;}
     width: 610px !important;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: none;
+    border: 2px solid #ffffff;
     padding:15px;
     padding-right: 10px;
     font-size: 14px;
