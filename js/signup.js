@@ -1,55 +1,21 @@
-function change_tab(){
-    if(currentTab === "profile"){
-        profileContent.style.display = "none";
-        receiptContent.style.display = "block";
-
-        profileBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        receiptBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        currentTab = "receipt";
-    }
-    else{
-        profileContent.style.display = "block";
-        receiptContent.style.display = "none";
-
-        profileBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        receiptBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        currentTab = "profile";
-    }
-    
-}
-
-console.log("Hello");
-
-var receiptBtn = document.querySelector(".receipt__button");
-var profileBtn = document.querySelector(".profile__button");
-
-var receiptContent = document.querySelector("#receipt__content");
-var profileContent = document.querySelector("#profile__content");
-
-var receiptHeader = document.querySelector("#receipt__header");
-var profileHeader = document.querySelector("#profile__header");
-
-var currentTab = "receipt";
-window.onload = change_tab;
-
-
-receiptBtn.addEventListener('click', (event)=>{
-    if(currentTab === "profile"){change_tab();}
-});
-profileBtn.addEventListener('click', (event)=>{if(currentTab==="receipt"){change_tab()}});
-
-//profile validation
 //first name box content
-const fname = document.getElementById("fname");
-console.log(fname);
+const fname = document.getElementById('name');
 //last name box content
-const lname = document.getElementById("lname");
+const lname = document.getElementById('lname');
+//email box content
+const email= document.getElementById('email');
 //pass box content
-const pass= document.getElementById("pass");
+const pass= document.getElementById('pass');
 //adrress box content
-const address=document.getElementById("address");
+const address=document.getElementById('address');
+//list of users and passoword, defined for phase2
+const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@b.c",password:"12345678b"},{email:"a@b.d",password:"12345678c"}];
 
-
+//check mail content when user is typing
+email.addEventListener('keyup',(event)=>{
+    //event.preventDefault();
+    checkMail();
+});
 //check pass content when user is typing
 pass.addEventListener('keyup',(event)=>{
     //event.preventDefault();
@@ -71,6 +37,24 @@ address.addEventListener('keyup',(event)=>{
     checkAddress();
 });
 
+//checks mail box content
+const checkMail = () => {
+    //boolean,return the correcness of box
+    let check=false;
+    const emailValue = email.value.trim(); //removing whitespace from end and begining
+    if (emailValue === ''){ //error if input is deleted(empty)
+        setError(email,'ایمیل نمی‌تواند خالی باشد');
+    }else if (ValidateEmail(emailValue)===false) { //email structure validation
+        setError(email,'ایمیل نامعتبر');
+    }
+    else if(emailValue.length >255){//max 255 charachters
+        setError(email,'ایمیل باید کمتر از ۲۵۵ کاراکتر باشد');
+    } else{
+        setSuccess(email);
+        check=true;
+    }
+    return check;
+}
 //checks pass  box content
 const checkPass=() => {
     //boolean, specifies the correctness
@@ -108,12 +92,12 @@ const checkName = () => {
     let check=false;
     const nameValue = fname.value.trim(); //removing whitespace from end and begining
     if (nameValue === ''){ //error if input is deleted(empty)
-        setErrorName(fname,'نام نمی‌تواند خالی باشد');
+        setError(fname,'نام نمی‌تواند خالی باشد');
     }
     else if(nameValue.length >255){//max 255 charachters
-        setErrorName(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
+        setError(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
     } else{
-        setSuccessName(fname);
+        setSuccess(fname);
         check=true;
     }
     return check;
@@ -125,12 +109,12 @@ const checkLName = () => {
     let check=false;
     const lnameValue = lname.value.trim(); //removing whitespace from end and begining
     if (lnameValue === ''){ //error if input is deleted(empty)
-        setErrorLName(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
+        setError(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
     }
     else if(lnameValue.length >255){//max 255 charachters
-        setErrorLName(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
+        setError(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
     } else{
-        setSuccessLName(lname);
+        setSuccess(lname);
         check=true;
     }
     return check;
@@ -143,10 +127,10 @@ const checkAddress = () => {
     //address bax value without beginning or ending spaces
     const addressValue = address.value; 
     if (addressValue === ''){ //error if input is deleted(empty)
-        setError(address,'آدرس نمی‌تواند خالی باشد');
+        setErrorAddress(address,'آدرس نمی‌تواند خالی باشد');
     }
     else if(addressValue.length >1000){//max 1000 charachters
-        setError(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
+        setErrorAddress(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
     } else{
         setSuccess(address);
         check=true;
@@ -159,25 +143,16 @@ const setError = (input, msg) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__password error';
+    inputType.className = 'main__form__mail error';
     small.innerText = msg;
     console.log("err");
 
 }
-const setErrorName = (input, msg) => {
+const setErrorAddress = (input, msg) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__fname error';
-    small.innerText = msg;
-    console.log("err");
-
-}
-const setErrorLName = (input, msg) => {
-    const inputType = input.parentElement;
-    const small = document.getElementById('lname_small');
-    //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__lname error';
+    inputType.className = 'main__form__address error';
     small.innerText = msg;
     console.log("err");
 
@@ -187,27 +162,26 @@ const setErrorLName = (input, msg) => {
 const setSuccess = (input) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
-    inputType.className = 'profile__password success';
-}
-//sets state to correct=> green border and no message
-const setSuccessName = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'profile__fname success';
-}
-const setSuccessLName = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'profile__lname success';
+    inputType.className = 'main__form__mail success';
 }
 
+//checks email format by comparing tho regex
+function ValidateEmail(mail) 
+{
+ if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
+  {
+    return (true);
+  }
+    //alert("You have entered an invalid email address!")
+    return (false);
+}
 
 // Get the modal
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-//the edit button
-var btn = document.getElementById("edit");
+//the sign up button
+var btn = document.getElementById("button");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -232,13 +206,14 @@ window.onclick = function(event) {
 //vhanging the message displayed in modal
 function setMessage(){
     //correctness of boxes
+    is_valid_mail=checkMail();
     is_valid_pass=checkPass();
     is_valid_name=checkName();
     is_valid_lname=checkLName();
     is_valid_address=checkAddress();
 
     //finding number of falses
-    const validation_arr=[is_valid_pass,is_valid_name,is_valid_lname,is_valid_address];
+    const validation_arr=[is_valid_mail,is_valid_pass,is_valid_name,is_valid_lname,is_valid_address];
     let false_num=0;
     for(let i=0;i<validation_arr.length;i++){
         if(validation_arr[i]===false){
@@ -248,14 +223,21 @@ function setMessage(){
 
     //value of the boxes
     passValue=pass.value;
+    mailValue=email.value.trim();
     nameValue=fname.value.trim();
     lnameValue=lname.value.trim();
     addressValue=address.value;
 
+    //if username doesnt alrady exist, dublicate_user=-1
+    let duplicate_user=user_pass_list.findIndex(duplicate_user=>duplicate_user.mail==mailValue);
     modal_msg=document.getElementById('modal__msg');
     //more than two boxes or wrong
     if(false_num>1){
         modal_msg.innerHTML='فیلدهای مشخص شده را کامل کنید';
+    }
+    //if only mail is invalid
+    else if(is_valid_mail==false){
+        modal_msg.innerHTML='فیلد ایمیل را کامل کنید'; 
     }
     //if only pass is invalid
     else if(is_valid_pass==false){
@@ -273,9 +255,14 @@ function setMessage(){
     else if(is_valid_address==false){
         modal_msg.innerHTML='فیلد آدرس را کامل کنید'; 
     }
+    //if user name and passowrd arent in the list
+    else if(duplicate_user>-1){
+        modal_msg.innerHTML='ایمیل قبلا ثبت شده‌است';
+    }
     //username and password are correct and defined
     else{
-        modal_msg.innerHTML='ویرایش با موفقیت انجام شد';
+        modal_msg.innerHTML='ثبت نام موفق';
     }
     
 }
+
