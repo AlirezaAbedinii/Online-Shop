@@ -108,12 +108,22 @@ function setMessage(){
     is_valid_pass=checkPass();
     passValue=pass.value;
     mailValue=email.value.trim();
+    let user_pass_pair=user_pass_list.findIndex(user_pass_pair=>user_pass_pair.mail==mailValue && user_pass_pair.password==passValue);
     modal_msg=document.getElementById('modal__msg');
-    if(is_valid_mail==false || is_valid_pass==false){
-        modal_msg.innerHTML='فیلدهای مشخص شده را پر کنید';
+    if(is_valid_mail==false && is_valid_pass==false){
+        modal_msg.innerHTML='فیلدهای مشخص شده را کامل کنید';
+    }
+    else if(is_valid_mail==false){
+        modal_msg.innerHTML='فیلد ایمیل را کامل کنید'; 
+    }
+    else if(is_valid_pass==false){
+        modal_msg.innerHTML='فیلد رمز عبور را کامل کنید'; 
+    }
+    else if(user_pass_pair==-1){
+        modal_msg.innerHTML='کاربر وجود ندارد';
     }
     else{
-        modal_msg.innerHTML='hi'; 
+        modal_msg.innerHTML='ورود موفق';
     }
     
 }
