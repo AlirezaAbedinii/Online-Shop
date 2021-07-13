@@ -127,10 +127,10 @@ const checkAddress = () => {
     //address bax value without beginning or ending spaces
     const addressValue = address.value; 
     if (addressValue === ''){ //error if input is deleted(empty)
-        setError(address,'آدرس نمی‌تواند خالی باشد');
+        setErrorAddress(address,'آدرس نمی‌تواند خالی باشد');
     }
     else if(addressValue.length >1000){//max 1000 charachters
-        setError(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
+        setErrorAddress(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
     } else{
         setSuccess(address);
         check=true;
@@ -144,6 +144,15 @@ const setError = (input, msg) => {
     const small = inputType.querySelector('small');
     //importanttt! changes all classes to main__from__mail error
     inputType.className = 'main__form__mail error';
+    small.innerText = msg;
+    console.log("err");
+
+}
+const setErrorAddress = (input, msg) => {
+    const inputType = input.parentElement;
+    const small = inputType.querySelector('small');
+    //importanttt! changes all classes to main__from__mail error
+    inputType.className = 'main__form__address error';
     small.innerText = msg;
     console.log("err");
 

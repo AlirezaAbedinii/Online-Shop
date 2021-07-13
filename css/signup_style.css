@@ -257,6 +257,7 @@ body{min-height: 100vh;}
     display: grid;
     grid-template-columns: auto;
     width: 690px;
+    height:max-content;
     
 }
 .main__form__address{
@@ -490,6 +491,7 @@ body{min-height: 100vh;}
 
 .main__form__address.error small{
     visibility: visible;
+    padding-right: 20px;
 }
 
 /*modal*/
