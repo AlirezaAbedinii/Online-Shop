@@ -7,6 +7,7 @@ const pass= document.getElementById('pass');
 //sign-in button
 const button=document.getElementById('button');
 console.log(email);
+//list of users and passoword, defined for phase2
 const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@b.c",password:"12345678b"},{email:"a@b.d",password:"12345678c"}];
 
 //keyup=>check only when typing
@@ -73,6 +74,7 @@ const setError = (input, msg) => {
     console.log(inputType);
     const small = inputType.querySelector('small');
     console.log(small);
+    //importanttt!!! changes all classes to main__form__mail.error
     inputType.className = 'main__form__mail error';
     small.innerText = msg;
     console.log("err");
@@ -96,6 +98,7 @@ function ValidateEmail(mail)
     //alert("You have entered an invalid email address!")
     return (false);
 }
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -105,7 +108,7 @@ var btn = document.getElementById("button");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal and display specified message
 btn.onclick = function() {
   modal.style.display = "block";
   setMessage();
