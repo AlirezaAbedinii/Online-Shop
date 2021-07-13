@@ -1,10 +1,15 @@
+//content of form box
 const form = document.getElementById('form');
+//content of mail box
 const email= document.getElementById('email');
+//content of pass box
 const pass= document.getElementById('pass');
+//sign-in button
 const button=document.getElementById('button');
 console.log(email);
 const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@b.c",password:"12345678b"},{email:"a@b.d",password:"12345678c"}];
 
+//keyup=>check only when typing
 email.addEventListener('keyup',(event)=>{
     //event.preventDefault();
     checkMail();
@@ -14,7 +19,9 @@ pass.addEventListener('keyup',(event)=>{
     checkPass();
 });
 
+//checks mail box content
 const checkMail = () => {
+    //boolean, determines if password is valid or not
     let check=false;
     const emailValue = email.value.trim(); //removing whitespace from end and begining
     if (emailValue === ''){ //error if input is deleted(empty)
@@ -31,18 +38,26 @@ const checkMail = () => {
     return check;
 
 }
+//cheching the password input box content
 const checkPass=() => {
+    //bollean, determines if password is valid or not at the end 
     let check=false;
+    //value of the password box
     const passValue=pass.value;
+    //check for empty box - deteleted after writing
     if(passValue===''){
         setError(pass,"رمز عبور نمی‌تواند خالی باشد");
+    //check for length
     }else if(passValue.length<8){
         setError(pass,"رمز عبور باید حداقل ۸ کاراکتر باشد");
     }
+    //check for length
     else if(passValue.length>255){
         setError(pass,"رمز باید کمتر از ۲۵۵ کاراکتر باشد");
+    //password doesnt contain any numbers **persian numberas are considered charachters
     }else if(passValue.search(/\d/) == -1){
         setError(pass,'رمز عبور باید شامل اعداد نیز باشد');
+    //pass doesnt contain any charachtes
     }else if(passValue.search(/[a-zA-Z]/) == -1){
         setError(pass,'رمز عبور باید شامل حروف نیز باشد');
     }else{
@@ -52,6 +67,7 @@ const checkPass=() => {
     return check;
 }
 
+//sets state to erroneous => red border and small message
 const setError = (input, msg) => {
     const inputType = input.parentElement;
     console.log(inputType);
@@ -63,11 +79,14 @@ const setError = (input, msg) => {
 
 }
 
+//function vhanges state to successful=>green border and now error message
 const setSuccess = (input) => {
     const inputType = input.parentElement;
     const small = inputType.querySelector('small');
     inputType.className = 'main__form__mail success';
 }
+
+//function checks email format with regex 
 function ValidateEmail(mail) 
 {
  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
@@ -103,6 +122,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+//vhanging the message displayed in modal
 function setMessage(){
     is_valid_mail=checkMail();
     is_valid_pass=checkPass();
@@ -110,18 +130,23 @@ function setMessage(){
     mailValue=email.value.trim();
     let user_pass_pair=user_pass_list.findIndex(user_pass_pair=>user_pass_pair.mail==mailValue && user_pass_pair.password==passValue);
     modal_msg=document.getElementById('modal__msg');
+    //if both mail and pass are invalid
     if(is_valid_mail==false && is_valid_pass==false){
         modal_msg.innerHTML='فیلدهای مشخص شده را کامل کنید';
     }
+    //if only mail is invalid
     else if(is_valid_mail==false){
         modal_msg.innerHTML='فیلد ایمیل را کامل کنید'; 
     }
+    //if only pass is invalid
     else if(is_valid_pass==false){
         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید'; 
     }
+    //if user name and passowrd arent in the list
     else if(user_pass_pair==-1){
         modal_msg.innerHTML='کاربر وجود ندارد';
     }
+    //username and password are correct and defined
     else{
         modal_msg.innerHTML='ورود موفق';
     }
