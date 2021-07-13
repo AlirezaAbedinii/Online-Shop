@@ -175,7 +175,7 @@ const setErrorName = (input, msg) => {
 }
 const setErrorLName = (input, msg) => {
     const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
+    const small = document.getElementById('lname_small');
     //importanttt! changes all classes to main__from__mail error
     inputType.className = 'profile__lname error';
     small.innerText = msg;

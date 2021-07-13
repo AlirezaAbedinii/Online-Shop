@@ -290,7 +290,8 @@ body{min-height: 100vh;}
 }
 
 .profile__name{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     flex-direction: row;
     justify-content: stretch;
     direction: rtl;
@@ -299,7 +300,8 @@ body{min-height: 100vh;}
 }
 
 .profile__fname{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .profile__fname__input{
@@ -313,7 +315,9 @@ body{min-height: 100vh;}
 }
 
 .profile__lname{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 0;
 }
 .profile__lname__input{
     width: 250px !important;
