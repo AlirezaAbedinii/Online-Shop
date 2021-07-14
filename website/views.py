@@ -14,3 +14,8 @@ def admin():
 @views.route('/user')
 def user():
     return render_template("user.html")
+
+
+@views.route('/test')
+def test():
+    return render_template("test.html", testing = "AYOOO")
