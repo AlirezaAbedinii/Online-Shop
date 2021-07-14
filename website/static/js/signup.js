@@ -268,6 +268,28 @@ function setMessage(){
     //username and password are correct and defined
     else{
         modal_msg.innerHTML='ثبت نام موفق';
+
+        fetch(`${window.origin}/signup`, {
+            method: "POST",
+            body: JSON.stringify({
+                "first_name": nameValue,
+                "last_name": lnameValue,
+                "email": mailValue,
+                "password": passValue,
+                "address": addressValue}),
+            headers: new Headers({"content-type": "application/json"}),
+            cache: 'no-cache'
+        })
+        .then(function (response){
+            if(response.status !== 200){
+                console.log(`bad request: ${response.status}`)
+                return
+            }
+            response.json().then(function (data){
+                console.log(data)
+            })
+
+        })
     }
     
 }
