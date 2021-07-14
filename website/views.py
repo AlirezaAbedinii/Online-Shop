@@ -9,3 +9,8 @@ def main():
 @views.route('/admin')
 def admin():
     return render_template("admin.html")
+
+
+@views.route('/user')
+def user():
+    return render_template("user.html")
