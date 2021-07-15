@@ -38,3 +38,4 @@ categoryBtn.addEventListener('click',(event)=>{
     categoryBtn.style.backgroundColor = "rgb(238, 238, 238)"
     receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
 })
+

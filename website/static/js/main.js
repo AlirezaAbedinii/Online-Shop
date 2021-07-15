@@ -160,3 +160,9 @@ var select = document.querySelector("#item-per-page__select")
 select.addEventListener('change',(event)=>{
   changeItemPerPage(event.target.value)
 })
+
+
+// var menuProductBtn = document.querySelector(".menu__product-btn")
+// menuProductBtn.addEventListener('click', (event)=>{
+//   window.location.replace(`${window.location.origin}/main#productt`)
+// })
