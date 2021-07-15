@@ -18,7 +18,7 @@ class Admin(db.Model):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    category = db.Column(db.String(100))
+    category = db.Column(db.String(100), db.ForeignKey('category.name'))
     price = db.Column(db.Integer)
     availability_number = db.Column(db.Integer)
     sold_number = db.Column(db.Integer)
@@ -38,4 +38,5 @@ class Receipt(db.Model):
     state = db.Column(db.String(100))
     customer_id = db.Column(db.String(100), db.ForeignKey('user.id'))
     
-    
+class Category(db.Model):
+    name = db.Column(db.String(100), primary_key=True)
