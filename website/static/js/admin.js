@@ -124,7 +124,7 @@ function createAugmentedProducts(data) {
 
 function add_product() {
     console.log("umad")
-    window.open(`${window.origin}/admin/create_product`)
+    window.location.replace(`${window.origin}/admin/create_product`)
     fetch(`${window.origin}/admin/create_product`, {})
 }
 
