@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(100))
     address = db.Column(db.String(100))
     charge = db.Column(db.String(100))
+    receipts = db.relationship('Receipt')
     
 class Admin(db.Model):
     id = db.Column(db.String(100), primary_key=True)
@@ -35,5 +36,6 @@ class Receipt(db.Model):
     date = db.Column(db.DateTime(timezone=True), default = func.now())
     tracking_code = db.Column(db.String(100))
     state = db.Column(db.String(100))
+    customer_id = db.Column(db.String(100), db.ForeignKey('user.id'))
     
     

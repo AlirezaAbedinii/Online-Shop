@@ -2,6 +2,7 @@ from flask import Flask, app
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -19,15 +20,23 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     
-    from . import models
+    from .models import User, Admin, Product, Receipt
     
     create_database(app)
-    
+
+    try:
+        with app.app_context():
+            admin = Admin(id = "admin@admin.com", password = generate_password_hash("adminpass1", method='sha256'))
+            db.session.add(admin)
+            db.session.commit()
+    except:
+        pass
     
     return app
     
 
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
-        db.create_all(app=app)
+        with app.app_context():
+            db.create_all()
         print('Created Database!')
