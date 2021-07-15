@@ -1,7 +1,7 @@
 from flask import Flask, app
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+from os import name, path
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 
@@ -47,11 +47,15 @@ def create_admin(app):
             print('admin already exists in db', file=sys.stdout)
     
 def create_products(app):
-    from .models import Product
+    from .models import Product, Category
     with app.app_context():
+        if not Category.query.filter_by().first():
+            category = Category(name="دسته بندی نشده")
+            db.session.add(category)
+            db.session.commit()
         if not Product.query.filter_by().first():
             for i in range(40):
-                product = Product(name=f'محصول {i+1}',category=f'دسته بندی{i+1}',price=(i+1)*10000,availability_number=i+1,sold_number=0,image='/static/Pictures/Product_sample_picture.png')
+                product = Product(name=f'محصول {i+1}',price=(i+1)*10000,availability_number=i+1,sold_number=0,image='/static/Pictures/Product_sample_picture.png')
                 db.session.add(product)
                 db.session.commit()
             print('products added to db', file=sys.stdout)
