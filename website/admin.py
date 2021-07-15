@@ -40,3 +40,31 @@ def delete_product():
     Product.query.filter_by(name = name).delete()
     db.session.commit()
     return make_response(jsonify({"message": f'{name} deleted successfuly'}), 200)
+
+@admin.route('/admin/edit_product/submit', methods=['POST'])
+def update_product():
+    print('change req received', file=sys.stdout)
+    req = request.get_json()
+    old_name, name, category, price, av, sold, image = req.values()
+    print(f'name of product is {name}')
+    
+    product = Product.query.filter_by(name = old_name).first()
+    
+    if name != '':
+        product.name = name
+        
+    if category != '':
+        product.category = category
+    if price != '':
+        product.price = price
+    if av != '':
+        product.availability_number = av
+    
+    if sold != '':
+        product.sold_number = sold
+        
+    if image != '':
+        product.image = image
+    
+    db.session.commit()
+    return make_response(jsonify({"message": f'{name} edited successfuly'}), 200)

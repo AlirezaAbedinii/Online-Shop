@@ -63,7 +63,7 @@
                 fetch(`${window.origin}/admin/edit_product/submit`, {
                     method: 'POST',
                     body: JSON.stringify({
-                        "name": name, "category": category, "price": price, "av": av, "sold": sold, "image": image
+                       "old_name": product_name ,"name": name, "category": category, "price": price, "av": av, "sold": sold, "image": image
                     }),
                     headers: new Headers({"content-type": "application/json"})
                 })
