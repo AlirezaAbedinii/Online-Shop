@@ -22,7 +22,7 @@ class Product(db.Model):
     price = db.Column(db.Integer)
     availability_number = db.Column(db.Integer)
     sold_number = db.Column(db.Integer)
-    image = db.Column(db.String(100))
+    image = db.Column(db.String(100), default = '/static/Pictures/Product_sample_picture.png')
     
     
 class Receipt(db.Model):

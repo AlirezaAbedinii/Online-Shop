@@ -32,6 +32,7 @@ def user():
     return render_template("user.html")
 
 
-@views.route('/test')
-def test():
-    return render_template("test.html", testing = "AYOOO")
+@views.route('/admin/create_product')
+def create_product():
+    print('umad', file=sys.stdout)
+    return render_template("create_product.html")
