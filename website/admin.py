@@ -1,7 +1,8 @@
-from website.models import Product
+from website.models import Admin, Category, Product
 from flask import Blueprint, render_template, request, make_response, jsonify
 from . import db
 import sys
+import json
 
 admin = Blueprint('admin', __name__)
 
@@ -12,10 +13,30 @@ def create_product():
     req = request.get_json()
     name, category, price, av, sold = req.values()
     
-    product = Product(name = name, category = category, price = price, availability_number = av, sold_number = sold)
-    db.session.add(product)
+    if not Product.query.filter_by(name=name).first():
+        product = Product(name = name, category = category, price = price, availability_number = av, sold_number = sold)
+        db.session.add(product)
+        db.session.commit()
+        
+        print('item added', file=sys.stdout)
+        if not Category.query.filter_by(name = category).first():
+            cat = Category(name=category)
+            db.session.add(cat)
+            db.session.commit()    
+            print("category added")
+        
+    
+        return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
+    else:
+        return make_response(jsonify({"message": "product name must be unique"}), 405)
+    
+    
+    
+@admin.route('/admin/edit_product/delete', methods=['POST'])
+def delete_product():
+    print('delete req received', file=sys.stdout)
+    req = json.loads(request.get_data())
+    name = req['product_name']
+    Product.query.filter_by(name = name).delete()
     db.session.commit()
-    
-    print('item added', file=sys.stdout)
-    
-    return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
+    return make_response(jsonify({"message": f'{name} deleted successfuly'}), 200)

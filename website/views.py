@@ -1,7 +1,10 @@
+from flask.helpers import url_for
+from werkzeug.datastructures import cache_property
 from website.models import Product
-from flask import Blueprint, render_template, request, make_response, jsonify
+from flask import Blueprint, render_template, request, make_response, jsonify, redirect
 from . import db
 import sys
+import json
 
 views = Blueprint('views', __name__)
 
@@ -34,5 +37,20 @@ def user():
 
 @views.route('/admin/create_product')
 def create_product():
-    print('umad', file=sys.stdout)
     return render_template("create_product.html")
+
+
+@views.route('/admin/edit_product', methods = ['GET', 'POST'])
+def edit_product():
+    global current_product
+    if request.method == 'POST':
+        req = json.loads(request.get_data())
+        current_product = req['product_name']
+        render_template("edit_product.html", product_name = create_product)
+        return redirect(url_for("views.edit_product"))
+    print(request.method, request.get_json())
+    return render_template("edit_product.html", product = current_product)
+
+
+current_product = ''
+    

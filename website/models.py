@@ -17,7 +17,7 @@ class Admin(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    name = db.Column(db.String(100), unique = True)
     category = db.Column(db.String(100), db.ForeignKey('category.name'), default = 'دسته بندی نشده')
     price = db.Column(db.Integer)
     availability_number = db.Column(db.Integer)

@@ -6,8 +6,7 @@ var receiptContent = document.querySelector("#receipt__content")
 var productContent = document.querySelector("#product__content")
 var categoryContent = document.querySelector("#category__content")
 
-
-receiptBtn.addEventListener('click',(event)=>{
+receiptBtn.addEventListener("click", (event) => {
     console.log("sth clicked")
     productContent.style.display = "none"
     categoryContent.style.display = "none"
@@ -17,7 +16,7 @@ receiptBtn.addEventListener('click',(event)=>{
     receiptBtn.style.backgroundColor = "rgb(238, 238, 238)"
 })
 
-productBtn.addEventListener('click',(event)=>{
+productBtn.addEventListener("click", (event) => {
     console.log("sth clicked")
     productContent.style.display = "block"
     categoryContent.style.display = "none"
@@ -28,7 +27,7 @@ productBtn.addEventListener('click',(event)=>{
     receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
 })
 
-categoryBtn.addEventListener('click',(event)=>{
+categoryBtn.addEventListener("click", (event) => {
     console.log("sth clicked")
     productContent.style.display = "none"
     categoryContent.style.display = "block"
@@ -39,32 +38,32 @@ categoryBtn.addEventListener('click',(event)=>{
     receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
 })
 
-function load_products(){
-    fetch(`${window.location.origin}/admin`,{
+function load_products() {
+    fetch(`${window.location.origin}/admin`, {
         method: "POST",
-        body: JSON.stringify({"command": "get_products"}),
-        headers: new Headers({"content-type" : "application/json"}),
-        cache: "no-cache"
-    })
-    .then(function (response){
-        if(response.status !== 200){
+        body: JSON.stringify({ command: "get_products" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
             return
         }
-        response.json().then(function (data){
+        response.json().then(function (data) {
             products = data.message
-            var productContentLower = document.querySelector(".product__content__lower")
+            var productContentLower = document.querySelector(
+                ".product__content__lower"
+            )
             totalProducts = products.length
-            for(var i=0; i<totalProducts; i++){
+            for (var i = 0; i < totalProducts; i++) {
                 var aug_product = createAugmentedProducts(products[i])
                 productContentLower.appendChild(aug_product)
-            }                
+            }
         })
     })
 }
 
-
-function createAugmentedProducts (data){
+function createAugmentedProducts(data) {
     var augmentedProduct = document.createElement("div")
     augmentedProduct.className = "augmented-product"
 
@@ -74,16 +73,16 @@ function createAugmentedProducts (data){
 
     var product = document.createElement("div")
     product.className = "product"
-    var productUpper = document.createElement('div')
+    var productUpper = document.createElement("div")
     productUpper.className = "product__upper"
-    var productImage = document.createElement('div')
+    var productImage = document.createElement("div")
     productImage.className = "product__image"
-    var productDetails = document.createElement('div')
+    var productDetails = document.createElement("div")
     productDetails.className = "product__details"
-    var productLower = document.createElement('div')
+    var productLower = document.createElement("div")
     productLower.className = "product__lower"
 
-    var img = document.createElement("img")    
+    var img = document.createElement("img")
     img.src = data.image
 
     var productDetailsName = document.createElement("p")
@@ -101,6 +100,7 @@ function createAugmentedProducts (data){
     var productButton = document.createElement("button")
     productButton.textContent = "ویرایش محصول"
     productButton.className = "product__button"
+    productButton.addEventListener("click", edit_product)
 
     productDetails.appendChild(productDetailsName)
     productDetails.appendChild(productDetailsCategory)
@@ -109,7 +109,7 @@ function createAugmentedProducts (data){
 
     productUpper.appendChild(productImage)
     productUpper.appendChild(productDetails)
-    
+
     productLower.appendChild(productButton)
     productLower.appendChild(productPrice)
 
@@ -120,16 +120,29 @@ function createAugmentedProducts (data){
     augmentedProduct.appendChild(sold_btn)
 
     return augmentedProduct
-
 }
 
-function add_product(){
-    console.log('umad')
+function add_product() {
+    console.log("umad")
     window.open(`${window.origin}/admin/create_product`)
     fetch(`${window.origin}/admin/create_product`, {})
+}
+
+function edit_product() {
+    ancestor = this.parentElement.parentElement.parentElement
+    product_name = ancestor.querySelector(".product__details--name").innerHTML
+    console.log(product_name)
+    fetch(`/admin/edit_product`, {
+        method: "POST",
+        body: JSON.stringify({ product_name: product_name }),
+    }).then(function (response) {
+        if (response.status == 200) {
+            window.location.replace(`/admin/edit_product`)
+        }
+    })
 }
 
 window.onload = load_products
 
 var create_product = document.querySelector(".product__content__upper")
-create_product.addEventListener('click', add_product)
+create_product.addEventListener("click", add_product)
