@@ -226,7 +226,7 @@ button{
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     width: 150px;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(238, 238, 238);
     border: solid rgb(238, 238, 238);
     border-left: none;
 }
@@ -242,7 +242,7 @@ button{
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
     width: 150px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(247, 247, 247);
     border: solid rgb(238, 238, 238);
 }
 
@@ -266,8 +266,8 @@ button{
 /* product Part */
 
 #product__content{
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
 }
 .product__content__upper button{
     margin-top: 10px;
@@ -372,8 +372,8 @@ button{
 
 /* category Part */
 #category__content{
-    display: block;
-    /* display: none; */
+    /* display: block; */
+    display: none;
 }
 .category__table__div button{
     border: none;
