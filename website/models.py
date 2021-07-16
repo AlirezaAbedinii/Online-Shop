@@ -34,8 +34,7 @@ class Receipt(db.Model):
     customer_address = db.Column(db.String(100))
     total_price = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default = func.now())
-    tracking_code = db.Column(db.String(100))
-    state = db.Column(db.String(100))
+    state = db.Column(db.String(100), default = 'در حال انجام')
     customer_id = db.Column(db.String(100), db.ForeignKey('user.id'))
     
 class Category(db.Model):

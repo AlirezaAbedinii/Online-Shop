@@ -1,4 +1,4 @@
-from website.models import Admin, Category, Product
+from website.models import Admin, Category, Product, Receipt
 from flask import Blueprint, render_template, request, make_response, jsonify
 from . import db
 import sys
@@ -125,3 +125,21 @@ def edit_category():
     
     
     return make_response(jsonify({"message": f'{old_name} cant be updated'}), 405)
+
+
+
+@admin.route('/admin/edit_receipt', methods=['POST'])
+def edit_receipt():
+    print('edit req received', file=sys.stdout)
+    req = request.get_json()
+    id = req['old_name']
+    new_state = req['rec_name']
+    if new_state in  ('در حال انجام', 'انجام شده', 'لغو شده'):
+        updated_recs=Receipt.query.filter_by(id = id).update({Receipt.state: new_state})
+        db.session.commit()
+        
+        return make_response(jsonify({"message": f'{id} updated successfuly to {new_state} for {updated_recs} receipts'}), 200)
+    
+    
+    
+    return make_response(jsonify({"message": f'{id} cant be updated'}), 405)

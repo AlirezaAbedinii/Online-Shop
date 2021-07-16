@@ -477,6 +477,7 @@ input {
     background-color: rgb(247, 247, 247);
 }
 
-.edit-cat-div {
+.edit-cat-div,
+.edit-rec-div {
     display: none;
 }

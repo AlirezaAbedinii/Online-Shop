@@ -89,6 +89,31 @@ function load_products(replace = 0) {
             }
         })
     })
+
+    fetch(`/admin`, {
+        method: "POST",
+        body: JSON.stringify({ command: "get_receipts" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got receipt response: ${data}`)
+            receipts = data.message
+            var receipt_table = document.querySelector(".receipt__table")
+            if (replace === 1) {
+                receipt_table.innerHTML = ""
+            }
+            totalReceipts = receipts.length
+            for (var i = 0; i < totalReceipts; i++) {
+                var receipt_row = createReceiptRow(receipts[i])
+                receipt_table.appendChild(receipt_row)
+            }
+        })
+    })
 }
 
 function createCategoryRow(cat) {
@@ -118,6 +143,52 @@ function createCategoryRow(cat) {
 
     second_td.appendChild(div)
     first_tr.appendChild(second_td)
+
+    return first_tr
+}
+
+function createReceiptRow(rec) {
+    rec_id = rec["id"]
+    var first_tr = document.createElement("tr")
+    first_tr.id = rec_id
+
+    var td1 = document.createElement("td")
+
+    td1.innerHTML = rec_id
+    first_tr.appendChild(td1)
+
+    var td2 = document.createElement("td")
+    td2.innerHTML = rec["product_name"]
+    first_tr.appendChild(td2)
+
+    var td3 = document.createElement("td")
+    td3.innerHTML = `${rec["total_price"]} تومان`
+    first_tr.appendChild(td3)
+
+    var td4 = document.createElement("td")
+    td4.innerHTML = `${rec["customer_first_name"]} ${rec["customer_last_name"]}`
+    first_tr.appendChild(td4)
+
+    var td5 = document.createElement("td")
+    td5.innerHTML = rec["customer_address"]
+    first_tr.appendChild(td5)
+
+    var td6 = document.createElement("td")
+    td6.innerHTML = rec["purchase_number"]
+    first_tr.appendChild(td6)
+
+    var td = document.createElement("td")
+    td.innerHTML = ""
+    var btn = document.createElement("button")
+    btn.textContent = rec["state"]
+    btn.style.backgroundColor = "inherit"
+    btn.style.border = "none"
+    btn.className = "edit-receipt-state"
+    btn.addEventListener("click", (event) => {
+        edit_receipt_start(first_tr.id)
+    })
+    td.appendChild(btn)
+    first_tr.appendChild(td)
 
     return first_tr
 }
@@ -230,6 +301,17 @@ function edit_category_start(cat_name) {
     inp_cat_name.value = ""
 }
 
+function edit_receipt_start(rec_name) {
+    var div = document.querySelector(".edit-rec-div")
+    div.style.display = "block"
+
+    var old_name_div = document.querySelector(".old-rec-name")
+    old_name_div.innerHTML = rec_name
+
+    var inp_rec_name = document.querySelector(".rec-name")
+    inp_rec_name.value = ""
+}
+
 function edit_category() {
     var div_cat_name = document.querySelector(".old-cat-name")
     var old_name = div_cat_name.innerHTML
@@ -254,6 +336,62 @@ function edit_category() {
         div.style.display = "none"
         div_cat_name.innerHTML = ""
         load_products(1)
+    })
+}
+
+function edit_receipt() {
+    var div_rec_name = document.querySelector(".old-rec-name")
+    var old_name = div_rec_name.innerHTML
+    console.log(old_name)
+
+    var inp_rec_name = document.querySelector(".rec-name")
+    var rec_name = inp_rec_name.value
+
+    fetch(`/admin/edit_receipt`, {
+        method: "POST",
+        body: JSON.stringify({ old_name: old_name, rec_name: rec_name }),
+        headers: new Headers({ "content-type": "application/json" }),
+        credentials: "include",
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+
+        var div = document.querySelector(".edit-rec-div")
+        div.style.display = "none"
+        div_rec_name.innerHTML = ""
+        load_products(1)
+    })
+}
+
+function filter_receipt_func(rec_id) {
+    fetch(`/admin`, {
+        method: "POST",
+        body: JSON.stringify({
+            command: "get_filtered_receipts",
+            rec_id: rec_id,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got receipt response: ${data}`)
+            receipts = data.message
+            var receipt_table = document.querySelector(".receipt__table")
+            receipt_table.innerHTML = ""
+
+            totalReceipts = receipts.length
+            for (var i = 0; i < totalReceipts; i++) {
+                var receipt_row = createReceiptRow(receipts[i])
+                receipt_table.appendChild(receipt_row)
+            }
+        })
     })
 }
 
@@ -288,4 +426,20 @@ var close_edit_cat_btn = document.querySelector(".close-edit-cat")
 close_edit_cat_btn.addEventListener("click", (event) => {
     var div = document.querySelector(".edit-cat-div")
     div.style.display = "none"
+})
+
+var submit_edit_rec_btn = document.querySelector(".edit-rec-btn")
+submit_edit_rec_btn.addEventListener("click", edit_receipt)
+
+var close_edit_rec_btn = document.querySelector(".close-edit-rec")
+close_edit_rec_btn.addEventListener("click", (event) => {
+    console.log("helloo")
+    var div = document.querySelector(".edit-rec-div")
+    div.style.display = "none"
+})
+
+var filter_receipt = document.querySelector(".search-receipt")
+var recept_search_input = document.querySelector(".recept__search__input")
+filter_receipt.addEventListener("click", () => {
+    filter_receipt_func(recept_search_input.value)
 })

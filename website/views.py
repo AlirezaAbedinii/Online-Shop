@@ -1,10 +1,11 @@
 from flask.helpers import url_for
 from werkzeug.datastructures import cache_property
-from website.models import Category, Product
+from website.models import Category, Product, Receipt
 from flask import Blueprint, render_template, request, make_response, jsonify, redirect
 from . import db
 import sys
 import json
+from sqlalchemy import desc
 
 views = Blueprint('views', __name__)
 
@@ -33,6 +34,38 @@ def admin():
             res_categories = []
             for cat in categories:
                 res_categories.append({"name":cat.name})
+                
+            res = make_response(jsonify({"message": res_categories}), 200)
+            return res
+        
+        
+        if req['command'] == 'get_receipts':
+            receipts = Receipt.query.order_by(desc(Receipt.date)).all()
+            res_categories = []
+            for rec in receipts:
+                json_rec = {"id":rec.id, "product_name":rec.product_name,
+                            "purchase_number":rec.purchase_number,	"customer_first_name":rec.customer_first_name,
+                            "customer_last_name":rec.customer_last_name,	"customer_address":rec.customer_address,
+                            "total_price":rec.total_price,	"date":rec.date,	"state":rec.state,
+                            "customer_id":rec.customer_id}
+                res_categories.append(json_rec)
+                
+            res = make_response(jsonify({"message": res_categories}), 200)
+            return res
+        
+        if req['command'] == 'get_filtered_receipts':
+            if req['rec_id'] not in (' ', ''):
+                receipts = Receipt.query.filter_by(id = req['rec_id']).all()
+            else:
+                receipts = Receipt.query.order_by(desc(Receipt.date)).all()
+            res_categories = []
+            for rec in receipts:
+                json_rec = {"id":rec.id, "product_name":rec.product_name,
+                            "purchase_number":rec.purchase_number,	"customer_first_name":rec.customer_first_name,
+                            "customer_last_name":rec.customer_last_name,	"customer_address":rec.customer_address,
+                            "total_price":rec.total_price,	"date":rec.date,	"state":rec.state,
+                            "customer_id":rec.customer_id}
+                res_categories.append(json_rec)
                 
             res = make_response(jsonify({"message": res_categories}), 200)
             return res
