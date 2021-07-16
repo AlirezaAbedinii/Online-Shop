@@ -39,7 +39,6 @@ categoryBtn.addEventListener("click", (event) => {
 })
 
 function load_products(replace = 0) {
-    console.log(replace)
     fetch(`${window.location.origin}/admin`, {
         method: "POST",
         body: JSON.stringify({ command: "get_products" }),
@@ -105,6 +104,9 @@ function createCategoryRow(cat) {
     div.className = "action__div"
     var btn = document.createElement("button")
     btn.innerHTML = "ویرایش دسته بندی"
+    btn.addEventListener("click", () => {
+        edit_category_start(first_tr.id)
+    })
     div.appendChild(btn)
 
     var btn2 = document.createElement("button")
@@ -217,6 +219,44 @@ function edit_product() {
     })
 }
 
+function edit_category_start(cat_name) {
+    var div = document.querySelector(".edit-cat-div")
+    div.style.display = "block"
+
+    var old_name_div = document.querySelector(".old-cat-name")
+    old_name_div.innerHTML = cat_name
+
+    var inp_cat_name = document.querySelector(".cat-name")
+    inp_cat_name.value = ""
+}
+
+function edit_category() {
+    var div_cat_name = document.querySelector(".old-cat-name")
+    var old_name = div_cat_name.innerHTML
+    console.log(old_name)
+
+    var inp_cat_name = document.querySelector(".cat-name")
+    var cat_name = inp_cat_name.value
+
+    fetch(`/admin/edit_category`, {
+        method: "POST",
+        body: JSON.stringify({ old_name: old_name, cat_name: cat_name }),
+        headers: new Headers({ "content-type": "application/json" }),
+        credentials: "include",
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+
+        var div = document.querySelector(".edit-cat-div")
+        div.style.display = "none"
+        div_cat_name.innerHTML = ""
+        load_products(1)
+    })
+}
+
 window.onload = load_products
 
 var create_product = document.querySelector(".product__content__upper")
@@ -239,4 +279,13 @@ add_cat.addEventListener("click", (event) => {
             console.log(response.json())
         }
     })
+})
+
+var submit_edit_cat_btn = document.querySelector(".edit-cat-btn")
+submit_edit_cat_btn.addEventListener("click", edit_category)
+
+var close_edit_cat_btn = document.querySelector(".close-edit-cat")
+close_edit_cat_btn.addEventListener("click", (event) => {
+    var div = document.querySelector(".edit-cat-div")
+    div.style.display = "none"
 })

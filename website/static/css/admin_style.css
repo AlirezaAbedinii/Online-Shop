@@ -476,3 +476,7 @@ input {
 .receipt__table tr:hover {
     background-color: rgb(247, 247, 247);
 }
+
+.edit-cat-div {
+    display: none;
+}

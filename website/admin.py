@@ -104,3 +104,24 @@ def add_category():
     
     
     return make_response(jsonify({"message": f'{name} already exists'}), 405)
+
+
+
+@admin.route('/admin/edit_category', methods=['POST'])
+def edit_category():
+    print('edit req received', file=sys.stdout)
+    req = request.get_json()
+    old_name = req['old_name']
+    new_name = req['cat_name']
+    if old_name not in  ('دسته بندی نشده', '', ' '):
+        updated_cats=Category.query.filter_by(name = old_name).update({Category.name: new_name})
+        db.session.commit()
+        
+        updated_prods = Product.query.filter_by(category = old_name).update({Product.category: new_name})
+        db.session.commit()
+        
+        return make_response(jsonify({"message": f'{old_name} updated successfuly to {new_name} for {updated_cats} categories and {updated_prods} products'}), 200)
+    
+    
+    
+    return make_response(jsonify({"message": f'{old_name} cant be updated'}), 405)
