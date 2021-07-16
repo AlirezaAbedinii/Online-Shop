@@ -15,6 +15,9 @@ def admin():
 def user():
     return render_template("user.html")
 
+@views.route('/signin')
+def signin():
+    return render_template("signin.html")
 
 @views.route('/test')
 def test():

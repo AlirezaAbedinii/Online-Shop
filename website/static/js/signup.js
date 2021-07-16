@@ -242,7 +242,7 @@ function setMessage(){
     lnameValue=lname.value.trim();
     addressValue=address.value;
     modal_msg=document.getElementById('modal__msg');
-    fetch(`${window.origin}/signup`, {
+    fetch(`${window.origin}/signup/submit`, {
         method: "POST",
         body: JSON.stringify({
             "first_name": nameValue,
@@ -260,11 +260,14 @@ function setMessage(){
         }
         response.json().then(function (data){
             console.log(data);
-            if(data['mail']=='mail valid' && data['pass']=='pass valid'){
+            if(data['state']=='success'){
                 modal_msg.innerHTML='ثبت نام موفق';
             }
-            else{
+            else if(data['state']=='fail'){
                 modal_msg.innerHTML='ثبت نام ناموفق';
+            }
+            else if(data['state']=='duplicate'){
+                modal_msg.innerHTML='کاربری با این ایمیل وجود دارد';
             }
             })
     });
