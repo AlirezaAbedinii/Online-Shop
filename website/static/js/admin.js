@@ -221,3 +221,22 @@ window.onload = load_products
 
 var create_product = document.querySelector(".product__content__upper")
 create_product.addEventListener("click", add_product)
+
+var add_cat = document.querySelector(".add-category")
+add_cat.addEventListener("click", (event) => {
+    var cat_name = document.querySelector(".category__add__input")
+    console.log(cat_name.value)
+    fetch(`/admin/add_category`, {
+        method: "POST",
+        body: JSON.stringify({ cat_name: cat_name.value }),
+        headers: new Headers({ "content-type": "application/json" }),
+    }).then(function (response) {
+        if (response.status == 200) {
+            cat_name.value = ""
+            cat_name.innerHTML = ""
+            load_products(1)
+        } else {
+            console.log(response.json())
+        }
+    })
+})

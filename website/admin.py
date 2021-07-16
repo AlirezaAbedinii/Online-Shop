@@ -84,3 +84,23 @@ def delete_category():
     
     
     return make_response(jsonify({"message": f'{name} cant be deleted'}), 405)
+
+
+
+@admin.route('/admin/add_category', methods=['POST'])
+def add_category():
+    print('umad add', flush=True)
+    print('add req received', file=sys.stdout)
+    req = request.get_json()
+    name = req['cat_name']
+    
+    if not Category.query.filter_by(name = name).first():
+        category = Category(name = name)
+        db.session.add(category)
+        db.session.commit()
+        
+        return make_response(jsonify({"message": f'{name} added successfuly'}), 200)
+    
+    
+    
+    return make_response(jsonify({"message": f'{name} already exists'}), 405)
