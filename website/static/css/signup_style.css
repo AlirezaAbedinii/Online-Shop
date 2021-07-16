@@ -378,14 +378,14 @@ body{min-height: 100vh;}
 	border-color:rgb(247, 247, 247);
 }
 .main__form__pass.success input{
-    /* border-color:#2ecc71; */
+     border-color:#2ecc71; 
 }
 .main__form__pass.error input{
-    /* border-color:#e74c3c; */
+     border-color:#e74c3c;
 }
 
 .main__form__pass small{
-    /* color: #ef5350; */
+    color: #ef5350;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -402,14 +402,14 @@ body{min-height: 100vh;}
 	border-color:rgb(247, 247, 247);
 }
 .main__form__mail.success input{
-    /* border-color:#2ecc71; */
+     border-color:#2ecc71; 
 }
 .main__form__mail.error input{
-    /* border-color:#e74c3c; */
+     border-color:#e74c3c; 
 }
 
 .main__form__mail small{
-    /* color: #ef5350; */
+     color: #ef5350; 
     position: absolute;
     bottom: 0;
     right: 0;
@@ -429,11 +429,11 @@ body{min-height: 100vh;}
     border-color:#2ecc71;
 }
 .main__form__name.error input{
-    /* border-color:#e74c3c; */
+     border-color:#e74c3c;
 }
 
 .main__form__name small{
-    /* color: #ef5350; */
+    color: #ef5350; 
     position: absolute;
     bottom: 0;
     right: 0;
@@ -453,11 +453,11 @@ body{min-height: 100vh;}
     border-color:#2ecc71;
 }
 .main__form__lname.error input{
-    /* border-color:#e74c3c; */
+    border-color:#e74c3c;
 }
 
 .main__form__lname small{
-    /* color: #ef5350; */
+     color: #ef5350; 
     position: absolute;
     bottom: 0;
     right: 0;
@@ -477,11 +477,11 @@ body{min-height: 100vh;}
     border-color:#2ecc71;
 }
 .main__form__address.error input{
-    /* border-color:#e74c3c; */
+     border-color:#e74c3c; 
 }
 
 .main__form__address small{
-    /* color: #ef5350; */
+    color: #ef5350; 
     position: absolute;
     bottom: 0;
     right: 0;

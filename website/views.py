@@ -1,3 +1,5 @@
+from flask import Blueprint, render_template
+from flask_login import  login_required,current_user
 from flask.helpers import url_for
 from werkzeug.datastructures import cache_property
 from website.models import Category, Product, Receipt
@@ -11,7 +13,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/main')
 def main():
-    return render_template("main.html")
+    return render_template("main.html",user=current_user)
 
 @views.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -75,9 +77,13 @@ def admin():
 
 
 @views.route('/user')
+#@login_required
 def user():
     return render_template("user.html")
 
+@views.route('/signin')
+def signin():
+    return render_template("signin.html")
 
 @views.route('/admin/create_product')
 def create_product():
