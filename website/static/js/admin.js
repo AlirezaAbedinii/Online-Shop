@@ -38,7 +38,8 @@ categoryBtn.addEventListener("click", (event) => {
     receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
 })
 
-function load_products() {
+function load_products(replace = 0) {
+    console.log(replace)
     fetch(`${window.location.origin}/admin`, {
         method: "POST",
         body: JSON.stringify({ command: "get_products" }),
@@ -54,12 +55,86 @@ function load_products() {
             var productContentLower = document.querySelector(
                 ".product__content__lower"
             )
+            if (replace === 1) {
+                productContentLower.innerHTML = ""
+            }
             totalProducts = products.length
             for (var i = 0; i < totalProducts; i++) {
                 var aug_product = createAugmentedProducts(products[i])
                 productContentLower.appendChild(aug_product)
             }
         })
+    })
+
+    fetch(`/admin`, {
+        method: "POST",
+        body: JSON.stringify({ command: "get_categories" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got category response: ${data}`)
+            categories = data.message
+            var cat_table = document.querySelector(".category__table")
+            if (replace === 1) {
+                cat_table.innerHTML = ""
+            }
+            totalCategories = categories.length
+            for (var i = 0; i < totalCategories; i++) {
+                var table_row = createCategoryRow(categories[i])
+                cat_table.appendChild(table_row)
+            }
+        })
+    })
+}
+
+function createCategoryRow(cat) {
+    cat_name = cat["name"]
+    var first_tr = document.createElement("tr")
+    first_tr.id = cat_name
+    var first_td = document.createElement("td")
+    first_td.innerHTML = cat_name
+    first_tr.appendChild(first_td)
+
+    var second_td = document.createElement("td")
+    var div = document.createElement("div")
+    div.className = "action__div"
+    var btn = document.createElement("button")
+    btn.innerHTML = "ویرایش دسته بندی"
+    div.appendChild(btn)
+
+    var btn2 = document.createElement("button")
+    btn2.innerHTML = "Xحذف دسته بندی"
+    btn2.addEventListener("click", () => {
+        delete_cat(first_tr.id)
+    })
+    div.appendChild(btn2)
+
+    second_td.appendChild(div)
+    first_tr.appendChild(second_td)
+
+    return first_tr
+}
+
+function delete_cat(cat_name) {
+    fetch(`/admin/delete_category`, {
+        method: "POST",
+        body: JSON.stringify({ cat_name: cat_name }),
+        headers: new Headers({ "content-type": "application/json" }),
+        credentials: "include",
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        // var row = document.getElementById(cat_name)
+        // row.style.display = "none"
+        load_products(1)
     })
 }
 

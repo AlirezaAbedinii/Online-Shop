@@ -13,17 +13,16 @@ def create_product():
     req = request.get_json()
     name, category, price, av, sold = req.values()
     
+    if not Category.query.filter_by(name = category).first():
+            category = 'دسته بندی نشده'
+            print("invalid category", sys.stdout)
+    
     if not Product.query.filter_by(name=name).first():
         product = Product(name = name, category = category, price = price, availability_number = av, sold_number = sold)
         db.session.add(product)
         db.session.commit()
         
         print('item added', file=sys.stdout)
-        if not Category.query.filter_by(name = category).first():
-            cat = Category(name=category)
-            db.session.add(cat)
-            db.session.commit()    
-            print("category added")
         
     
         return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
@@ -53,7 +52,7 @@ def update_product():
     if name != '':
         product.name = name
         
-    if category != '':
+    if category != '' and Category.query.filter_by(name = category).first():
         product.category = category
     if price != '':
         product.price = price
@@ -68,3 +67,20 @@ def update_product():
     
     db.session.commit()
     return make_response(jsonify({"message": f'{name} edited successfuly'}), 200)
+
+@admin.route('/admin/delete_category', methods=['POST'])
+def delete_category():
+    print('delete req received', file=sys.stdout)
+    req = json.loads(request.get_data())
+    name = req['cat_name']
+    if name != 'دسته بندی نشده':
+        Category.query.filter_by(name = name).delete()
+        db.session.commit()
+        updated_products = Product.query.filter_by(category = name).update({Product.category: 'دسته بندی نشده'})
+        db.session.commit()
+        
+        return make_response(jsonify({"message": f'{name} deleted successfuly and {updated_products} product\' category updated'}), 200)
+    
+    
+    
+    return make_response(jsonify({"message": f'{name} cant be deleted'}), 405)

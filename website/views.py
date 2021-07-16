@@ -1,6 +1,6 @@
 from flask.helpers import url_for
 from werkzeug.datastructures import cache_property
-from website.models import Product
+from website.models import Category, Product
 from flask import Blueprint, render_template, request, make_response, jsonify, redirect
 from . import db
 import sys
@@ -27,6 +27,17 @@ def admin():
                 
             res = make_response(jsonify({"message": res_products}), 200)
             return res
+        
+        if req['command'] == 'get_categories':
+            categories = Category.query.filter_by().all()
+            res_categories = []
+            for cat in categories:
+                res_categories.append({"name":cat.name})
+                
+            res = make_response(jsonify({"message": res_categories}), 200)
+            return res
+        
+        
     return render_template("admin.html")
 
 
