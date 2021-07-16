@@ -39,8 +39,7 @@
                 </div>
                 <!-- Upper Tab content -->
                 <div class="main__main">
-                    <div
-                     class="tab">
+                    <div class="tab">
                         <div id="admin__header" class="tabcontent1">
                             <p class="admin__header__welcome">ادمین عزیز، خوش آمدید</p>
                         </div>
@@ -55,97 +54,12 @@
                             <div class="product__content__upper"><button>+ ایجاد محصول جدید</button></div>
 
                             <div class="product__content__lower">
-                                <div class="augmented-product">
-                                    <div class ="product">
-                                        <div class="product__upper">
-                                            <div class="product__image"><img src="{{url_for('static', filename='/Pictures/Product_sample_picture.png')}}">
-                                            </div>
-                                            <div class="product__details">
-                                                <p class="product__details--name">موس گیمینگ ریزر</p>
-                                                <p class="product__details--category">دسته بندی یک</p>
-                                            </div>
-                                        </div>
-                                        <div class="product__lower">
-                                            <button class="product__button">ویرایش محصول</button>
-                                            <p class="product__price">10.000 تومان</p>
-                                        </div>
-                                    </div>
-                                    <button class="product__sold">۱۲</button>
-                                </div>
-                                <div class="augmented-product">
-                                    <div class ="product">
-                                        <div class="product__upper">
-                                            <div class="product__image"><img src="{{url_for('static', filename='/Pictures/Product_sample_picture.png')}}">
-                                            </div>
-                                            <div class="product__details">
-                                                <p class="product__details--name">موس گیمینگ ریزر</p>
-                                                <p class="product__details--category">دسته بندی یک</p>
-                                            </div>
-                                        </div>
-                                        <div class="product__lower">
-                                            <button class="product__button">ویرایش محصول</button>
-                                            <p class="product__price">10.000 تومان</p>
-                                        </div>
-                                    </div>
-                                    <button class="product__sold">۱۲</button>
-                                </div>
-                                <div class="augmented-product">
-                                    <div class ="product">
-                                        <div class="product__upper">
-                                            <div class="product__image"><img src="{{url_for('static', filename='/Pictures/Product_sample_picture.png')}}">
-                                            </div>
-                                            <div class="product__details">
-                                                <p class="product__details--name">موس گیمینگ ریزر</p>
-                                                <p class="product__details--category">دسته بندی یک</p>
-                                            </div>
-                                        </div>
-                                        <div class="product__lower">
-                                            <button class="product__button">ویرایش محصول</button>
-                                            <p class="product__price">10.000 تومان</p>
-                                        </div>
-                                    </div>
-                                    <button class="product__sold">۱۲</button>
-                                </div>
-                                <!-- <div class="augmented-product">
-                                    <div class ="product">
-                                        <div class="product__upper">
-                                            <div class="product__image"><img src="{{url_for('static', filename='/Pictures/Product_sample_picture.png')}}">
-                                            </div>
-                                            <div class="product__details">
-                                                <p class="product__details--name">موس گیمینگ ریزر</p>
-                                                <p class="product__details--category">دسته بندی یک</p>
-                                            </div>
-                                        </div>
-                                        <div class="product__lower">
-                                            <button class="product__button">ویرایش محصول</button>
-                                            <p class="product__price">10.000 تومان</p>
-                                        </div>
-                                    </div>
-                                    <button class="product__sold">۱۲</button>
-                                </div> -->
-                                <!-- <div class="augmented-product">
-                                    <div class ="product">
-                                        <div class="product__upper">
-                                            <div class="product__image"><img src="{{url_for('static', filename='/Pictures/Product_sample_picture.png')}}">
-                                            </div>
-                                            <div class="product__details">
-                                                <p class="product__details--name">موس گیمینگ ریزر</p>
-                                                <p class="product__details--category">دسته بندی یک</p>
-                                            </div>
-                                        </div>
-                                        <div class="product__lower">
-                                            <button class="product__button">ویرایش محصول</button>
-                                            <p class="product__price">10.000 تومان</p>
-                                        </div>
-                                    </div>
-                                    <button class="product__sold">۱۲</button>
-                                </div> -->
                             </div>
 
                         </div>
                         <div id="category__content" class="tabcontent">
                             <div class="category__add">
-                                <div class="label__div"><i class="category__add__label">ایجاد دسته بندی جدید</i></div>
+                                <div class="label__div"><button class="add-category" style="background-color: inherit; border: none;"><i class="category__add__label">ایجاد دسته بندی جدید</i></button></div>
                                 <input type="text" class="category__add__input" placeholder="دسته بندی خود را وارد کنید">
                             
                         </div>
@@ -154,43 +68,13 @@
                                 <tr>
                                 <th>نام دسته بندی</th>
                                 <th>عملیات</th>
-                                </tr>
-
-                                <tr>
-                                <td>ُدسته بندی ۱</td>
-                                <td><div class="action__div">
-                                    <button>ویرایش دسته بندی</button>
-                                    <button>Xحذف دسته بندی</button>
-                                </div></td>
-                                </tr>
-                                <tr>
-                                <td>ُدسته بندی ۲</td>
-                                <td><div class="action__div">
-                                    <button>ویرایش دسته بندی</button>
-                                    <button>Xحذف دسته بندی</button>
-                                </div></td>
-                                </tr>
-                                <tr>
-                                <td>ُدسته بندی ۳</td>
-                                <td><div class="action__div">
-                                    <button>ویرایش دسته بندی</button>
-                                    <button>Xحذف دسته بندی</button>
-                                </div></td>
-                                </tr>
-                                <tr>
-                                <td>ُدسته بندی ۴</td>
-                                <td><div class="action__div">
-                                    <button>ویرایش دسته بندی</button>
-                                    <button>Xحذف دسته بندی</button>
-                                </div></td>
-                                </tr>
-                                
+                                </tr>                                
                             </table>
                         </div>
                         </div>
                         <div id="receipt__content" class="tabcontent">
                             <div class="receipt__search">
-                                    <div class="label__div"><i class="receipt__search__label">جستجوی کد پیگیری</i></div>
+                                    <div class="label__div"><button class="search-receipt" style="background-color: inherit; border: none;"><i class="receipt__search__label">جستجوی کد پیگیری</i></button></div>
                                     <input type="text" class="recept__search__input" placeholder="کد پیگیری را برای جستجو وارد کنید">
                                 
                             </div>
@@ -202,35 +86,18 @@
                                     <th>قیمت پرداخت شده</th>
                                     <th>نام خریدار</th>
                                     <th>آدرس ارسال شده</th>
+                                    <th>تعداد خرید</th>
+                                    <th>وضعیت خرید</th>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                     <td>ُSHOP102030</td>
                                     <td>موس گیمینگ ریزر</td>
                                     <td>200,000 تومان</td>
                                     <td>علیرضا</td>
                                     <td>تهران، تهران، امیرکبیر</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ُSHOP102030</td>
-                                        <td>موس گیمینگ ریزر</td>
-                                        <td>200,000 تومان</td>
-                                        <td>سلوا</td>
-                                        <td>تهران، تهران، امیرکبیر</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ُSHOP102030</td>
-                                        <td>موس گیمینگ ریزر</td>
-                                        <td>200,000 تومان</td>
-                                        <td>علیرضا</td>
-                                        <td>تهران، تهران، امیرکبیر</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ُSHOP102030</td>
-                                        <td>موس گیمینگ ریزر</td>
-                                        <td>200,000 تومان</td>
-                                        <td>سلوا</td>
-                                        <td>تهران، تهران، امیرکبیر</td>
-                                    </tr>
+
+                                    <td>در حال انجام</td>
+                                    </tr> -->
                                     
                                     
                                 </table>
@@ -239,6 +106,23 @@
 
                     </div>
 
+                    <div class="edit-cat-div">
+                        <div class="old-cat-name" style="display: none;">asdasd</div>
+                        <br>
+                        <input type="text" class="cat-name" name="cat_name" placeholder="نام دسته بندی را وارد کنید"> <label for="cat_name">نام دسته بندی</label>
+                        <br>
+                        <button class="edit-cat-btn">ثبت</button>
+                        <button class="close-edit-cat">انصراف</button>
+                    </div>
+                    
+                    <div class="edit-rec-div">
+                        <div class="old-rec-name" style="display: none;">asdasd</div>
+                        <br>
+                        <input type="text" class="rec-name" name="rec_name" placeholder="وضعیت خرید را وارد کنید"> <label for="cat_name">وضعیت خرید</label>
+                        <br>
+                        <button class="edit-rec-btn">ثبت</button>
+                        <button class="close-edit-rec">انصراف</button>
+                    </div>
 
 
                 </div>

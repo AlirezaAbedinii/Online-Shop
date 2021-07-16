@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(100))
     address = db.Column(db.String(100))
     charge = db.Column(db.String(100))
+    receipts = db.relationship('Receipt')
     
 class Admin(db.Model):
     id = db.Column(db.String(100), primary_key=True)
@@ -16,12 +17,12 @@ class Admin(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    category = db.Column(db.String(100))
+    name = db.Column(db.String(100), unique = True)
+    category = db.Column(db.String(100), db.ForeignKey('category.name'), default = 'دسته بندی نشده')
     price = db.Column(db.Integer)
     availability_number = db.Column(db.Integer)
     sold_number = db.Column(db.Integer)
-    image = db.Column(db.String(100))
+    image = db.Column(db.String(100), default = '/static/Pictures/Product_sample_picture.png')
     
     
 class Receipt(db.Model):
@@ -33,7 +34,8 @@ class Receipt(db.Model):
     customer_address = db.Column(db.String(100))
     total_price = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default = func.now())
-    tracking_code = db.Column(db.String(100))
-    state = db.Column(db.String(100))
+    state = db.Column(db.String(100), default = 'در حال انجام')
+    customer_id = db.Column(db.String(100), db.ForeignKey('user.id'))
     
-    
+class Category(db.Model):
+    name = db.Column(db.String(100), primary_key=True)
