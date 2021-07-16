@@ -5,7 +5,7 @@ from .models import User, Admin
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 import  re
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user,current_user
 
 auth = Blueprint('auth', __name__)
 def my_redirect(path):
@@ -83,7 +83,7 @@ def signup():
             message['mail'] ='mail valid'
         res = make_response(jsonify(message), 200)
         return res
-    return render_template("signup.html")
+    return render_template("signup.html",user=current_user)
 
 
 @auth.route('/signup/submit', methods = ['GET','POST'])
@@ -128,6 +128,8 @@ def signup_submit():
                 db.session.add(new_user)
                 db.session.commit()
                 print(new_user)
+                ##emtiazi,login after signup
+                login_user(new_user,remember=True)
                 #my_redirect('views.main')
             #return redirect(url_for('views.main'))
             else: 
@@ -183,11 +185,42 @@ def signin_submit():
             else: 
                 if check_password_hash(usr.password,password):
                     result['state']='success'
+                    login_user(usr,remember=True)
                 else:
                     result['state']='failure'
-                ##result['state']='duplicate'
                 #my_redirect('views.signin')
         else:
             result['state']='error'
         res = make_response(jsonify(result), 200)
         return res 
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.signin'))
+
+
+@auth.route('/user/profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    if request.method == 'POST':
+        print('umad')
+        req = request.get_json()
+        name,lname,password,address= req.values()
+        message = {"pass":"unk"} 
+        if "".__eq__(password):
+            message['pass'] ="pass empty"
+        elif len(password)<8: 
+            message = {"pass": "pass min len invalid"}
+        elif len(password)>255: 
+            message['pass'] = "pass max len invalid"
+        elif re.search('[0-9]',password) is None:
+            message['pass'] ="pass num invalid"
+        elif re.search('[a-z]',password) is None:
+            message['pass'] = "pass char invalid"
+        else:
+            message['pass'] = "pass valid"
+        res = make_response(jsonify(message), 200)
+        return current_user.name
+    return render_template("user.html",user=current_user)

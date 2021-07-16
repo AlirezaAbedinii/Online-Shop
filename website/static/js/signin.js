@@ -112,17 +112,21 @@ var span = document.getElementsByClassName("close")[0];
 btn.onclick = function() {
   modal.style.display = "block";
   setMessage();
+  
+
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
+  setNewWindow();
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    setNewWindow();
   }
 }
 //vhanging the message displayed in modal
@@ -231,7 +235,53 @@ pass.addEventListener('keyup',(event)=>{
     });
 });
 
+
+
 function setMessage(){
+    
+    passValue=pass.value;
+    mailValue=email.value.trim();
+    modal_msg=document.getElementById('modal__msg');
+    fetch(`${window.origin}/signin/submit`, {
+        method: "POST",
+        body: JSON.stringify({
+            "email": mailValue,
+            "password": passValue}),
+        headers: new Headers({"content-type": "application/json"}),
+        cache: 'no-cache'
+    })
+    .then(function (response){
+        if(response.status !== 200){
+            console.log(`bad request: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data){
+            new_window='';
+            console.log(data);
+            if(data['state']=='success'){
+                modal_msg.innerHTML='ورود موفق';
+                new_window='user';
+                //window.location.replace('/user');
+            }
+            else if(data['state']=='failure'){
+                modal_msg.innerHTML='رمز عبور غلط است';
+            }
+            else if(data['state']=='no user'){
+                modal_msg.innerHTML='کاربری با این ایمیل وجود ندارد';
+                //window.location.replace('/signup');
+                new_window='signup';
+            }
+            else if(data['state']=='error'){
+                modal_msg.innerHTML='ورود ناموفق';
+            }
+            return new_window;
+            })
+            
+    });
+
+
+}
+function setNewWindow(){ 
     passValue=pass.value;
     mailValue=email.value.trim();
     modal_msg=document.getElementById('modal__msg');
@@ -251,18 +301,12 @@ function setMessage(){
         response.json().then(function (data){
             console.log(data);
             if(data['state']=='success'){
-                modal_msg.innerHTML='ورود موفق';
-            }
-            else if(data['state']=='failure'){
-                modal_msg.innerHTML='رمز عبور غلط است';
+                window.location.replace('/user');
             }
             else if(data['state']=='no user'){
-                modal_msg.innerHTML='کاربری با این ایمیل وجود ندارد';
+                window.location.replace('/signup');
             }
-            else if(data['state']=='error'){
-                modal_msg.innerHTML='ورود ناموفق';
-            }
-            })
+            })  
     });
 
 
