@@ -2,6 +2,8 @@ function change_tab(){
     if(currentTab === "profile"){
         profileContent.style.display = "none";
         receiptContent.style.display = "block";
+        profileHeader.style.display='none';
+        receiptHeader.style.display='block';
 
         profileBtn.style.backgroundColor = "rgb(247, 247, 247)";
         receiptBtn.style.backgroundColor = "rgb(238, 238, 238)";
@@ -10,6 +12,8 @@ function change_tab(){
     else{
         profileContent.style.display = "block";
         receiptContent.style.display = "none";
+        profileHeader.style.display='flex';
+        receiptHeader.style.display='none'
 
         profileBtn.style.backgroundColor = "rgb(238, 238, 238)";
         receiptBtn.style.backgroundColor = "rgb(247, 247, 247)";

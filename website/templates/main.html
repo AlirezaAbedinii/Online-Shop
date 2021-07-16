@@ -13,14 +13,17 @@
           <div class="main">
                 <div class="main__menu">
                     <!-- <button class="sign-in">ورود/ثبت نام</button> -->
-
+                    {% if user.is_authenticated %}
                     <div class="signed-in">
-                        <button class="signed-in__btn"><p>V</p><p>علیرضا</p></button>
+                        <button class="signed-in__btn"><p>V</p><p>{{user.first_name}}</p></button>
                         <div class="signed-in__dropdown-content">
-                            <a href="#">پروفایل</a>
-                            <a href="#">خروج از حساب</a>
+                            <a id='dropdown__profile' href="#">پروفایل</a>
+                            <a id='dropdown__logout' href="#">خروج از حساب</a>
                         </div>
                     </div>
+                    {%else%}
+                    <button class="sign-in">ورود/ثبت نام</button>
+                    {% endif %}
 
                     <div class="main__menu__items">
                         <button onclick="window.location.replace(`${window.location.origin}/main#productt`)">محصولات</button>

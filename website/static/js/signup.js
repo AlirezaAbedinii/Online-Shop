@@ -264,7 +264,7 @@ function setMessage(){
             console.log(data);
             if(data['state']=='success'){
                 modal_msg.innerHTML='ثبت نام موفق';
-                window.location.replace('/user');
+                window.location.replace('/main');
             }
             else if(data['state']=='fail'){
                 modal_msg.innerHTML='ثبت نام ناموفق';
