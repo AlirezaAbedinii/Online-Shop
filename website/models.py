@@ -23,6 +23,7 @@ class Product(db.Model):
     availability_number = db.Column(db.Integer)
     sold_number = db.Column(db.Integer)
     image = db.Column(db.String(100), default = '/static/Pictures/Product_sample_picture.png')
+    date = db.Column(db.DateTime(timezone=True), default = func.now())
     
     
 class Receipt(db.Model):

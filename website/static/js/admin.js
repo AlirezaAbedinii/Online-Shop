@@ -81,10 +81,24 @@ function load_products(replace = 0) {
             var cat_table = document.querySelector(".category__table")
             if (replace === 1) {
                 cat_table.innerHTML = ""
+                var init_tr = document.createElement("tr")
+                var init_th1 = document.createElement("th")
+                init_th1.innerHTML = "عملیات"
+
+                var init_th2 = document.createElement("th")
+                init_th2.innerHTML = "نام دسته بندی"
+
+                init_tr.appendChild(init_th2)
+                init_tr.appendChild(init_th1)
+                cat_table.appendChild(init_tr)
             }
             totalCategories = categories.length
             for (var i = 0; i < totalCategories; i++) {
-                var table_row = createCategoryRow(categories[i])
+                var table_row = createCategoryRow(
+                    categories[i],
+                    replace,
+                    cat_table
+                )
                 cat_table.appendChild(table_row)
             }
         })
@@ -116,7 +130,7 @@ function load_products(replace = 0) {
     })
 }
 
-function createCategoryRow(cat) {
+function createCategoryRow(cat, replace = 0, cat_table = "") {
     cat_name = cat["name"]
     var first_tr = document.createElement("tr")
     first_tr.id = cat_name

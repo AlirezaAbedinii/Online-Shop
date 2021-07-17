@@ -11,9 +11,50 @@ from sqlalchemy import desc
 
 views = Blueprint('views', __name__)
 
-@views.route('/main')
+@views.route('/main', methods = ['POST', 'GET'])
 def main():
+    if request.method == 'POST':
+        req = request.get_json()
+        if req['command'] == 'get_products':
+            sort = req["sort"]
+            sort_order= req["sort_order"]
+            product_name= req["product_name"]
+            product_cats= req["product_categories"]
+            print(req, file=sys.stdout)
+            
+            if product_name != '':
+                products = Product.query.filter_by(name = product_name).all()
+            else:
+                if sort == 'sold':
+                    print("umad")
+                    products = Product.query.order_by(desc(Product.sold_number)).all()
+                elif sort == 'date':
+                    products = Product.query.order_by(desc(Product.date)).all()
+                else:
+                    if sort_order == 'desc':
+                        products = Product.query.order_by(Product.price).all()
+                    else:
+                       products = Product.query.order_by(Product.price).all()
+                
+                
+            res_products = []
+            for product in products:
+                if product_cats not in ('', ' ') and product.category not in product_cats:
+                    continue
+                res_products.append({"name":product.name, "category":product.category, "price":product.price,
+                                     "availability_number":product.availability_number,
+                                     "sold_number":product.sold_number, "image":product.image})
+                
+            res = make_response(jsonify({"message": res_products}), 200)
+            return res
+        
+    
     return render_template("main.html",user=current_user)
+
+
+
+
+
 
 @views.route('/admin', methods=['GET', 'POST'])
 def admin():
