@@ -192,3 +192,9 @@ if(dropdown__logout !=null){
 }
 }
  
+main__signin=document.getElementById('main__signin')
+if(main__signin != null){
+  main__signin.onclick=function(){
+    window.location.replace('/signin')
+  }
+}

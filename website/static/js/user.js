@@ -42,6 +42,27 @@ receiptBtn.addEventListener('click', (event)=>{
 });
 profileBtn.addEventListener('click', (event)=>{if(currentTab==="receipt"){change_tab()}});
 
+//logout
+user_logout=document.getElementById('user_logout')
+if(user_logout !=null){
+  user_logout.onclick=function(){
+  
+      fetch(`${window.origin}/logout`, {
+          method: "GET",
+          //body: JSON.stringify({}),
+          headers: new Headers({"content-type": "application/json"}),
+         cache: 'no-cache'
+      })
+      .then(function (response){
+          if(response.status !== 200){
+              console.log(`bad request: ${response.status}`);
+              return;
+         }
+         window.location.replace('/main')
+      });
+}
+}
+
 //profile validation
 //first name box content
 const fname = document.getElementById("fname");

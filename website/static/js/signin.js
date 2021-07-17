@@ -311,3 +311,9 @@ function setNewWindow(){
 
 
 }
+signup_btn=document.getElementById('signup_btn');
+if(signup_btn != null){
+  signup_btn.onclick=function(){
+    window.location.replace('/signup');
+  }
+}

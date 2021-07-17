@@ -371,3 +371,9 @@ email.addEventListener('keyup',(event)=>{
 }); 
 
 
+signin_btn=document.getElementById('signin_btn');
+if(signin_btn != null){
+  signin_btn.onclick=function(){
+    window.location.replace('/signin');
+  }
+}
