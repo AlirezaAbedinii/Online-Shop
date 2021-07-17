@@ -21,6 +21,7 @@ def main():
             sort_order= req["sort_order"]
             product_name= req["product_name"]
             product_cats= req["product_categories"]
+            lower_bound, upper_bound = req['price_range']
             # print(product_name, file=sys.stdout)
             # print(req, file=sys.stdout)
             
@@ -41,6 +42,8 @@ def main():
             res_products = []
             for product in products:
                 if product_cats not in ('', ' ', []) and product.category not in product_cats:
+                    continue
+                if product.price < lower_bound or product.price > upper_bound:
                     continue
                 res_products.append({"name":product.name, "category":product.category, "price":product.price,
                                      "availability_number":product.availability_number,
