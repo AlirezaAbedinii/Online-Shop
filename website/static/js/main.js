@@ -129,9 +129,11 @@ function createPagingButtons() {
         prevPage.style.display = "none"
     }
 
-    paging.appendChild(prevPage)
-    paging.appendChild(pagingButtons)
-    paging.appendChild(nextPage)
+    if (totalProducts > 0) {
+        paging.appendChild(prevPage)
+        paging.appendChild(pagingButtons)
+        paging.appendChild(nextPage)
+    }
 }
 
 function pagging(inp_replace = 0) {
@@ -203,10 +205,9 @@ function pagging(inp_replace = 0) {
                     product.style.display = "none"
                 }
             }
+            createPagingButtons()
         })
     })
-
-    createPagingButtons()
 }
 
 function get_selected_categories() {
@@ -528,7 +529,9 @@ prev_btn.addEventListener(
 var mainBottomLowerProduct = document.querySelector(
     ".main__bottom__lower__products"
 )
-window.onload = pagging
+window.onload = () => {
+    pagging(0)
+}
 
 var select = document.querySelector("#item-per-page__select")
 select.addEventListener("change", (event) => {
