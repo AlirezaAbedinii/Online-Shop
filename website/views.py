@@ -15,12 +15,13 @@ views = Blueprint('views', __name__)
 def main():
     if request.method == 'POST':
         req = request.get_json()
+        # print(req, file=sys.stdout)
         if req['command'] == 'get_products':
             sort = req["sort"]
             sort_order= req["sort_order"]
             product_name= req["product_name"]
             product_cats= req["product_categories"]
-            print(req, file=sys.stdout)
+            # print(req, file=sys.stdout)
             
             if product_name != '':
                 products = Product.query.filter_by(name = product_name).all()
@@ -35,11 +36,10 @@ def main():
                         products = Product.query.order_by(Product.price).all()
                     else:
                        products = Product.query.order_by(Product.price).all()
-                
-                
+
             res_products = []
             for product in products:
-                if product_cats not in ('', ' ') and product.category not in product_cats:
+                if product_cats not in ('', ' ', []) and product.category not in product_cats:
                     continue
                 res_products.append({"name":product.name, "category":product.category, "price":product.price,
                                      "availability_number":product.availability_number,
