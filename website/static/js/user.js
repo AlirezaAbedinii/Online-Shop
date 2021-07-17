@@ -2,6 +2,8 @@ function change_tab(){
     if(currentTab === "profile"){
         profileContent.style.display = "none";
         receiptContent.style.display = "block";
+        profileHeader.style.display='none';
+        receiptHeader.style.display='block';
 
         profileBtn.style.backgroundColor = "rgb(247, 247, 247)";
         receiptBtn.style.backgroundColor = "rgb(238, 238, 238)";
@@ -10,6 +12,8 @@ function change_tab(){
     else{
         profileContent.style.display = "block";
         receiptContent.style.display = "none";
+        profileHeader.style.display='flex';
+        receiptHeader.style.display='none'
 
         profileBtn.style.backgroundColor = "rgb(238, 238, 238)";
         receiptBtn.style.backgroundColor = "rgb(247, 247, 247)";
@@ -37,6 +41,27 @@ receiptBtn.addEventListener('click', (event)=>{
     if(currentTab === "profile"){change_tab();}
 });
 profileBtn.addEventListener('click', (event)=>{if(currentTab==="receipt"){change_tab()}});
+
+//logout
+user_logout=document.getElementById('user_logout')
+if(user_logout !=null){
+  user_logout.onclick=function(){
+  
+      fetch(`${window.origin}/logout`, {
+          method: "GET",
+          //body: JSON.stringify({}),
+          headers: new Headers({"content-type": "application/json"}),
+         cache: 'no-cache'
+      })
+      .then(function (response){
+          if(response.status !== 200){
+              console.log(`bad request: ${response.status}`);
+              return;
+         }
+         window.location.replace('/main')
+      });
+}
+}
 
 //profile validation
 //first name box content

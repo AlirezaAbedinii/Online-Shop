@@ -166,3 +166,35 @@ select.addEventListener('change',(event)=>{
 // menuProductBtn.addEventListener('click', (event)=>{
 //   window.location.replace(`${window.location.origin}/main#productt`)
 // })
+dropdown__profile=document.getElementById('dropdown__profile')
+  if (dropdown__profile !=null){ 
+    dropdown__profile.onclick=function(){
+    window.location.replace('/user')
+  }
+}
+dropdown__logout=document.getElementById('dropdown__logout')
+if(dropdown__logout !=null){
+  dropdown__logout.onclick=function(){
+  
+      fetch(`${window.origin}/logout`, {
+          method: "GET",
+          //body: JSON.stringify({}),
+          headers: new Headers({"content-type": "application/json"}),
+         cache: 'no-cache'
+      })
+      .then(function (response){
+          if(response.status !== 200){
+              console.log(`bad request: ${response.status}`);
+              return;
+         }
+         window.location.replace('/main')
+      });
+}
+}
+ 
+main__signin=document.getElementById('main__signin')
+if(main__signin != null){
+  main__signin.onclick=function(){
+    window.location.replace('/signin')
+  }
+}

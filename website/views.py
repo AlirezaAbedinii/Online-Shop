@@ -79,11 +79,11 @@ def admin():
 @views.route('/user')
 #@login_required
 def user():
-    return render_template("user.html")
+    return render_template("user.html",user=current_user)
 
 @views.route('/signin')
 def signin():
-    return render_template("signin.html")
+    return render_template("signin.html",user=current_user)
 
 @views.route('/admin/create_product')
 def create_product():

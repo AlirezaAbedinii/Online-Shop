@@ -301,7 +301,7 @@ function setNewWindow(){
         response.json().then(function (data){
             console.log(data);
             if(data['state']=='success'){
-                window.location.replace('/user');
+                window.location.replace('/main');
             }
             else if(data['state']=='no user'){
                 window.location.replace('/signup');
@@ -310,4 +310,10 @@ function setNewWindow(){
     });
 
 
+}
+signup_btn=document.getElementById('signup_btn');
+if(signup_btn != null){
+  signup_btn.onclick=function(){
+    window.location.replace('/signup');
+  }
 }
