@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function change_tab() {
     if (currentTab === "profile") {
         profileContent.style.display = "none"
@@ -20,28 +19,6 @@ function change_tab() {
         profileBtn.style.backgroundColor = "rgb(238, 238, 238)"
         receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
         currentTab = "profile"
-=======
-function change_tab(){
-    if(currentTab === "profile"){
-        profileContent.style.display = "none";
-        receiptContent.style.display = "block";
-        profileHeader.style.display='none';
-        receiptHeader.style.display='block';
-
-        profileBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        receiptBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        currentTab = "receipt";
-    }
-    else{
-        profileContent.style.display = "block";
-        receiptContent.style.display = "none";
-        profileHeader.style.display='flex';
-        receiptHeader.style.display='none'
-
-        profileBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        receiptBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        currentTab = "profile";
->>>>>>> 08d4037a27b3311fc538b2772a9857961c0350ab
     }
 }
 
@@ -71,24 +48,22 @@ profileBtn.addEventListener("click", (event) => {
 })
 
 //logout
-user_logout=document.getElementById('user_logout')
-if(user_logout !=null){
-  user_logout.onclick=function(){
-  
-      fetch(`${window.origin}/logout`, {
-          method: "GET",
-          //body: JSON.stringify({}),
-          headers: new Headers({"content-type": "application/json"}),
-         cache: 'no-cache'
-      })
-      .then(function (response){
-          if(response.status !== 200){
-              console.log(`bad request: ${response.status}`);
-              return;
-         }
-         window.location.replace('/main')
-      });
-}
+user_logout = document.getElementById("user_logout")
+if (user_logout != null) {
+    user_logout.onclick = function () {
+        fetch(`${window.origin}/logout`, {
+            method: "GET",
+            //body: JSON.stringify({}),
+            headers: new Headers({ "content-type": "application/json" }),
+            cache: "no-cache",
+        }).then(function (response) {
+            if (response.status !== 200) {
+                console.log(`bad request: ${response.status}`)
+                return
+            }
+            window.location.replace("/main")
+        })
+    }
 }
 
 //profile validation

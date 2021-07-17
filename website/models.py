@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100))
     address = db.Column(db.String(100))
-    charge = db.Column(db.String(100))
+    charge = db.Column(db.Integer, default = 0)
     receipts = db.relationship('Receipt')
     
 class Admin(db.Model):
