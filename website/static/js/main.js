@@ -136,7 +136,7 @@ function createPagingButtons() {
     }
 }
 
-function pagging(inp_replace = 0) {
+function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
     console.log(`pagging ${inp_replace}`)
 
     if (inp_replace === 0) {
@@ -168,9 +168,9 @@ function pagging(inp_replace = 0) {
         })
     }
 
-    // if (inp_replace === 0) {
-    //     var filter_by_name = ""
-    // }
+    if (inp_replace === 0) {
+        slider_start()
+    }
     var selected_categories = get_selected_categories()
     var sort_price_btn = document.querySelector(
         ".main__bottom__sort__button--price"
@@ -206,6 +206,7 @@ function pagging(inp_replace = 0) {
             sort_order: order,
             product_name: filter_by_name,
             product_categories: selected_categories,
+            price_range: [slide1_val, slide2_val],
         }),
         headers: new Headers({ "content-type": "application/json" }),
         cache: "no-cache",
@@ -681,3 +682,40 @@ search_btn.addEventListener("click", () => {
     console.log(filter_by_name)
     pagging(1)
 })
+
+// Slider js start
+
+function getVals() {
+    // Get slider values
+    var parent = this.parentNode
+    var slides = parent.getElementsByTagName("input")
+    var slide1 = parseFloat(slides[0].value)
+    var slide2 = parseFloat(slides[1].value)
+    // Neither slider will clip the other, so make sure we determine which is larger
+    if (slide1 > slide2) {
+        var tmp = slide2
+        slide2 = slide1
+        slide1 = tmp
+    }
+
+    var displayElement = parent.getElementsByClassName("rangeValues")[0]
+    displayElement.innerHTML = `${slide1},      ${slide2}`
+    displayElement.style.direction = "rtl"
+    pagging(1, slide1, slide2)
+}
+
+function slider_start() {
+    // Initialize Sliders
+    var sliderSections = document.getElementsByClassName("range-slider")
+    for (var x = 0; x < sliderSections.length; x++) {
+        var sliders = sliderSections[x].getElementsByTagName("input")
+        for (var y = 0; y < sliders.length; y++) {
+            if (sliders[y].type === "range") {
+                sliders[y].oninput = getVals
+                // Manually trigger event first time to display values
+                sliders[y].oninput()
+            }
+        }
+    }
+}
+// slider js end
