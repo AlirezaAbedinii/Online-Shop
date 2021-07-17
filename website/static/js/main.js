@@ -62,6 +62,9 @@ function createProducts(input_product) {
     var productButton = document.createElement("button")
     productButton.textContent = "خرید محصول"
     productButton.className = "product__button"
+    productButton.addEventListener("click", (event) => {
+        add_to_shop_basket(input_product.name)
+    })
 
     productDetails.appendChild(productDetailsName)
     productDetails.appendChild(productDetailsCategory)
@@ -719,3 +722,10 @@ function slider_start() {
     }
 }
 // slider js end
+
+function add_to_shop_basket(input_product_name) {
+    // request server, post, input_product_name
+    // availability number
+    // if > 0 -> modal: added to shop basket
+    // else -> not available
+}

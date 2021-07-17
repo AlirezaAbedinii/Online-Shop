@@ -236,11 +236,11 @@ var edit = document.getElementById("edit")
 var span = document.getElementsByClassName("close")[0]
 
 // When the user clicks the button, open the modal and display specified message
-if(edit !=null){
-edit.onclick = function () {
-    modal.style.display = "block"
-    setMessage()
-}
+if (edit != null) {
+    edit.onclick = function () {
+        modal.style.display = "block"
+        setMessage()
+    }
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -343,7 +343,7 @@ pass.addEventListener("keyup", (event) => {
         })
     })
 })
-increase_credit=document.getElementById('increase_credit')
+increase_credit = document.getElementById("increase_credit")
 
 if (increase_credit != null) {
     increase_credit.onclick = function () {
@@ -359,42 +359,51 @@ if (increase_credit != null) {
                 return
             }
             console.log("fetch main")
-            window.location.replace("/user/profile")
+            // window.location.replace("/user/profile")
+            // onload
+            currentTab = "receipt"
+            change_tab()
         })
     }
 }
-function setMessage(){
-        passValue=pass.value
-        nameValue=fname.value.trim()
-        lnameValue=lname.value.trim()
-        addressValue=address.value
-        modal_msg=document.getElementById('modal__msg')
-        console.log("edit fetch")
-        fetch(`${window.origin}/edit/submit`, {
-            method: "POST",
-            body: JSON.stringify({
-            "first_name": nameValue,
-            "last_name": lnameValue,
-            "password": passValue,
-            "address": addressValue}),
-            headers: new Headers({ "content-type": "application/json" }),
-            cache: "no-cache",
-        }).then(function (response){
-            if(response.status !== 200){
-                console.log(`bad request: ${response.status}`)
-                return;
+function setMessage() {
+    passValue = pass.value
+    nameValue = fname.value.trim()
+    lnameValue = lname.value.trim()
+    addressValue = address.value
+    modal_msg = document.getElementById("modal__msg")
+    console.log("edit fetch")
+    fetch(`${window.origin}/edit/submit`, {
+        method: "POST",
+        body: JSON.stringify({
+            first_name: nameValue,
+            last_name: lnameValue,
+            password: passValue,
+            address: addressValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["state"] == "success") {
+                modal_msg.innerHTML = "ویرایش موفق"
+                window.location.replace("/main")
+            } else if (data["state"] == "fail") {
+                modal_msg.innerHTML = "ویرایش ناموفق"
             }
-            response.json().then(function (data){
-                console.log(data);
-                if(data['state']=='success'){
-                    modal_msg.innerHTML='ویرایش موفق';
-                    window.location.replace('/main');
-                }
-                else if(data['state']=='fail'){
-                    modal_msg.innerHTML='ویرایش ناموفق';
-                }
-                })
         })
-    
+    })
+}
 
+function fill_data(inp_replace = 1) {
+    // request to server credit
+    // response
+    // DOM set credit
+    // request to server receipts
+    // receipt
 }
