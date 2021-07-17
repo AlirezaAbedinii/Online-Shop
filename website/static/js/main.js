@@ -134,8 +134,39 @@ function createPagingButtons() {
     paging.appendChild(nextPage)
 }
 
-function pagging(replace = 0) {
-    console.log(`pagging`)
+function pagging(inp_replace = 0) {
+    console.log(`pagging ${inp_replace}`)
+
+    if (inp_replace === 0) {
+        console.log("umad cat")
+        fetch(`/main`, {
+            method: "POST",
+            body: JSON.stringify({ command: "get_categories" }),
+            headers: new Headers({ "content-type": "application/json" }),
+            cache: "no-cache",
+        }).then(function (response) {
+            if (response.status !== 200) {
+                console.log(`bad request: ${response.status}`)
+                return
+            }
+            response.json().then(function (data) {
+                categories = data.message
+                var cat_table = document.querySelector(
+                    ".main__bottom__lower__filter--categories--choices"
+                )
+                if (inp_replace === 1) {
+                    cat_table.innerHTML = ""
+                }
+                totalCategories = categories.length
+                for (var i = 0; i < totalCategories; i++) {
+                    var table_row = createCategoryRow(categories[i], i)
+                    cat_table.appendChild(table_row)
+                }
+            })
+        })
+    }
+
+    selected_categories = get_selected_categories()
 
     fetch(`${window.location.origin}/main`, {
         method: "POST",
@@ -144,7 +175,7 @@ function pagging(replace = 0) {
             sort: "sold",
             sort_order: "desc",
             product_name: "",
-            product_categories: "",
+            product_categories: selected_categories,
         }),
         headers: new Headers({ "content-type": "application/json" }),
         cache: "no-cache",
@@ -155,8 +186,8 @@ function pagging(replace = 0) {
         }
         response.json().then(function (data) {
             products = data.message
-            console.log(products)
-            if (replace === 1) {
+
+            if (inp_replace === 1) {
                 mainBottomLowerProduct.innerHTML = ""
             }
             totalProducts = products.length
@@ -175,34 +206,20 @@ function pagging(replace = 0) {
         })
     })
 
-    fetch(`/main`, {
-        method: "POST",
-        body: JSON.stringify({ command: "get_categories" }),
-        headers: new Headers({ "content-type": "application/json" }),
-        cache: "no-cache",
-    }).then(function (response) {
-        if (response.status !== 200) {
-            console.log(`bad request: ${response.status}`)
-            return
-        }
-        response.json().then(function (data) {
-            console.log(`got category response: ${data}`)
-            categories = data.message
-            var cat_table = document.querySelector(
-                ".main__bottom__lower__filter--categories--choices"
-            )
-            if (replace === 1) {
-                cat_table.innerHTML = ""
-            }
-            totalCategories = categories.length
-            for (var i = 0; i < totalCategories; i++) {
-                var table_row = createCategoryRow(categories[i], i)
-                cat_table.appendChild(table_row)
-            }
-        })
-    })
-
     createPagingButtons()
+}
+
+function get_selected_categories() {
+    var choices = document.getElementsByClassName("checkbox")
+
+    var selected = []
+    for (i = 0; i < choices.length; i += 1) {
+        if (choices[i].checked) {
+            selected.push(choices[i].name)
+        }
+    }
+
+    return selected
 }
 
 function createCategoryRow(inp_cat, i) {
@@ -210,12 +227,16 @@ function createCategoryRow(inp_cat, i) {
     div.className = "choice"
 
     var inp = document.createElement("input")
+    inp.className = "checkbox"
     inp.type = "checkbox"
-    inp.name = i
+    inp.name = inp_cat.name
     inp.id = i
+    inp.addEventListener("click", () => {
+        pagging(1)
+    })
 
     var label = document.createElement("label")
-    label.for = i
+    label.for = inp_cat.name
     label.innerHTML = inp_cat.name
 
     div.appendChild(label)
@@ -225,10 +246,9 @@ function createCategoryRow(inp_cat, i) {
 }
 
 function changePage(index) {
-    console.log(index)
     pageIndex = index
     mainBottomLowerProduct.innerHTML = ""
-    pagging()
+    pagging(1)
 }
 
 function changeItemPerPage(value) {
@@ -236,9 +256,9 @@ function changeItemPerPage(value) {
     if (totalProducts < itemPerPage * pageIndex) {
         pageIndex = 1
     }
-    console.log(`item per page is ${itemPerPage}`)
+
     mainBottomLowerProduct.innerHTML = ""
-    pagging()
+    pagging(1)
 }
 
 var slideIndex = 0
