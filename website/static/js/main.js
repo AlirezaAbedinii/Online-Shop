@@ -168,6 +168,9 @@ function pagging(inp_replace = 0) {
         })
     }
 
+    // if (inp_replace === 0) {
+    //     var filter_by_name = ""
+    // }
     var selected_categories = get_selected_categories()
     var sort_price_btn = document.querySelector(
         ".main__bottom__sort__button--price"
@@ -192,14 +195,16 @@ function pagging(inp_replace = 0) {
         sort = "sold"
     }
 
-    console.log(`sort ${sort}, order ${order}`)
+    console.log(
+        `sort: ${sort}, order: ${order}, product name: ${filter_by_name}`
+    )
     fetch(`${window.location.origin}/main`, {
         method: "POST",
         body: JSON.stringify({
             command: "get_products",
             sort: sort,
             sort_order: order,
-            product_name: "",
+            product_name: filter_by_name,
             product_categories: selected_categories,
         }),
         headers: new Headers({ "content-type": "application/json" }),
@@ -290,6 +295,7 @@ var slideIndex = 0
 totalProducts = 40
 var pageIndex = 1
 var itemPerPage = 15
+var filter_by_name = ""
 showSlides()
 const next_btn = document.querySelector("#next")
 next_btn.addEventListener(
@@ -655,5 +661,23 @@ date_btn.addEventListener("click", (event) => {
     price_btn.style.color = "black"
     price_btn.innerHTML = "قیمت"
     sold_btn.style.color = "black"
+    pagging(1)
+})
+
+var search_btn = document.querySelector(".main__main__button--search")
+var filter_by_name_input = document.querySelector(".main__main__input--search")
+filter_by_name_input.addEventListener("keyup", (event) => {
+    event.preventDefault()
+    if (event.keyCode === 13) {
+        console.log("enter")
+        filter_by_name = filter_by_name_input.value
+        console.log(filter_by_name)
+        pagging(1)
+    }
+})
+search_btn.addEventListener("click", () => {
+    console.log("btn click")
+    filter_by_name = filter_by_name_input.value
+    console.log(filter_by_name)
     pagging(1)
 })

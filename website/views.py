@@ -21,13 +21,14 @@ def main():
             sort_order= req["sort_order"]
             product_name= req["product_name"]
             product_cats= req["product_categories"]
+            # print(product_name, file=sys.stdout)
             # print(req, file=sys.stdout)
             
-            if product_name != '':
+            
+            if product_name not in ('', ' ', None, {}):
                 products = Product.query.filter_by(name = product_name).all()
             else:
                 if sort == 'sold':
-                    print("umad")
                     products = Product.query.order_by(desc(Product.sold_number)).all()
                 elif sort == 'date':
                     products = Product.query.order_by(desc(Product.date)).all()
