@@ -48,6 +48,14 @@ def main():
             res = make_response(jsonify({"message": res_products}), 200)
             return res
         
+        if req['command'] == 'get_categories':
+            categories = Category.query.filter_by().all()
+            res_categories = []
+            for cat in categories:
+                res_categories.append({"name":cat.name})
+                
+            res = make_response(jsonify({"message": res_categories}), 200)
+            return res
     
     return render_template("main.html",user=current_user)
 

@@ -175,19 +175,53 @@ function pagging(replace = 0) {
         })
     })
 
-    // for (var i = 0; i < totalProducts; i++) {
-    //     var product = createProducts(i)
+    fetch(`/main`, {
+        method: "POST",
+        body: JSON.stringify({ command: "get_categories" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got category response: ${data}`)
+            categories = data.message
+            var cat_table = document.querySelector(
+                ".main__bottom__lower__filter--categories--choices"
+            )
+            if (replace === 1) {
+                cat_table.innerHTML = ""
+            }
+            totalCategories = categories.length
+            for (var i = 0; i < totalCategories; i++) {
+                var table_row = createCategoryRow(categories[i], i)
+                cat_table.appendChild(table_row)
+            }
+        })
+    })
 
-    //     mainBottomLowerProduct.appendChild(product)
-
-    //     if (i >= pageIndex * itemPerPage) {
-    //         product.style.display = "none"
-    //     }
-    //     if (i < (pageIndex - 1) * itemPerPage) {
-    //         product.style.display = "none"
-    //     }
-    // }
     createPagingButtons()
+}
+
+function createCategoryRow(inp_cat, i) {
+    var div = document.createElement("div")
+    div.className = "choice"
+
+    var inp = document.createElement("input")
+    inp.type = "checkbox"
+    inp.name = i
+    inp.id = i
+
+    var label = document.createElement("label")
+    label.for = i
+    label.innerHTML = inp_cat.name
+
+    div.appendChild(label)
+    div.appendChild(inp)
+
+    return div
 }
 
 function changePage(index) {
