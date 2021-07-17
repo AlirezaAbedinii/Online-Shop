@@ -211,5 +211,46 @@ def edit_profile():
         else:
             message['pass'] = "pass valid"
         res = make_response(jsonify(message), 200)
-        return current_user.name
+        return res
+    return render_template("user.html",user=current_user)
+
+@auth.route('/credit', methods = ['GET'])
+def increase_credit():
+    message = {"mail": "unk","pass":"unk"}
+    result={'state':'fail'}  
+    current_user.charge=current_user.charge+10000
+    db.session.commit()
+    return render_template("user.html",user=current_user)
+
+@auth.route('/edit/submit', methods = ['GET','POST'])
+def edit_submit():
+    if request.method=='POST':
+        req = request.get_json()
+        name, lname, password, address = req.values()
+        message = {"pass":"unk"} 
+        result={'state':'fail'}
+        if "".__eq__(password):
+            message['pass'] ="pass empty"
+        elif len(password)<8: 
+            message = {"pass": "pass min len invalid"}
+        elif len(password)>255: 
+                message['pass'] = "pass max len invalid"
+        elif re.search('[0-9]',password) is None:
+            message['pass'] ="pass num invalid"
+        elif re.search('[a-z]',password) is None:
+            message['pass'] = "pass char invalid"
+        else:
+            message['pass'] = "pass valid"   
+
+        if  message['pass']=='pass valid':
+            current_user.first_name=name
+            current_user.last_name=lname
+            current_user.password=generate_password_hash(password,method='sha256')
+            current_user.address=address
+            db.session.commit()
+            result['state']='success'
+        else:
+            result['state']='fail'
+        res = make_response(jsonify(result), 200)
+        return res 
     return render_template("user.html",user=current_user)

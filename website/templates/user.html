@@ -37,8 +37,8 @@
                         <div id="profile__header" class="tabcontent">
                             <p class="profile__header__welcome">{{user.first_name}} عزیز، خوش آمدید</p>
                             <p class="profile__header__credit__text">موجودی حساب شما:</p>
-                            <p class="profile__header__credit__amount">100,000</p>
-                            <button class="profile__header__credit__button">افزایش موجودی</button>
+                            <p class="profile__header__credit__amount">{{user.charge}}</p>
+                            <button id ='increase_credit' class="profile__header__credit__button">افزایش موجودی</button>
                         </div>
                         <div id="receipt__header" class="tabcontent1">
                             <p class="receipt__header__welcome">{{user.first_name}} عزیز، خوش آمدید</p>

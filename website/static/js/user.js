@@ -230,15 +230,17 @@ var modal = document.getElementById("myModal")
 
 // Get the button that opens the modal
 //the edit button
-var btn = document.getElementById("edit")
+var edit = document.getElementById("edit")
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0]
 
 // When the user clicks the button, open the modal and display specified message
-btn.onclick = function () {
+if(edit !=null){
+edit.onclick = function () {
     modal.style.display = "block"
     setMessage()
+}
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -308,7 +310,7 @@ pass.addEventListener("keyup", (event) => {
     nameValue = fname.value.trim()
     lnameValue = lname.value.trim()
     addressValue = address.value
-    fetch(`${window.origin}/signup`, {
+    fetch(`${window.origin}/user/profile`, {
         method: "POST",
         body: JSON.stringify({
             first_name: nameValue,
@@ -341,3 +343,58 @@ pass.addEventListener("keyup", (event) => {
         })
     })
 })
+increase_credit=document.getElementById('increase_credit')
+
+if (increase_credit != null) {
+    increase_credit.onclick = function () {
+        //console.log("logout fetch")
+        fetch(`${window.origin}/credit`, {
+            method: "GET",
+            //body: JSON.stringify({}),
+            headers: new Headers({ "content-type": "application/json" }),
+            cache: "no-cache",
+        }).then(function (response) {
+            if (response.status !== 200) {
+                console.log(`bad request: ${response.status}`)
+                return
+            }
+            console.log("fetch main")
+            window.location.replace("/user/profile")
+        })
+    }
+}
+function setMessage(){
+        passValue=pass.value
+        nameValue=fname.value.trim()
+        lnameValue=lname.value.trim()
+        addressValue=address.value
+        modal_msg=document.getElementById('modal__msg')
+        console.log("edit fetch")
+        fetch(`${window.origin}/edit/submit`, {
+            method: "POST",
+            body: JSON.stringify({
+            "first_name": nameValue,
+            "last_name": lnameValue,
+            "password": passValue,
+            "address": addressValue}),
+            headers: new Headers({ "content-type": "application/json" }),
+            cache: "no-cache",
+        }).then(function (response){
+            if(response.status !== 200){
+                console.log(`bad request: ${response.status}`)
+                return;
+            }
+            response.json().then(function (data){
+                console.log(data);
+                if(data['state']=='success'){
+                    modal_msg.innerHTML='ویرایش موفق';
+                    window.location.replace('/main');
+                }
+                else if(data['state']=='fail'){
+                    modal_msg.innerHTML='ویرایش ناموفق';
+                }
+                })
+        })
+    
+
+}
