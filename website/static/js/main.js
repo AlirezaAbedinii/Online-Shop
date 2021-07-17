@@ -172,6 +172,10 @@ function pagging(inp_replace = 0) {
     var sort_price_btn = document.querySelector(
         ".main__bottom__sort__button--price"
     )
+    var sort_date_btn = document.querySelector(
+        ".main__bottom__sort__button--date"
+    )
+
     var order = "desc"
     var sort = "sold"
     if (sort_price_btn.style.backgroundColor === "red") {
@@ -180,6 +184,9 @@ function pagging(inp_replace = 0) {
     } else if (sort_price_btn.style.backgroundColor === "rgb(0, 156, 255)") {
         order = "asc"
         sort = "price"
+    } else if (sort_date_btn.style.backgroundColor === "rgb(0, 156, 255)") {
+        order = "desc"
+        sort = "date"
     } else {
         order = "desc"
         sort = "sold"
@@ -249,6 +256,7 @@ function createCategoryRow(inp_cat, i) {
     inp.name = inp_cat.name
     inp.id = i
     inp.addEventListener("click", () => {
+        pageIndex = 1
         pagging(1)
     })
 
@@ -595,6 +603,7 @@ if (main__signin != null) {
 
 var price_btn = document.querySelector(".main__bottom__sort__button--price")
 var sold_btn = document.querySelector(".main__bottom__sort__button--sales")
+var date_btn = document.querySelector(".main__bottom__sort__button--date")
 
 price_btn.addEventListener("click", (event) => {
     if (price_btn.style.backgroundColor === "rgb(0, 156, 255)") {
@@ -603,18 +612,25 @@ price_btn.addEventListener("click", (event) => {
         price_btn.style.color = "aliceblue"
         sold_btn.style.backgroundColor = "inherit"
         sold_btn.style.color = "black"
+
+        date_btn.style.backgroundColor = "inherit"
+        date_btn.style.color = "black"
     } else if (price_btn.style.backgroundColor === "red") {
         price_btn.style.backgroundColor = "inherit"
         price_btn.style.color = "black"
         price_btn.innerHTML = "قیمت"
         sold_btn.style.backgroundColor = "rgb(0, 156, 255)"
         sold_btn.style.color = "aliceblue"
+        date_btn.style.backgroundColor = "inherit"
+        date_btn.style.color = "black"
     } else {
         price_btn.style.backgroundColor = "rgb(0, 156, 255)"
         price_btn.innerHTML = "قیمت (صعودی)"
         price_btn.style.color = "aliceblue"
         sold_btn.style.backgroundColor = "inherit"
         sold_btn.style.color = "black"
+        date_btn.style.backgroundColor = "inherit"
+        date_btn.style.color = "black"
     }
     pagging(1)
 })
@@ -625,5 +641,19 @@ sold_btn.addEventListener("click", (event) => {
     price_btn.style.color = "black"
     price_btn.innerHTML = "قیمت"
     sold_btn.style.color = "aliceblue"
+    date_btn.style.backgroundColor = "inherit"
+    date_btn.style.color = "black"
+    pagging(1)
+})
+
+date_btn.addEventListener("click", (event) => {
+    date_btn.style.backgroundColor = "rgb(0, 156, 255)"
+    date_btn.style.color = "aliceblue"
+
+    sold_btn.style.backgroundColor = "inherit"
+    price_btn.style.backgroundColor = "inherit"
+    price_btn.style.color = "black"
+    price_btn.innerHTML = "قیمت"
+    sold_btn.style.color = "black"
     pagging(1)
 })
