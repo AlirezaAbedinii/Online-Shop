@@ -129,9 +129,26 @@ def admin():
     return render_template("admin.html")
 
 
-@views.route('/user')
-#@login_required
+@views.route('/user', methods = ['POST', 'GET'])
+@login_required
 def user():
+    if request.method == 'POST':
+        req = request.get_json()
+        if req['command'] == 'get_receipts':
+            receipts = Receipt.query.filter_by(customer_id = current_user.id).order_by(desc(Receipt.date)).all()
+            res_categories = []
+            for rec in receipts:
+                json_rec = {"id":rec.id, "product_name":rec.product_name,
+                            "purchase_number":rec.purchase_number,	"customer_first_name":rec.customer_first_name,
+                            "customer_last_name":rec.customer_last_name,	"customer_address":rec.customer_address,
+                            "total_price":rec.total_price,	"date":rec.date,	"state":rec.state,
+                            "customer_id":rec.customer_id}
+                res_categories.append(json_rec)
+                
+            res = make_response(jsonify({"message": res_categories}), 200)
+            return res
+        
+    
     return render_template("user.html",user=current_user)
 
 @views.route('/signin')

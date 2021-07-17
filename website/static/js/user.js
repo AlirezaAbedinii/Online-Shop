@@ -34,8 +34,8 @@ var receiptHeader = document.querySelector("#receipt__header")
 var profileHeader = document.querySelector("#profile__header")
 
 var currentTab = "receipt"
-window.onload = change_tab
-
+change_tab()
+window.onload = fill_data
 receiptBtn.addEventListener("click", (event) => {
     if (currentTab === "profile") {
         change_tab()
@@ -404,6 +404,68 @@ function fill_data(inp_replace = 1) {
     // request to server credit
     // response
     // DOM set credit
+
     // request to server receipts
+    fetch(`/user`, {
+        method: "POST",
+        body: JSON.stringify({ command: "get_receipts" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got receipt response: ${data}`)
+            receipts = data.message
+            var receipt_table = document.querySelector(".receipt__table")
+            if (inp_replace === 1) {
+                receipt_table.innerHTML = ""
+            }
+            totalReceipts = receipts.length
+            for (var i = 0; i < totalReceipts; i++) {
+                var receipt_row = createReceiptRow(receipts[i])
+                receipt_table.appendChild(receipt_row)
+            }
+        })
+    })
     // receipt
+}
+
+function createReceiptRow(rec) {
+    // <tr>
+    // <td>ُSHOP102030</td>
+    // <td>موس گیمینگ ریزر</td>
+    // <td>200,000 تومان</td>
+    // <td>تهران، تهران، امیرکبیر</td>
+    // <td>در حال انجام</td>
+    // </tr>
+
+    rec_id = rec["id"]
+    var first_tr = document.createElement("tr")
+    first_tr.id = rec_id
+
+    var td1 = document.createElement("td")
+
+    td1.innerHTML = rec_id
+    first_tr.appendChild(td1)
+
+    var td2 = document.createElement("td")
+    td2.innerHTML = rec["product_name"]
+    first_tr.appendChild(td2)
+
+    var td3 = document.createElement("td")
+    td3.innerHTML = `${rec["total_price"]} تومان`
+    first_tr.appendChild(td3)
+
+    var td5 = document.createElement("td")
+    td5.innerHTML = rec["customer_address"]
+    first_tr.appendChild(td5)
+
+    var td = document.createElement("td")
+    td.innerHTML = rec["state"]
+    first_tr.appendChild(td)
+
+    return first_tr
 }
