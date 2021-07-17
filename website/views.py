@@ -33,7 +33,7 @@ def main():
                     products = Product.query.order_by(desc(Product.date)).all()
                 else:
                     if sort_order == 'desc':
-                        products = Product.query.order_by(Product.price).all()
+                        products = Product.query.order_by(desc(Product.price)).all()
                     else:
                        products = Product.query.order_by(Product.price).all()
 

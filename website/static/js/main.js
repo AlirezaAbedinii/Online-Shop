@@ -168,14 +168,30 @@ function pagging(inp_replace = 0) {
         })
     }
 
-    selected_categories = get_selected_categories()
+    var selected_categories = get_selected_categories()
+    var sort_price_btn = document.querySelector(
+        ".main__bottom__sort__button--price"
+    )
+    var order = "desc"
+    var sort = "sold"
+    if (sort_price_btn.style.backgroundColor === "red") {
+        order = "desc"
+        sort = "price"
+    } else if (sort_price_btn.style.backgroundColor === "rgb(0, 156, 255)") {
+        order = "asc"
+        sort = "price"
+    } else {
+        order = "desc"
+        sort = "sold"
+    }
 
+    console.log(`sort ${sort}, order ${order}`)
     fetch(`${window.location.origin}/main`, {
         method: "POST",
         body: JSON.stringify({
             command: "get_products",
-            sort: "sold",
-            sort_order: "desc",
+            sort: sort,
+            sort_order: order,
             product_name: "",
             product_categories: selected_categories,
         }),
@@ -576,3 +592,38 @@ if (main__signin != null) {
         window.location.replace("/signin")
     }
 }
+
+var price_btn = document.querySelector(".main__bottom__sort__button--price")
+var sold_btn = document.querySelector(".main__bottom__sort__button--sales")
+
+price_btn.addEventListener("click", (event) => {
+    if (price_btn.style.backgroundColor === "rgb(0, 156, 255)") {
+        price_btn.style.backgroundColor = "red"
+        price_btn.innerHTML = "قیمت (نزولی)"
+        price_btn.style.color = "aliceblue"
+        sold_btn.style.backgroundColor = "inherit"
+        sold_btn.style.color = "black"
+    } else if (price_btn.style.backgroundColor === "red") {
+        price_btn.style.backgroundColor = "inherit"
+        price_btn.style.color = "black"
+        price_btn.innerHTML = "قیمت"
+        sold_btn.style.backgroundColor = "rgb(0, 156, 255)"
+        sold_btn.style.color = "aliceblue"
+    } else {
+        price_btn.style.backgroundColor = "rgb(0, 156, 255)"
+        price_btn.innerHTML = "قیمت (صعودی)"
+        price_btn.style.color = "aliceblue"
+        sold_btn.style.backgroundColor = "inherit"
+        sold_btn.style.color = "black"
+    }
+    pagging(1)
+})
+
+sold_btn.addEventListener("click", (event) => {
+    sold_btn.style.backgroundColor = "rgb(0, 156, 255)"
+    price_btn.style.backgroundColor = "inherit"
+    price_btn.style.color = "black"
+    price_btn.innerHTML = "قیمت"
+    sold_btn.style.color = "aliceblue"
+    pagging(1)
+})
