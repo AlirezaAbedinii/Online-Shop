@@ -1,54 +1,62 @@
-function change_tab(){
-    if(currentTab === "profile"){
-        profileContent.style.display = "none";
-        receiptContent.style.display = "block";
+function change_tab() {
+    if (currentTab === "profile") {
+        profileContent.style.display = "none"
+        profileHeader.style.display = "none"
 
-        profileBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        receiptBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        currentTab = "receipt";
-    }
-    else{
-        profileContent.style.display = "block";
-        receiptContent.style.display = "none";
+        receiptContent.style.display = "block"
+        receiptHeader.style.display = "block"
 
-        profileBtn.style.backgroundColor = "rgb(238, 238, 238)";
-        receiptBtn.style.backgroundColor = "rgb(247, 247, 247)";
-        currentTab = "profile";
+        profileBtn.style.backgroundColor = "rgb(247, 247, 247)"
+        receiptBtn.style.backgroundColor = "rgb(238, 238, 238)"
+        currentTab = "receipt"
+    } else {
+        profileContent.style.display = "block"
+        profileHeader.style.display = "flex"
+
+        receiptContent.style.display = "none"
+        receiptHeader.style.display = "none"
+
+        profileBtn.style.backgroundColor = "rgb(238, 238, 238)"
+        receiptBtn.style.backgroundColor = "rgb(247, 247, 247)"
+        currentTab = "profile"
     }
-    
 }
 
-console.log("Hello");
+console.log("Hello")
 
-var receiptBtn = document.querySelector(".receipt__button");
-var profileBtn = document.querySelector(".profile__button");
+var receiptBtn = document.querySelector(".receipt__button")
+var profileBtn = document.querySelector(".profile__button")
 
-var receiptContent = document.querySelector("#receipt__content");
-var profileContent = document.querySelector("#profile__content");
+var receiptContent = document.querySelector("#receipt__content")
+var profileContent = document.querySelector("#profile__content")
 
-var receiptHeader = document.querySelector("#receipt__header");
-var profileHeader = document.querySelector("#profile__header");
+var receiptHeader = document.querySelector("#receipt__header")
+var profileHeader = document.querySelector("#profile__header")
 
-var currentTab = "receipt";
-window.onload = change_tab;
+var currentTab = "receipt"
+window.onload = change_tab
 
-
-receiptBtn.addEventListener('click', (event)=>{
-    if(currentTab === "profile"){change_tab();}
-});
-profileBtn.addEventListener('click', (event)=>{if(currentTab==="receipt"){change_tab()}});
+receiptBtn.addEventListener("click", (event) => {
+    if (currentTab === "profile") {
+        change_tab()
+    }
+})
+profileBtn.addEventListener("click", (event) => {
+    if (currentTab === "receipt") {
+        change_tab()
+    }
+})
 
 //profile validation
 //first name box content
-const fname = document.getElementById("fname");
-console.log(fname);
+const fname = document.getElementById("fname")
+console.log(fname)
 //last name box content
-const lname = document.getElementById("lname");
+const lname = document.getElementById("lname")
 //pass box content
-const pass= document.getElementById("pass");
+const pass = document.getElementById("pass")
 //adrress box content
-const address=document.getElementById("address");
-
+const address = document.getElementById("address")
 
 // //check pass content when user is typing
 // pass.addEventListener('keyup',(event)=>{
@@ -141,7 +149,7 @@ const address=document.getElementById("address");
 //     //boolean, defines correctness at the end
 //     let check=false;
 //     //address bax value without beginning or ending spaces
-//     const addressValue = address.value; 
+//     const addressValue = address.value;
 //     if (addressValue === ''){ //error if input is deleted(empty)
 //         setError(address,'آدرس نمی‌تواند خالی باشد');
 //     }
@@ -156,78 +164,74 @@ const address=document.getElementById("address");
 
 //change state to erroneous=>red border and small message
 const setError = (input, msg) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__password error';
-    small.innerText = msg;
-    console.log("err");
-
+    inputType.className = "profile__password error"
+    small.innerText = msg
+    console.log("err")
 }
 const setErrorName = (input, msg) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__fname error';
-    small.innerText = msg;
-    console.log("err");
-
+    inputType.className = "profile__fname error"
+    small.innerText = msg
+    console.log("err")
 }
 const setErrorLName = (input, msg) => {
-    const inputType = input.parentElement;
-    const small = document.getElementById('lname_small');
+    const inputType = input.parentElement
+    const small = document.getElementById("lname_small")
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'profile__lname error';
-    small.innerText = msg;
-    console.log("err");
-
+    inputType.className = "profile__lname error"
+    small.innerText = msg
+    console.log("err")
 }
 
 //sets state to correct=> green border and no message
 const setSuccess = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'profile__password success';
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
+    inputType.className = "profile__password success"
 }
 //sets state to correct=> green border and no message
 const setSuccessName = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'profile__fname success';
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
+    inputType.className = "profile__fname success"
 }
 const setSuccessLName = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'profile__lname success';
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
+    inputType.className = "profile__lname success"
 }
 
-
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("myModal")
 
 // Get the button that opens the modal
 //the edit button
-var btn = document.getElementById("edit");
+var btn = document.getElementById("edit")
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close")[0]
 
 // When the user clicks the button, open the modal and display specified message
-btn.onclick = function() {
-  modal.style.display = "block";
-  setMessage();
+btn.onclick = function () {
+    modal.style.display = "block"
+    setMessage()
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none"
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none"
+    }
 }
 //vhanging the message displayed in modal
 // function setMessage(){
@@ -259,68 +263,62 @@ window.onclick = function(event) {
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_pass==false){
-//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید';
 //     }
 //     //if only name is invalid
 //     else if(is_valid_name==false){
-//          modal_msg.innerHTML='فیلد نام را کامل کنید'; 
+//          modal_msg.innerHTML='فیلد نام را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_lname==false){
-//         modal_msg.innerHTML='فیلد نام خوانوادگی را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد نام خوانوادگی را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_address==false){
-//         modal_msg.innerHTML='فیلد آدرس را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد آدرس را کامل کنید';
 //     }
 //     //username and password are correct and defined
 //     else{
 //         modal_msg.innerHTML='ویرایش با موفقیت انجام شد';
 //     }
-    
+
 // }
-pass.addEventListener('keyup',(event)=>{
+pass.addEventListener("keyup", (event) => {
     //value of the boxes
-    passValue=pass.value;
-    nameValue=fname.value.trim();
-    lnameValue=lname.value.trim();
-    addressValue=address.value;
+    passValue = pass.value
+    nameValue = fname.value.trim()
+    lnameValue = lname.value.trim()
+    addressValue = address.value
     fetch(`${window.origin}/signup`, {
         method: "POST",
         body: JSON.stringify({
-            "first_name": nameValue,
-            "last_name": lnameValue,
-            "password": passValue,
-            "address": addressValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            first_name: nameValue,
+            last_name: lnameValue,
+            password: passValue,
+            address: addressValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-                if(data['pass']=="pass empty"){
-                    setError(pass,"رمز عبور نمی‌تواند خالی باشد");
-                }
-                else if(data['pass']=="pass min len invalid"){
-                    setError(pass,'رمز عبور باید حداقل ۸ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass num invalid"){
-                    setError(pass,'رمز عبور باید شامل اعداد نیز باشد');
-                }
-                else if(data['pass']=="pass max len invalid"){
-                    setError(pass,'رمز باید کمتر از ۲۵۵ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass char invalid"){
-                    setError(pass,'رمز عبور باید شامل حروف نیز باشد');
-                }
-                else{
-                    setSuccess(pass);
-                }
-            })
-    });
-});
-
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["pass"] == "pass empty") {
+                setError(pass, "رمز عبور نمی‌تواند خالی باشد")
+            } else if (data["pass"] == "pass min len invalid") {
+                setError(pass, "رمز عبور باید حداقل ۸ کاراکتر باشد")
+            } else if (data["pass"] == "pass num invalid") {
+                setError(pass, "رمز عبور باید شامل اعداد نیز باشد")
+            } else if (data["pass"] == "pass max len invalid") {
+                setError(pass, "رمز باید کمتر از ۲۵۵ کاراکتر باشد")
+            } else if (data["pass"] == "pass char invalid") {
+                setError(pass, "رمز عبور باید شامل حروف نیز باشد")
+            } else {
+                setSuccess(pass)
+            }
+        })
+    })
+})
