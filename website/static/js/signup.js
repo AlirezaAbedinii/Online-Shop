@@ -264,7 +264,7 @@ function setMessage(){
             console.log(data);
             if(data['state']=='success'){
                 modal_msg.innerHTML='ثبت نام موفق';
-                window.location.replace('/user');
+                window.location.replace('/main');
             }
             else if(data['state']=='fail'){
                 modal_msg.innerHTML='ثبت نام ناموفق';
@@ -371,3 +371,9 @@ email.addEventListener('keyup',(event)=>{
 }); 
 
 
+signin_btn=document.getElementById('signin_btn');
+if(signin_btn != null){
+  signin_btn.onclick=function(){
+    window.location.replace('/signin');
+  }
+}

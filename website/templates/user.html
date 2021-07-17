@@ -17,10 +17,10 @@
                     <!-- <button class="sign-in">ورود/ثبت نام</button> -->
 
                     <div class="signed-in">
-                        <button class="signed-in__btn"><p>V</p><p>علیرضا</p></button>
+                        <button class="signed-in__btn"><p>V</p><p>{{user.first_name}}</p></button>
                         <div class="signed-in__dropdown-content">
                             <a href="#">پروفایل</a>
-                            <a href="#">خروج از حساب</a>
+                            <a id='user_logout' href="#">خروج از حساب</a>
                         </div>
                     </div>
 
@@ -35,13 +35,13 @@
                 <div class="main__main">
                     <div class="tab">
                         <div id="profile__header" class="tabcontent">
-                            <p class="profile__header__welcome">علیرضا عزیز، خوش آمدید</p>
+                            <p class="profile__header__welcome">{{user.first_name}} عزیز، خوش آمدید</p>
                             <p class="profile__header__credit__text">موجودی حساب شما:</p>
                             <p class="profile__header__credit__amount">100,000</p>
                             <button class="profile__header__credit__button">افزایش موجودی</button>
                         </div>
                         <div id="receipt__header" class="tabcontent1">
-                            <p class="receipt__header__welcome">علیرضا عزیز، خوش آمدید</p>
+                            <p class="receipt__header__welcome">{{user.first_name}} عزیز، خوش آمدید</p>
                         </div>
                         <!-- Tab Buttons -->
                         <div class="tab__buttons">
@@ -54,12 +54,12 @@
                                 <div class="profile__name">
                                     <div  class="profile__fname">
                                         <div class="label__div"><i class="profile__fname__label">نام</i></div>
-                                        <input type="text" id='fname' class="profile__fname__input" placeholder="علیرضا">
+                                        <input type="text" id='fname' class="profile__fname__input" placeholder="{{user.first_name}}">
                                         <small></small>
                                     </div>
                                     <div class="profile__lname">
                                         <div class="label__div"><i class="profile__lname__label">نام خانوادگی</i></div>
-                                        <input type="text" id='lname' class="profile__lname__input" placeholder="عابدینی">
+                                        <input type="text" id='lname' class="profile__lname__input" placeholder="{{user.last_name}}">
                                         <small id="lname_small"></small>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="profile__address">
                                     <div class="label__div" id="label__div--address"><i class="profile__address__label">آدرس</i></div>
-                                    <input type="text" id='address' class="profile__address__input" placeholder="لطفا آدرس خود را وارد کنید">
+                                    <input type="text" id='address' class="profile__address__input" placeholder="{{user.address}}">
                                     <small></small>
                                 </div>
                             </div>

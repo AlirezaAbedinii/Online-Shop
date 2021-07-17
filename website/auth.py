@@ -128,21 +128,15 @@ def signup_submit():
                 db.session.add(new_user)
                 db.session.commit()
                 print(new_user)
-                ##emtiazi,login after signup
                 login_user(new_user,remember=True)
-                #my_redirect('views.main')
-            #return redirect(url_for('views.main'))
             else: 
                 result['state']='duplicate'
-                #my_redirect('views.signin')
         res = make_response(jsonify(result), 200)
         return res 
+    return render_template("signup.html",user=current_user)
 
     
-@auth.route('/signin/test', methods=['POST'])
-def test():
-    # return render_template("signin.html")
-    return make_response(jsonify({"message": "hello"}), 200)
+
 @auth.route('/signin/submit', methods = ['GET','POST'])
 def signin_submit():
     if request.method=='POST':
@@ -175,13 +169,7 @@ def signin_submit():
             usr=User.query.filter_by(id=email).first()
             if usr is None:
                 result['state']='no user'
-                ##new_user=User(id=email,password=generate_password_hash(password,method='sha256'),first_name=name,last_name=lname,address=address)
-                ##result['state']='success'
-                ##db.session.add(new_user)
-                ##db.session.commit()
-                ##print(new_user)
-                #my_redirect('views.main')
-            #return redirect(url_for('views.main'))
+
             else: 
                 if check_password_hash(usr.password,password):
                     result['state']='success'
@@ -193,6 +181,7 @@ def signin_submit():
             result['state']='error'
         res = make_response(jsonify(result), 200)
         return res 
+    return render_template("signin.html",user=current_user)
 
 @auth.route('/logout')
 @login_required
