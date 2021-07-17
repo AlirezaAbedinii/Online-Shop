@@ -211,5 +211,13 @@ def edit_profile():
         else:
             message['pass'] = "pass valid"
         res = make_response(jsonify(message), 200)
-        return current_user.name
+        return res
+    return render_template("user.html",user=current_user)
+
+@auth.route('/credit', methods = ['GET'])
+def increase_credit():
+    message = {"mail": "unk","pass":"unk"}
+    result={'state':'fail'}  
+    current_user.charge=current_user.charge+10000
+    db.session.commit()
     return render_template("user.html",user=current_user)
