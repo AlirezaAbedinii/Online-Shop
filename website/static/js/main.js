@@ -225,6 +225,9 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
                 mainBottomLowerProduct.innerHTML = ""
             }
             totalProducts = products.length
+            if (totalProducts === 0) {
+                window.alert("هیچ کالایی با این مشخصات موجود نیست")
+            }
             for (var i = 0; i < totalProducts; i++) {
                 var product = createProducts(products[i])
 
