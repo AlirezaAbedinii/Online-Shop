@@ -832,7 +832,7 @@ function add_to_shop_basket(input_product_name) {
             cache: 'no-cache'
         })
         .then(function (response){
-            if(response.status !== 200){
+            if(response.status !== 200 && response.status !== 405){
                 console.log(`bad request: ${response.status}`)
                 return;
             }
