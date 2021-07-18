@@ -43,6 +43,7 @@ categoryBtn.addEventListener("click", (event) => {
 })
 
 function load_products(replace = 0) {
+    loading.style.display = "flex"
     fetch(`${window.location.origin}/admin`, {
         method: "POST",
         body: JSON.stringify({ command: "get_products" }),
@@ -69,6 +70,7 @@ function load_products(replace = 0) {
                 var aug_product = createAugmentedProducts(products[i])
                 productContentLower.appendChild(aug_product)
             }
+            loading.style.display = "none"
         })
     })
 
@@ -215,6 +217,7 @@ function createReceiptRow(rec) {
 }
 
 function delete_cat(cat_name) {
+    loading.style.display = "flex"
     fetch(`/admin/delete_category`, {
         method: "POST",
         body: JSON.stringify({ cat_name: cat_name }),
@@ -228,6 +231,7 @@ function delete_cat(cat_name) {
         }
         // var row = document.getElementById(cat_name)
         // row.style.display = "none"
+        loading.style.display = "none"
         load_products(1)
     })
 }
@@ -301,11 +305,13 @@ function edit_product() {
     ancestor = this.parentElement.parentElement.parentElement
     product_name = ancestor.querySelector(".product__details--name").innerHTML
     console.log(product_name)
+    loading.style.display = "flex"
     fetch(`/admin/edit_product`, {
         method: "POST",
         body: JSON.stringify({ product_name: product_name }),
     }).then(function (response) {
         if (response.status == 200) {
+            loading.style.display = "none"
             window.location.replace(`/admin/edit_product`)
         }
     })
@@ -341,6 +347,7 @@ function edit_category() {
     var inp_cat_name = document.querySelector(".cat-name")
     var cat_name = inp_cat_name.value
 
+    loading.style.display = "flex"
     fetch(`/admin/edit_category`, {
         method: "POST",
         body: JSON.stringify({ old_name: old_name, cat_name: cat_name }),
@@ -356,6 +363,7 @@ function edit_category() {
         var div = document.querySelector(".edit-cat-div")
         div.style.display = "none"
         div_cat_name.innerHTML = ""
+        loading.style.display = "none"
         load_products(1)
     })
 }
@@ -367,7 +375,7 @@ function edit_receipt() {
 
     var inp_rec_name = document.querySelector(".rec-name")
     var rec_name = inp_rec_name.value
-
+    loading.style.display = "flex"
     fetch(`/admin/edit_receipt`, {
         method: "POST",
         body: JSON.stringify({ old_name: old_name, rec_name: rec_name }),
@@ -383,11 +391,13 @@ function edit_receipt() {
         var div = document.querySelector(".edit-rec-div")
         div.style.display = "none"
         div_rec_name.innerHTML = ""
+        loading.style.display = "none"
         load_products(1)
     })
 }
 
 function filter_receipt_func(rec_id) {
+    loading.style.display = "flex"
     fetch(`/admin`, {
         method: "POST",
         body: JSON.stringify({
@@ -413,6 +423,7 @@ function filter_receipt_func(rec_id) {
                 receipt_table.appendChild(receipt_row)
             }
         })
+        loading.style.display = "none"
     })
 }
 
@@ -425,6 +436,7 @@ var add_cat = document.querySelector(".add-category")
 add_cat.addEventListener("click", (event) => {
     var cat_name = document.querySelector(".category__add__input")
     console.log(cat_name.value)
+    loading.style.display = "flex"
     fetch(`/admin/add_category`, {
         method: "POST",
         body: JSON.stringify({ cat_name: cat_name.value }),
@@ -437,6 +449,7 @@ add_cat.addEventListener("click", (event) => {
         } else {
             console.log(response.json())
         }
+        loading.style.display = "none"
     })
 })
 
@@ -464,3 +477,5 @@ var recept_search_input = document.querySelector(".recept__search__input")
 filter_receipt.addEventListener("click", () => {
     filter_receipt_func(recept_search_input.value)
 })
+
+var loading = document.querySelector(".loading-2")

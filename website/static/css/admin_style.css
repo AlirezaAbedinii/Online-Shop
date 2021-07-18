@@ -481,3 +481,42 @@ input {
 .edit-rec-div {
     display: none;
 }
+
+/* loader styles start */
+.loading-2 {
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.loading-2--full-height {
+    align-items: center;
+    height: 100%;
+}
+
+.loading-2::after {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgb(0, 156, 255);
+    opacity: 0.5;
+    border-radius: 50%;
+    animation: loading-2 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes loading-2 {
+    /* Safari support */
+    from {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.75);
+    }
+}
+/* loader styles end */

@@ -144,6 +144,8 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
 
     if (inp_replace === 0) {
         console.log("umad cat")
+        loading.style.display = "flex"
+        console.log("loading")
         fetch(`/main`, {
             method: "POST",
             body: JSON.stringify({ command: "get_categories" }),
@@ -167,6 +169,7 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
                     var table_row = createCategoryRow(categories[i], i)
                     cat_table.appendChild(table_row)
                 }
+                loading.style.display = "none"
             })
         })
     }
@@ -201,6 +204,7 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
     console.log(
         `sort: ${sort}, order: ${order}, product name: ${filter_by_name}`
     )
+    loading.style.display = "flex"
     fetch(`${window.location.origin}/main`, {
         method: "POST",
         body: JSON.stringify({
@@ -241,6 +245,7 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
                 }
             }
             createPagingButtons()
+            loading.style.display = "none"
         })
     })
 }
@@ -298,6 +303,7 @@ function changeItemPerPage(value) {
     pagging(1)
 }
 
+var loading = document.querySelector(".loading-2")
 var slideIndex = 0
 totalProducts = 40
 var pageIndex = 1
@@ -590,6 +596,7 @@ dropdown__logout = document.getElementById("dropdown__logout")
 if (dropdown__logout != null) {
     dropdown__logout.onclick = function () {
         console.log("logout fetch")
+        loading.style.display = "flex"
         fetch(`${window.origin}/logout`, {
             method: "GET",
             //body: JSON.stringify({}),
@@ -601,6 +608,7 @@ if (dropdown__logout != null) {
                 return
             }
             console.log("fetch main")
+            loading.style.display = "none"
             window.location.replace("/main")
         })
     }
