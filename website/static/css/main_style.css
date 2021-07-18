@@ -672,6 +672,8 @@ button {
   
   /* Modal Content */
   .modal-content {
+    align-content: center;
+    justify-content: center;
     overflow: auto;
     position: relative;
     background-color: #fefefe;
@@ -721,10 +723,12 @@ button {
   }
   .modal_input_box{
       border: white;
-      display: flex;
-      width: 50px;
+      display: grid;
+      grid-template-columns: auto auto;
+      width: 40%;
       justify-self: center;
       align-self: center;
+      padding-left: 130px;
   }
   .modal__button{
       border: white;
@@ -732,10 +736,16 @@ button {
     color: white;
   }
 
+  .modal__input{
+      align-self: center;
+      width:50px;
+  }
+
   .modal-body {
       padding: 2px 16px;
       justify-content: center;
-      align-content: center;
+      align-items: center;
+      
     }
   
   .modal-footer {
