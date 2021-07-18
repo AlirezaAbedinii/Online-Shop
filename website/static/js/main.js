@@ -220,6 +220,7 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            loading.style.display = "none"
             return
         }
         response.json().then(function (data) {

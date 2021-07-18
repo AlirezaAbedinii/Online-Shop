@@ -180,5 +180,11 @@ def edit_product():
     return render_template("edit_product.html", product = current_product)
 
 
+@views.route('/user/shop_basket', methods = ['GET'])
+@login_required
+def get_shop_basket():
+    return render_template("shop_basket.html", user = current_user)
+
+
 current_product = ''
     

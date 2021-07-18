@@ -27,6 +27,7 @@ def create_product():
         db.session.add(product)
         db.session.commit()
         
+        
         print('item added', file=sys.stdout)
         
         notif = ["محصول موردنظر با موقیت اضافه شد", "success"]

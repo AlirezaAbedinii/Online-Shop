@@ -492,3 +492,12 @@ function fill_user_data(user_data) {
     var credit = document.querySelector(".profile__header__credit__amount")
     credit.innerHTML = user_data["user_credit"]
 }
+
+var shop_btn = document.querySelector(".shop_button")
+
+shop_btn.addEventListener("click", (event) => {
+    console.log("shop button clicked")
+    fetch("/user/shop_basket", {}).then(function (response) {
+        window.location.replace("/user/shop_basket")
+    })
+})

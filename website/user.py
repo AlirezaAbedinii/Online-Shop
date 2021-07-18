@@ -1,5 +1,6 @@
+from flask.helpers import total_seconds
 from sqlalchemy.sql.expression import and_
-from website.models import Admin, Basket, Category, Product, Receipt
+from website.models import Admin, Basket, Category, Product, Receipt, User
 from flask import Blueprint, render_template, request, make_response, jsonify
 from . import db
 import sys
@@ -40,3 +41,72 @@ def user_Tes():
         
     else:
         return make_response(jsonify({"message": "موجودی محصول کمتر از مقدار انتخاب شده است"}), 405)
+
+
+@user.route('user/get_user_shop_basket', methods= ['POST'])
+@login_required
+def get_user_shop_basket():
+    req = request.get_json()
+    if req['command'] == 'get_basket':
+        basket = Basket.query.filter_by(customer_id = req['user']).all()
+        res_categories = []
+        for bas in basket:
+            product = Product.query.filter_by(name = bas.product_name).first()
+            json_rec = {"id": bas.id,  "product_name":bas.product_name, "product_count":bas.product_count, "total_price": bas.product_count * product.price}
+            res_categories.append(json_rec)
+            
+        res = make_response(jsonify({"message": res_categories}), 200)
+        return res
+    
+    res = make_response(jsonify({"message": "bad request"}), 405)
+    return res
+
+
+@user.route('/user/delete_basket', methods= ['POST'])
+@login_required
+def delete_basket():
+    req = request.get_json()
+    if req['command'] == 'delete_basket':
+        print(req)
+        Basket.query.filter_by(id = req['id']).delete()
+        Product.query.filter_by(name = req["product_name"]).update({Product.availability_number: Product.availability_number+req["product_count"]})
+        db.session.commit()
+        
+            
+        res = make_response(jsonify({"message": "basket deleted"}), 200)
+        return res
+    
+    res = make_response(jsonify({"message": "bad request"}), 405)
+    return res
+
+
+@user.route('/user/purchase', methods= ['POST'])
+@login_required
+def purchase():
+    req = request.get_json()
+    if req['command'] == 'purchase':
+        user = User.query.filter_by(id = req['id']).first()
+        baskets = Basket.query.filter_by(customer_id = req['id']).all()
+        total_price = 0
+        for basket in baskets:
+            product = Product.query.filter_by(name = basket.product_name).first()
+            total_price += (product.price * basket.product_count)
+        if user.charge >= total_price:
+            for basket in baskets:
+                product = Product.query.filter_by(name = basket.product_name).update({Product.sold_number: Product.sold_number + basket.product_count})
+
+            user.charge -= total_price
+            Basket.query.filter_by(customer_id = req['id']).delete()
+            db.session.commit()
+            
+            res = make_response(jsonify({"message": "products purchased"}), 200)
+            return res
+        
+        # db.session.commit()
+        
+            
+        res = make_response(jsonify({"message": "not enough credit"}), 405)
+        return res
+    
+    res = make_response(jsonify({"message": "bad request"}), 405)
+    return res
