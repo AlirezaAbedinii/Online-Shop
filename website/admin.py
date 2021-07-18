@@ -3,11 +3,13 @@ from flask import Blueprint, render_template, request, make_response, jsonify
 from . import db
 import sys
 import json
+from flask_login import  login_required,current_user
 
 admin = Blueprint('admin', __name__)
 
 
 @admin.route('/admin/create_product/submit', methods=['POST'])
+@login_required
 def create_product():
     print('submit req received', file=sys.stdout)
     req = request.get_json()
@@ -32,6 +34,7 @@ def create_product():
     
     
 @admin.route('/admin/edit_product/delete', methods=['POST'])
+@login_required
 def delete_product():
     print('delete req received', file=sys.stdout)
     req = json.loads(request.get_data())
@@ -41,6 +44,7 @@ def delete_product():
     return make_response(jsonify({"message": f'{name} deleted successfuly'}), 200)
 
 @admin.route('/admin/edit_product/submit', methods=['POST'])
+@login_required
 def update_product():
     print('change req received', file=sys.stdout)
     req = request.get_json()
@@ -69,6 +73,7 @@ def update_product():
     return make_response(jsonify({"message": f'{name} edited successfuly'}), 200)
 
 @admin.route('/admin/delete_category', methods=['POST'])
+@login_required
 def delete_category():
     print('delete req received', file=sys.stdout)
     req = json.loads(request.get_data())
@@ -88,6 +93,7 @@ def delete_category():
 
 
 @admin.route('/admin/add_category', methods=['POST'])
+@login_required
 def add_category():
     print('umad add', flush=True)
     print('add req received', file=sys.stdout)
@@ -108,6 +114,7 @@ def add_category():
 
 
 @admin.route('/admin/edit_category', methods=['POST'])
+@login_required
 def edit_category():
     print('edit req received', file=sys.stdout)
     req = request.get_json()
@@ -129,6 +136,7 @@ def edit_category():
 
 
 @admin.route('/admin/edit_receipt', methods=['POST'])
+@login_required
 def edit_receipt():
     print('edit req received', file=sys.stdout)
     req = request.get_json()

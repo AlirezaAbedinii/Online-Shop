@@ -69,6 +69,7 @@ def main():
 
 
 @views.route('/admin', methods=['GET', 'POST'])
+@login_required
 def admin():
     if request.method == 'POST':
         req = request.get_json()
@@ -161,11 +162,13 @@ def signin():
     return render_template("signin.html",user=current_user)
 
 @views.route('/admin/create_product')
+@login_required
 def create_product():
     return render_template("create_product.html")
 
 
 @views.route('/admin/edit_product', methods = ['GET', 'POST'])
+@login_required
 def edit_product():
     global current_product
     if request.method == 'POST':

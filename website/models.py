@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(100))
     charge = db.Column(db.Integer, default = 0)
     receipts = db.relationship('Receipt')
+    shop_basket = db.relationship('Basket')
     
 class Admin(db.Model):
     id = db.Column(db.String(100), primary_key=True)
@@ -40,3 +41,11 @@ class Receipt(db.Model):
     
 class Category(db.Model):
     name = db.Column(db.String(100), primary_key=True)
+    
+
+class Basket(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    customer_id = db.Column(db.String(100), db.ForeignKey('user.id'))
+    product_name = db.Column(db.String(100), db.ForeignKey('product.name'))
+    product_count = db.Column(db.Integer)
+    
