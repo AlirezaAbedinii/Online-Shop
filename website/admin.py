@@ -1,3 +1,5 @@
+import flask
+from flask.helpers import get_flashed_messages
 from website.models import Admin, Category, Product, Receipt
 from flask import Blueprint, render_template, request, make_response, jsonify, flash
 from . import db
@@ -18,7 +20,7 @@ def create_product():
     if not Category.query.filter_by(name = category).first():
             category = 'دسته بندی نشده'
             print("invalid category", sys.stdout)
-            flash("دسته بندی وارد شده نامعتبر است", category="warning")
+            notif = ["دسته بندی وارد شده نامعتبر است", "warning"]
     
     if not Product.query.filter_by(name=name).first():
         product = Product(name = name, category = category, price = price, availability_number = av, sold_number = sold)
@@ -27,11 +29,11 @@ def create_product():
         
         print('item added', file=sys.stdout)
         
-        flash("محصول موردنظر با موقیت اضافه شد", category="success")
-        return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
+        notif = ["محصول موردنظر با موقیت اضافه شد", "success"]
+        return make_response(jsonify({"message": [name, category, price, av, sold], "notif": notif}),  200)
     else:
-        flash("محصولی با این نام وجود دارد", category="error")
-        return make_response(jsonify({"message": "product name must be unique"}), 405)
+        notif = ["محصولی با این نام وجود دارد", "error"]
+        return make_response(jsonify({"message": "product name must be unique", "notif": notif}), 405)
     
     
     
@@ -43,8 +45,8 @@ def delete_product():
     name = req['product_name']
     Product.query.filter_by(name = name).delete()
     db.session.commit()
-    flash("محصول مورد نظر با موفقیت حذف شد", category="success")
-    return make_response(jsonify({"message": f'{name} deleted successfuly'}), 200)
+    notif = ["محصول مورد نظر با موفقیت حذف شد", "success"]
+    return make_response(jsonify({"message": f'{name} deleted successfuly', "notif": notif}),  200)
 
 @admin.route('/admin/edit_product/submit', methods=['POST'])
 @login_required
@@ -73,8 +75,8 @@ def update_product():
         product.image = image
     
     db.session.commit()
-    flash("محصول با موفقیت ویرایش شد", category="success")
-    return make_response(jsonify({"message": f'{name} edited successfuly'}), 200)
+    notif = ["محصول با موفقیت ویرایش شد", "success"]
+    return make_response(jsonify({"message": f'{name} edited successfuly', "notif": notif}),  200)
 
 @admin.route('/admin/delete_category', methods=['POST'])
 @login_required
@@ -88,12 +90,12 @@ def delete_category():
         updated_products = Product.query.filter_by(category = name).update({Product.category: 'دسته بندی نشده'})
         db.session.commit()
         
-        flash("دسته بندی با موفقیت حذف شد", category="success")
-        return make_response(jsonify({"message": f'{name} deleted successfuly and {updated_products} product\' category updated'}), 200)
+        notif = ["دسته بندی با موفقیت حذف شد", "success"]
+        return make_response(jsonify({"message": f'{name} deleted successfuly and {updated_products} product\' category updated', "notif": notif}),  200)
     
     
-    flash("این دسته نمیتواند حذف شود", category="error")
-    return make_response(jsonify({"message": f'{name} cant be deleted'}), 405)
+    notif = ["این دسته نمیتواند حذف شود", "error"]
+    return make_response(jsonify({"message": f'{name} cant be deleted', "notif": notif}), 405)
 
 
 
@@ -110,12 +112,12 @@ def add_category():
         db.session.add(category)
         db.session.commit()
         
-        flash("دسته بندی با موفقیت اضافه شد", category="success")
-        return make_response(jsonify({"message": f'{name} added successfuly'}), 200)
+        notif = ["دسته بندی با موفقیت اضافه شد", "success"]
+        return make_response(jsonify({"message": f'{name} added successfuly', "notif": notif}),  200)
     
     
-    flash("دسته بندی پیش از این موجود بود", category="error")
-    return make_response(jsonify({"message": f'{name} already exists'}), 405)
+    notif = ["دسته بندی پیش از این موجود بود", "error"]
+    return make_response(jsonify({"message": f'{name} already exists', "notif": notif}), 405)
 
 
 
@@ -132,12 +134,12 @@ def edit_category():
         
         updated_prods = Product.query.filter_by(category = old_name).update({Product.category: new_name})
         db.session.commit()
-        flash("دسته بندی با موفقیت ویرایش شد", category="success")
-        return make_response(jsonify({"message": f'{old_name} updated successfuly to {new_name} for {updated_cats} categories and {updated_prods} products'}), 200)
+        notif = ["دسته بندی با موفقیت ویرایش شد", "success"]
+        return make_response(jsonify({"message": f'{old_name} updated successfuly to {new_name} for {updated_cats} categories and {updated_prods} products', "notif": notif}),  200)
     
     
-    flash("این دسته نمیتواند ویرایش شود", category="error")
-    return make_response(jsonify({"message": f'{old_name} cant be updated'}), 405)
+    notif = ["این دسته نمیتواند ویرایش شود", "error"]
+    return make_response(jsonify({"message": f'{old_name} cant be updated', "notif": notif}), 405)
 
 
 
@@ -151,9 +153,10 @@ def edit_receipt():
     if new_state in  ('در حال انجام', 'انجام شده', 'لغو شده'):
         updated_recs=Receipt.query.filter_by(id = id).update({Receipt.state: new_state})
         db.session.commit()
-        flash("رسید با موفقیت ویرایش شد", category="success")
-        return make_response(jsonify({"message": f'{id} updated successfuly to {new_state} for {updated_recs} receipts'}), 200)
+        notif = ["رسید با موفقیت ویرایش شد", "success"]
+        return make_response(jsonify({"message": f'{id} updated successfuly to {new_state} for {updated_recs} receipts', "notif": notif}),  200)
     
     
-    flash("وضعیت وارد شده برای رسید نامعتبر است", category="error")
-    return make_response(jsonify({"message": f'{id} cant be updated'}), 405)
+    notif = ["وضعیت وارد شده برای رسید نامعتبر است", "error"]
+    return make_response(jsonify({"message": f'{id} cant be updated', "notif": notif}), 405)
+

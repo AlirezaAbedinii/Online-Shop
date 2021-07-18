@@ -497,3 +497,11 @@ for (i = 0; i < close.length; i++) {
         }, 600)
     }
 }
+
+function add_notif(context) {
+    // <div class="alert">
+    // <span class="closebtn">&times;</span>
+    // {{ message }}
+    // </div>
+    console.log(context)
+}
