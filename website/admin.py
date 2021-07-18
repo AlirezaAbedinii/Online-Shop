@@ -30,7 +30,7 @@ def create_product():
         flash("محصول موردنظر با موقیت اضافه شد", category="success")
         return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
     else:
-        flash("A product with this name already exists!", category="error")
+        flash("محصولی با این نام وجود دارد", category="error")
         return make_response(jsonify({"message": "product name must be unique"}), 405)
     
     
@@ -73,6 +73,7 @@ def update_product():
         product.image = image
     
     db.session.commit()
+    flash("محصول با موفقیت ویرایش شد", category="success")
     return make_response(jsonify({"message": f'{name} edited successfuly'}), 200)
 
 @admin.route('/admin/delete_category', methods=['POST'])
@@ -87,10 +88,11 @@ def delete_category():
         updated_products = Product.query.filter_by(category = name).update({Product.category: 'دسته بندی نشده'})
         db.session.commit()
         
+        flash("دسته بندی با موفقیت حذف شد", category="success")
         return make_response(jsonify({"message": f'{name} deleted successfuly and {updated_products} product\' category updated'}), 200)
     
     
-    
+    flash("این دسته نمیتواند حذف شود", category="error")
     return make_response(jsonify({"message": f'{name} cant be deleted'}), 405)
 
 
@@ -108,10 +110,11 @@ def add_category():
         db.session.add(category)
         db.session.commit()
         
+        flash("دسته بندی با موفقیت اضافه شد", category="success")
         return make_response(jsonify({"message": f'{name} added successfuly'}), 200)
     
     
-    
+    flash("دسته بندی پیش از این موجود بود", category="error")
     return make_response(jsonify({"message": f'{name} already exists'}), 405)
 
 
@@ -129,11 +132,11 @@ def edit_category():
         
         updated_prods = Product.query.filter_by(category = old_name).update({Product.category: new_name})
         db.session.commit()
-        
+        flash("دسته بندی با موفقیت ویرایش شد", category="success")
         return make_response(jsonify({"message": f'{old_name} updated successfuly to {new_name} for {updated_cats} categories and {updated_prods} products'}), 200)
     
     
-    
+    flash("این دسته نمیتواند ویرایش شود", category="error")
     return make_response(jsonify({"message": f'{old_name} cant be updated'}), 405)
 
 
@@ -148,9 +151,9 @@ def edit_receipt():
     if new_state in  ('در حال انجام', 'انجام شده', 'لغو شده'):
         updated_recs=Receipt.query.filter_by(id = id).update({Receipt.state: new_state})
         db.session.commit()
-        
+        flash("رسید با موفقیت ویرایش شد", category="success")
         return make_response(jsonify({"message": f'{id} updated successfuly to {new_state} for {updated_recs} receipts'}), 200)
     
     
-    
+    flash("وضعیت وارد شده برای رسید نامعتبر است", category="error")
     return make_response(jsonify({"message": f'{id} cant be updated'}), 405)

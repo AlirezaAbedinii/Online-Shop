@@ -525,6 +525,7 @@ input {
     top: 10%;
     left: 40%;
     padding: 20px;
+    width: 400px;
     background-color: #f44336;
     color: white;
 }
