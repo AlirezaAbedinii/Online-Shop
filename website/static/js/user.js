@@ -360,9 +360,7 @@ if (increase_credit != null) {
             }
             console.log("fetch main")
             // window.location.replace("/user/profile")
-            // onload
-            currentTab = "receipt"
-            change_tab()
+            fill_data((inp_replace = 1))
         })
     }
 }
@@ -402,7 +400,23 @@ function setMessage() {
 
 function fill_data(inp_replace = 1) {
     // request to server credit
-    // response
+    fetch(`/user`, {
+        method: "POST",
+        body: JSON.stringify({ command: "get_current_user" }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            return
+        }
+        response.json().then(function (data) {
+            console.log(`got user response`)
+            console.log(data)
+            current_user_data = data["message"][0]
+            fill_user_data(current_user_data)
+        })
+    })
     // DOM set credit
 
     // request to server receipts
@@ -468,4 +482,9 @@ function createReceiptRow(rec) {
     first_tr.appendChild(td)
 
     return first_tr
+}
+
+function fill_user_data(user_data) {
+    var credit = document.querySelector(".profile__header__credit__amount")
+    credit.innerHTML = user_data["user_credit"]
 }

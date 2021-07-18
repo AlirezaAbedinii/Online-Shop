@@ -148,6 +148,11 @@ def user():
             res = make_response(jsonify({"message": res_categories}), 200)
             return res
         
+        elif req['command'] == 'get_current_user':
+            res = make_response(jsonify({"message": [{"user_id":current_user.id, "user_first_name":current_user.first_name,
+                                                     "user_credit":current_user.charge}]}), 200)
+            return res
+        
     
     return render_template("user.html",user=current_user)
 
