@@ -9,6 +9,10 @@ function change_tab() {
         profileBtn.style.backgroundColor = "rgb(247, 247, 247)"
         receiptBtn.style.backgroundColor = "rgb(238, 238, 238)"
         currentTab = "receipt"
+
+        if (totalReceipts === 0) {
+            window.alert("هیچ رسیدی موجود نیست")
+        }
     } else {
         profileContent.style.display = "block"
         profileHeader.style.display = "flex"

@@ -14,6 +14,10 @@ receiptBtn.addEventListener("click", (event) => {
     productBtn.style.backgroundColor = "rgb(247, 247, 247)"
     categoryBtn.style.backgroundColor = "rgb(247, 247, 247)"
     receiptBtn.style.backgroundColor = "rgb(238, 238, 238)"
+
+    if (totalReceipts === 0) {
+        window.alert("هیچ رسیدی موجود نیست")
+    }
 })
 
 productBtn.addEventListener("click", (event) => {
@@ -58,6 +62,9 @@ function load_products(replace = 0) {
                 productContentLower.innerHTML = ""
             }
             totalProducts = products.length
+            if (totalProducts === 0) {
+                window.alert("هیچ کالایی موجود نیست")
+            }
             for (var i = 0; i < totalProducts; i++) {
                 var aug_product = createAugmentedProducts(products[i])
                 productContentLower.appendChild(aug_product)
