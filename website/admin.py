@@ -1,5 +1,5 @@
 from website.models import Admin, Category, Product, Receipt
-from flask import Blueprint, render_template, request, make_response, jsonify
+from flask import Blueprint, render_template, request, make_response, jsonify, flash
 from . import db
 import sys
 import json
@@ -18,6 +18,7 @@ def create_product():
     if not Category.query.filter_by(name = category).first():
             category = 'دسته بندی نشده'
             print("invalid category", sys.stdout)
+            flash("دسته بندی وارد شده نامعتبر است", category="warning")
     
     if not Product.query.filter_by(name=name).first():
         product = Product(name = name, category = category, price = price, availability_number = av, sold_number = sold)
@@ -26,9 +27,10 @@ def create_product():
         
         print('item added', file=sys.stdout)
         
-    
+        flash("محصول موردنظر با موقیت اضافه شد", category="success")
         return make_response(jsonify({"message": [name, category, price, av, sold]}), 200)
     else:
+        flash("A product with this name already exists!", category="error")
         return make_response(jsonify({"message": "product name must be unique"}), 405)
     
     
@@ -41,6 +43,7 @@ def delete_product():
     name = req['product_name']
     Product.query.filter_by(name = name).delete()
     db.session.commit()
+    flash("محصول مورد نظر با موفقیت حذف شد", category="success")
     return make_response(jsonify({"message": f'{name} deleted successfuly'}), 200)
 
 @admin.route('/admin/edit_product/submit', methods=['POST'])

@@ -59,7 +59,7 @@
             .then(function (response){
                 if(response.status !== 200){
                     console.log(`bad request: ${response.status}`)
-                    return
+                    window.location.replace('/admin')
                 }
                 else{
                     window.location.replace('/admin')

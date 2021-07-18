@@ -40,6 +40,30 @@
                 <!-- Upper Tab content -->
                 <div class="main__main">
                     <div class="loading-2 loading-2--full-height"></div>
+                    {% with messages = get_flashed_messages(with_categories=true) %} 
+                        {% if messages %} 
+                            {% for category, message in messages %} 
+                                {% if category == 'error' %}
+                                <div class="alert">
+                                    <span class="closebtn">&times;</span>  
+                                    {{ message }}
+                                  </div>
+                                {% endif %}
+                                {% if category == 'success' %}
+                                <div class="alert success">
+                                    <span class="closebtn">&times;</span>  
+                                    {{ message }}
+                                </div> 
+                                {% endif %}
+                                {% if category == 'warning' %}
+                                <div class="alert warning">
+                                    <span class="closebtn">&times;</span>  
+                                    {{ message }}
+                                </div> 
+                                {% endif %} 
+                            {% endfor %}
+                        {% endif %} 
+                    {% endwith %}
                     <div class="tab">
                         <div id="admin__header" class="tabcontent1">
                             <p class="admin__header__welcome">ادمین عزیز، خوش آمدید</p>

@@ -20,9 +20,9 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique = True)
     category = db.Column(db.String(100), db.ForeignKey('category.name'), default = 'دسته بندی نشده')
-    price = db.Column(db.Integer)
-    availability_number = db.Column(db.Integer)
-    sold_number = db.Column(db.Integer)
+    price = db.Column(db.Integer, default = 0)
+    availability_number = db.Column(db.Integer, default = 0)
+    sold_number = db.Column(db.Integer, default = 0)
     image = db.Column(db.String(100), default = '/static/Pictures/Product_sample_picture.png')
     date = db.Column(db.DateTime(timezone=True), default = func.now())
     
