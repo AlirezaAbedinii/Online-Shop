@@ -83,6 +83,73 @@ function createProducts(input_product) {
     return product
 }
 
+function createModal(product){
+    // <!-- The Modal -->
+    // <div id="myModal" class="modal">
+    // <!-- Modal content -->
+    //     <div class="modal-content">
+    //         <div class="modal-header">
+    //             <span class="close">&times;</span>
+    //             <h2>Modal Header</h2>
+    //         </div>
+    //         <div class="modal-body">
+    //             <p id='modal__msg'></p>
+    //         </div>
+    //         <div class="modal-footer">
+    //             <h3>Modal Footer</h3>
+    //         </div>
+    //     </div>
+    // </div>
+        var modal = document.createElement("div")
+        modal.className = "modal"
+        modal.id='myModal'
+
+        var modal_content = document.createElement("div")
+        modal_content.className = "modal-content"
+
+        var modal_header = document.createElement("div")
+        modal_header.className = "modal-header"
+
+        var close = document.createElement("span")
+        close.className = "close"
+
+        var modal_body = document.createElement("div")
+        modal_body.className = "modal-body"
+
+        var modal_input_box =document.createElement('div')
+        modal_input_box.className='modal_input_box'
+
+
+        var modal_input = document.createElement("INPUT")
+        modal_input.setAttribute("type", "text");
+        modal_input.className='modal_input'
+        modal_input.id='modal__input'
+
+        var modal_button = document.createElement("INPUT")
+        modal_button.setAttribute("type", "submit");
+        modal_button.className='modal_button'
+        modal_button.id='modal__btn'
+
+        var modal_msg = document.createElement("p")
+        modal_msg.id='modal__msg'
+
+        var modal_footer = document.createElement('div')
+        modal_footer.className='modal-footer'
+
+        modal_header.appendChild(close)
+        modal_input_box.appendChild(modal_input)
+        modal_input_box.appendChild(modal_button)
+        modal_body.appendChild(modal_input_box)
+        modal_body.appendChild(modal_msg)
+        modal_content.appendChild(modal_header)
+
+        modal_content.appendChild(modal_body)
+        modal_content.appendChild(modal_footer)
+        modal.appendChild(modal_content)
+
+        return modal
+}
+
 function createPagingButtons() {
     var paging = document.querySelector(".paging")
     paging.innerHTML = ""
@@ -736,8 +803,67 @@ function slider_start() {
 // slider js end
 
 function add_to_shop_basket(input_product_name) {
+ 
+    var modal = document.getElementById("myModal")
+
+    //var modal = document.getElementById("myModal");
+    modal.style.display = "block"
     // request server, post, input_product_name
     // availability number
     // if > 0 -> modal: added to shop basket
     // else -> not available
+           
+    var span = document.getElementsByClassName("close")[0]
+
+    // When the user clicks the button, open the modal and display specified message
+    btn=document.getElementById('modal__buttonn')
+    modal_button.onclick = function() {
+    
+        number=document.getElementById('modal_input')
+        modal_msg=document.getElementById('modal__msg')
+        product_number=Number(number.value)
+        
+        fetch(`${window.origin}/user/add_to_shop_basket`, {
+            method: "POST",
+            body: JSON.stringify({
+                "product_name": input_product_name,
+                "product_count": product_number
+            }),
+            headers: new Headers({"content-type": "application/json"}),
+            cache: 'no-cache'
+        })
+        .then(function (response){
+            if(response.status !== 200 && response.status !== 405){
+                console.log(`bad request: ${response.status}`)
+                return;
+            }
+            response.json().then(function (data){
+                console.log(data)
+                modal_msg.innerHTML=data['message']
+                })
+        });
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none"
+        modal_msg.innerHTML=""
+        number.value=0
+
+    //setNewWindow();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none"
+        modal_msg.innerHTML=""
+        number.value=0
+        //setNewWindow();
+        }
+    }
+
+   
+    
+
 }

@@ -224,33 +224,42 @@ def increase_credit():
 
 @auth.route('/edit/submit', methods = ['GET','POST'])
 def edit_submit():
+    checked=False
     if request.method=='POST':
         req = request.get_json()
         name, lname, password, address = req.values()
         message = {"pass":"unk"} 
         result={'state':'fail'}
-        if "".__eq__(password):
-            message['pass'] ="pass empty"
-        elif len(password)<8: 
-            message = {"pass": "pass min len invalid"}
-        elif len(password)>255: 
-                message['pass'] = "pass max len invalid"
-        elif re.search('[0-9]',password) is None:
-            message['pass'] ="pass num invalid"
-        elif re.search('[a-z]',password) is None:
-            message['pass'] = "pass char invalid"
-        else:
-            message['pass'] = "pass valid"   
-
-        if  message['pass']=='pass valid':
+        
+        #if  message['pass']=='pass valid':
+        if not "".__eq__(name):
             current_user.first_name=name
+        elif not "".__eq__(lname):
             current_user.last_name=lname
-            current_user.password=generate_password_hash(password,method='sha256')
+        elif not "".__eq__(password):   
+            if len(password)<8: 
+                message = {"pass": "pass min len invalid"}
+            elif len(password)>255: 
+                    message['pass'] = "pass max len invalid"
+            elif re.search('[0-9]',password) is None:
+                message['pass'] ="pass num invalid"
+            elif re.search('[a-z]',password) is None:
+                message['pass'] = "pass char invalid"
+            else:
+                message['pass'] = "pass valid" 
+            if message['pass'] =='pass valid': 
+                current_user.password=generate_password_hash(password,method='sha256')
+            elif message['pass'] != 'pass valid':
+                result['state']='fail'
+                checked=True
+                
+        elif not "".__eq__(address):
             current_user.address=address
-            db.session.commit()
+        db.session.commit()
+        if checked==False:
             result['state']='success'
-        else:
-            result['state']='fail'
+        #else:
+        #    result['state']='fail'
         res = make_response(jsonify(result), 200)
         return res 
     return render_template("user.html",user=current_user)
