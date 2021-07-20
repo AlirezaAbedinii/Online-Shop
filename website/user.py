@@ -15,8 +15,8 @@ user = Blueprint('user', __name__)
 def user_Tes():
     print('req received', file=sys.stdout)
     req = request.get_json()
-    # user_id = current_user.id
-    user_id = "alireza@arezz.com"
+    user_id = current_user.id
+    #user_id = "alireza@arezz.com"
     product_name = req['product_name']
     product_count = req['product_count']
     

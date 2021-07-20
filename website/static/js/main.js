@@ -847,6 +847,9 @@ function add_to_shop_basket(input_product_name) {
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none"
+        modal_msg.innerHTML=""
+        number.value=0
+
     //setNewWindow();
     }
 
@@ -854,6 +857,8 @@ function add_to_shop_basket(input_product_name) {
     window.onclick = function(event) {
         if (event.target == modal) {
         modal.style.display = "none"
+        modal_msg.innerHTML=""
+        number.value=0
         //setNewWindow();
         }
     }
