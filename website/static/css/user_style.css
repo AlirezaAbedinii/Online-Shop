@@ -256,6 +256,8 @@ body {
     /* display: none; */
     display: block;
     direction: rtl;
+    overflow: auto;
+    max-height: 300px;
 }
 
 #profile__content {

@@ -87,15 +87,23 @@ def purchase():
     if req['command'] == 'purchase':
         user = User.query.filter_by(id = req['id']).first()
         baskets = Basket.query.filter_by(customer_id = req['id']).all()
-        total_price = 0
+        purchase_price = 0
+        product_to_price = {}
         for basket in baskets:
             product = Product.query.filter_by(name = basket.product_name).first()
-            total_price += (product.price * basket.product_count)
-        if user.charge >= total_price:
+            purchase_price += (product.price * basket.product_count)
+            product_to_price[product.name] = (product.price * basket.product_count)
+        if user.charge >= purchase_price:
             for basket in baskets:
-                product = Product.query.filter_by(name = basket.product_name).update({Product.sold_number: Product.sold_number + basket.product_count})
+                Product.query.filter_by(name = basket.product_name).update({Product.sold_number: Product.sold_number + basket.product_count})
+                receipt = Receipt(product_name = basket.product_name, purchase_number = basket.product_count,
+                                  customer_first_name = user.first_name, customer_last_name = user.last_name, 
+                                  customer_address = user.address, 
+                                  total_price = (product_to_price[basket.product_name]),
+                                  customer_id = user.id)
+                db.session.add(receipt)
 
-            user.charge -= total_price
+            user.charge -= purchase_price
             Basket.query.filter_by(customer_id = req['id']).delete()
             db.session.commit()
             
