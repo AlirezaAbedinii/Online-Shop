@@ -52,7 +52,7 @@ function load_products(replace = 0) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
-            return
+            loading.style.display = "none"
         }
         response.json().then(function (data) {
             products = data.message
@@ -227,7 +227,7 @@ function delete_cat(cat_name) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
-            return
+            loading.style.display = "none"
         }
         // var row = document.getElementById(cat_name)
         // row.style.display = "none"
@@ -314,6 +314,7 @@ function edit_product() {
             loading.style.display = "none"
             window.location.replace(`/admin/edit_product`)
         }
+        loading.style.display = "none"
     })
 }
 
@@ -358,6 +359,7 @@ function edit_category() {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
             return
+            loading.style.display = "none"
         }
 
         var div = document.querySelector(".edit-cat-div")
@@ -385,7 +387,8 @@ function edit_receipt() {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
-            return
+            loading.style.display = "none"
+            // load_products(1)
         }
 
         var div = document.querySelector(".edit-rec-div")
@@ -409,7 +412,7 @@ function filter_receipt_func(rec_id) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
-            return
+            loading.style.display = "none"
         }
         response.json().then(function (data) {
             console.log(`got receipt response: ${data}`)
@@ -448,6 +451,8 @@ add_cat.addEventListener("click", (event) => {
             load_products(1)
         } else {
             console.log(response.json())
+            //new
+            load_products(1)
         }
         loading.style.display = "none"
     })
@@ -479,3 +484,24 @@ filter_receipt.addEventListener("click", () => {
 })
 
 var loading = document.querySelector(".loading-2")
+
+var close = document.getElementsByClassName("closebtn")
+var i
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+        var div = this.parentElement
+        div.style.opacity = "0"
+        setTimeout(function () {
+            div.style.display = "none"
+        }, 600)
+    }
+}
+
+function add_notif(context) {
+    // <div class="alert">
+    // <span class="closebtn">&times;</span>
+    // {{ message }}
+    // </div>
+    console.log(context)
+}
