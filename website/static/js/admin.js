@@ -363,8 +363,8 @@ function edit_category() {
         if (response.status !== 200) {
             window.alert("The category cant be updated to this")
             console.log(`bad request: ${response.status}`)
-            return
             loading.style.display = "none"
+            return
         }
 
         var div = document.querySelector(".edit-cat-div")

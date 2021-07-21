@@ -13,8 +13,11 @@ views = Blueprint('views', __name__)
 
 @views.route('/main', methods = ['POST', 'GET'])
 def main():
-    if current_user.is_admin == 1:
-        return redirect(url_for('views.admin'))
+    try:
+        if current_user.is_admin == 1:
+            return redirect(url_for('views.admin'))
+    except:
+        print()
     if request.method == 'POST':
         req = request.get_json()
         # print(req, file=sys.stdout)
