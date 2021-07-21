@@ -194,10 +194,12 @@ email.addEventListener('keyup',(event)=>{
     });
 }); 
 
+//sens a request to password innput box at every keyup
 pass.addEventListener('keyup',(event)=>{
     //value of the boxes
     passValue=pass.value;
     mailValue=email.value.trim();
+    //fetch mail and password
     fetch(`${window.origin}/signin`, {
         method: "POST",
         body: JSON.stringify({
@@ -211,23 +213,30 @@ pass.addEventListener('keyup',(event)=>{
             console.log(`bad request: ${response.status}`);
             return;
         }
+        //response is a data
         response.json().then(function (data){
             console.log(data);
+                //empty pass
                 if(data['pass']=="pass empty"){
                     setError(pass,"رمز عبور نمی‌تواند خالی باشد");
                 }
+                //short pass
                 else if(data['pass']=="pass min len invalid"){
                     setError(pass,'رمز عبور باید حداقل ۸ کاراکتر باشد');
                 }
+                //pass needs numbers
                 else if(data['pass']=="pass num invalid"){
                     setError(pass,'رمز عبور باید شامل اعداد نیز باشد');
                 }
+                // pass too long
                 else if(data['pass']=="pass max len invalid"){
                     setError(pass,'رمز باید کمتر از ۲۵۵ کاراکتر باشد');
                 }
+                //pass needs charachters
                 else if(data['pass']=="pass char invalid"){
                     setError(pass,'رمز عبور باید شامل حروف نیز باشد');
                 }
+                //pass accepted
                 else{
                     setSuccess(pass);
                 }
@@ -236,7 +245,8 @@ pass.addEventListener('keyup',(event)=>{
 });
 
 
-
+//setting the small message
+//when the sign-in button is pressed
 function setMessage(){
     
     passValue=pass.value;
@@ -281,6 +291,8 @@ function setMessage(){
 
 
 }
+
+//hoes to new window
 function setNewWindow(){ 
     passValue=pass.value;
     mailValue=email.value.trim();
@@ -311,6 +323,7 @@ function setNewWindow(){
 
 
 }
+//signup button at the top of the page
 signup_btn=document.getElementById('signup_btn');
 if(signup_btn != null){
   signup_btn.onclick=function(){

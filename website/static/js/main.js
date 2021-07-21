@@ -1,3 +1,4 @@
+//showes slides in main page
 function showSlides() {
     var i
     var slides = document.querySelectorAll(".slider__image")
@@ -13,6 +14,7 @@ function showSlides() {
     setTimeout(showSlides, 10000) // Change image every 2 seconds
 }
 
+//changes slides in main page
 function changeSlides(offset) {
     var i
     var slides = document.querySelectorAll(".slider__image")
@@ -32,6 +34,7 @@ function changeSlides(offset) {
     slides[slideIndex - 1].style.display = "block"
 }
 
+//creates a new product box
 function createProducts(input_product) {
     var product = document.createElement("div")
     product.className = "product"
@@ -83,6 +86,7 @@ function createProducts(input_product) {
     return product
 }
 
+//creates a modal with header, body and footer
 function createModal(product){
     // <!-- The Modal -->
     // <div id="myModal" class="modal">
@@ -150,6 +154,7 @@ function createModal(product){
         return modal
 }
 
+//creates paging button
 function createPagingButtons() {
     var paging = document.querySelector(".paging")
     paging.innerHTML = ""
@@ -206,6 +211,7 @@ function createPagingButtons() {
     }
 }
 
+//the pagining functionality, send a request to main for categories
 function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
     console.log(`pagging ${inp_replace}`)
 
@@ -318,6 +324,7 @@ function pagging(inp_replace = 0, slide1_val = 0, slide2_val = 500000000) {
     })
 }
 
+//functin gives selected categories
 function get_selected_categories() {
     var choices = document.getElementsByClassName("checkbox")
 
@@ -331,6 +338,7 @@ function get_selected_categories() {
     return selected
 }
 
+//creates a category row
 function createCategoryRow(inp_cat, i) {
     var div = document.createElement("div")
     div.className = "choice"
@@ -355,12 +363,14 @@ function createCategoryRow(inp_cat, i) {
     return div
 }
 
+//changes the page
 function changePage(index) {
     pageIndex = index
     mainBottomLowerProduct.innerHTML = ""
     pagging(1)
 }
 
+//change items in a page
 function changeItemPerPage(value) {
     itemPerPage = value
     if (totalProducts < itemPerPage * pageIndex) {
@@ -371,6 +381,7 @@ function changeItemPerPage(value) {
     pagging(1)
 }
 
+//loading
 var loading = document.querySelector(".loading-2")
 var slideIndex = 0
 totalProducts = 40
@@ -653,6 +664,8 @@ select.addEventListener("change", (event) => {
 // menuProductBtn.addEventListener('click', (event)=>{
 //   window.location.replace(`${window.location.origin}/main#productt`)
 // })
+
+//redirect to profile
 dropdown__profile = document.getElementById("dropdown__profile")
 if (dropdown__profile != null) {
     dropdown__profile.onclick = function () {
@@ -660,6 +673,8 @@ if (dropdown__profile != null) {
         window.location.replace("/user")
     }
 }
+
+//logout
 dropdown__logout = document.getElementById("dropdown__logout")
 if (dropdown__logout != null) {
     dropdown__logout.onclick = function () {
@@ -682,6 +697,7 @@ if (dropdown__logout != null) {
     }
 }
 
+//redirect to sign-in
 main__signin = document.getElementById("main__signin")
 if (main__signin != null) {
     main__signin.onclick = function () {
@@ -802,6 +818,7 @@ function slider_start() {
 }
 // slider js end
 
+//adding item to cart
 function add_to_shop_basket(input_product_name) {
  
     var modal = document.getElementById("myModal")

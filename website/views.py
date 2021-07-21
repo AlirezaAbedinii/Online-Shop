@@ -11,6 +11,7 @@ from sqlalchemy import desc
 
 views = Blueprint('views', __name__)
 
+#main page
 @views.route('/main', methods = ['POST', 'GET'])
 def main():
     if request.method == 'POST':
@@ -67,7 +68,7 @@ def main():
 
 
 
-
+#admin page
 @views.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
@@ -129,7 +130,7 @@ def admin():
         
     return render_template("admin.html")
 
-
+#user page
 @views.route('/user', methods = ['POST', 'GET'])
 @login_required
 def user():
@@ -156,17 +157,18 @@ def user():
         
     
     return render_template("user.html",user=current_user)
-
+#signin page
 @views.route('/signin')
 def signin():
     return render_template("signin.html",user=current_user)
 
+#admin's product adding page
 @views.route('/admin/create_product')
 @login_required
 def create_product():
     return render_template("create_product.html")
 
-
+#admins editing product page
 @views.route('/admin/edit_product', methods = ['GET', 'POST'])
 @login_required
 def edit_product():
@@ -179,7 +181,7 @@ def edit_product():
     print(request.method, request.get_json())
     return render_template("edit_product.html", product = current_product)
 
-
+#shopping cart
 @views.route('/user/shop_basket', methods = ['GET'])
 @login_required
 def get_shop_basket():

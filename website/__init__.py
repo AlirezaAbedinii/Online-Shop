@@ -28,7 +28,7 @@ def create_app():
     from .models import User
     create_database(app)
     
-        
+    #login manager    
     login_manager=LoginManager()
     login_manager.login_view = 'auth.signin'
     login_manager.init_app(app)
@@ -48,13 +48,14 @@ def create_app():
     
     return app
     
-
+#create db
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
         with app.app_context():
             db.create_all()
         print('Created Database!')
-        
+
+#create admin        
 def create_admin(app):
     from .models import Admin
     with app.app_context():
@@ -65,7 +66,8 @@ def create_admin(app):
             print('admin added to db', file=sys.stdout)
         else:
             print('admin already exists in db', file=sys.stdout)
-    
+
+ #creaate product   
 def create_products(app):
     from .models import Product, Category
     with app.app_context():
@@ -82,7 +84,7 @@ def create_products(app):
         else:
             print('products already exists in db', file=sys.stdout)
             
-
+#create users
 def create_users(app):
     from .models import User, Receipt, Product
     with app.app_context():

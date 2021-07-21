@@ -1,3 +1,4 @@
+//changing the reciept and profile tag
 function change_tab() {
     if (currentTab === "profile") {
         profileContent.style.display = "none"
@@ -40,11 +41,13 @@ var profileHeader = document.querySelector("#profile__header")
 var currentTab = "receipt"
 change_tab()
 window.onload = fill_data
+//load profile
 receiptBtn.addEventListener("click", (event) => {
     if (currentTab === "profile") {
         change_tab()
     }
 })
+//load reciepts
 profileBtn.addEventListener("click", (event) => {
     if (currentTab === "receipt") {
         change_tab()
@@ -308,6 +311,8 @@ window.onclick = function (event) {
 //     }
 
 // }
+
+//check pass box at edit
 pass.addEventListener("keyup", (event) => {
     //value of the boxes
     passValue = pass.value
@@ -347,8 +352,10 @@ pass.addEventListener("keyup", (event) => {
         })
     })
 })
+
 increase_credit = document.getElementById("increase_credit")
 
+//increase credit
 if (increase_credit != null) {
     increase_credit.onclick = function () {
         //console.log("logout fetch")
@@ -368,6 +375,7 @@ if (increase_credit != null) {
         })
     }
 }
+//seting the modal message
 function setMessage() {
     passValue = pass.value
     nameValue = fname.value.trim()
@@ -401,7 +409,7 @@ function setMessage() {
         })
     })
 }
-
+//onload function
 function fill_data(inp_replace = 1) {
     // request to server credit
     fetch(`/user`, {
@@ -450,7 +458,7 @@ function fill_data(inp_replace = 1) {
     })
     // receipt
 }
-
+//creating a reciept row
 function createReceiptRow(rec) {
     // <tr>
     // <td>ُSHOP102030</td>

@@ -9,7 +9,7 @@ from flask_login import  login_required,current_user
 
 admin = Blueprint('admin', __name__)
 
-
+#create product
 @admin.route('/admin/create_product/submit', methods=['POST'])
 @login_required
 def create_product():
@@ -37,7 +37,7 @@ def create_product():
         return make_response(jsonify({"message": "product name must be unique", "notif": notif}), 405)
     
     
-    
+#delete product    
 @admin.route('/admin/edit_product/delete', methods=['POST'])
 @login_required
 def delete_product():
@@ -49,6 +49,7 @@ def delete_product():
     notif = ["محصول مورد نظر با موفقیت حذف شد", "success"]
     return make_response(jsonify({"message": f'{name} deleted successfuly', "notif": notif}),  200)
 
+#submit edited product
 @admin.route('/admin/edit_product/submit', methods=['POST'])
 @login_required
 def update_product():
@@ -79,6 +80,7 @@ def update_product():
     notif = ["محصول با موفقیت ویرایش شد", "success"]
     return make_response(jsonify({"message": f'{name} edited successfuly', "notif": notif}),  200)
 
+#delete category
 @admin.route('/admin/delete_category', methods=['POST'])
 @login_required
 def delete_category():
@@ -99,7 +101,7 @@ def delete_category():
     return make_response(jsonify({"message": f'{name} cant be deleted', "notif": notif}), 405)
 
 
-
+#add category
 @admin.route('/admin/add_category', methods=['POST'])
 @login_required
 def add_category():
@@ -121,7 +123,7 @@ def add_category():
     return make_response(jsonify({"message": f'{name} already exists', "notif": notif}), 405)
 
 
-
+#edit category
 @admin.route('/admin/edit_category', methods=['POST'])
 @login_required
 def edit_category():
@@ -143,7 +145,7 @@ def edit_category():
     return make_response(jsonify({"message": f'{old_name} cant be updated', "notif": notif}), 405)
 
 
-
+#edit reciept
 @admin.route('/admin/edit_receipt', methods=['POST'])
 @login_required
 def edit_receipt():

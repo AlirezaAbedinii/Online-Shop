@@ -6,6 +6,7 @@
     font-family: Yekan;
 }
 
+/*fonts*/
 @font-face {
     font-family: 'Yekan';
     src: url('Yekan-Font-2/Yekan.eot'); /* IE9 Compat Modes */
@@ -228,6 +229,7 @@ body{min-height: 100vh;}
     /*margin-bottom: 35px;*/
 
 }
+/*container*/
 .main__main__form{
     display: grid;
     grid-template-rows: repeat(2,auto);
@@ -236,6 +238,8 @@ body{min-height: 100vh;}
     
 
 }
+
+/*name,lname,pass,email*/
 .main__form__upper{
     width: 690px;
     display: grid;
@@ -253,6 +257,7 @@ body{min-height: 100vh;}
    
 }
 
+/*address box*/
 .main__form__bottom{
     display: grid;
     grid-template-columns: auto;
@@ -272,6 +277,7 @@ body{min-height: 100vh;}
     position: relative;
 
 }
+/*the input box*/
 .form__mail--input{
    border-top-left-radius: 6px;
    border-bottom-left-radius: 6px;
@@ -280,6 +286,7 @@ body{min-height: 100vh;}
     font-size: 14px;
     width: 250px;
 }
+/*the password box*/
 .form__pass--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -288,6 +295,7 @@ body{min-height: 100vh;}
     font-size: 14px;
     width: 250px;
 }
+/*main label*/
 .form__mail--label{
     font-size: 14px;
     width: 80px;
@@ -300,6 +308,7 @@ body{min-height: 100vh;}
     text-align: center;
     
 }
+/*pass label*/
 .form__pass--label{
     font-size: 14px;
     width: 80px;
@@ -313,7 +322,7 @@ body{min-height: 100vh;}
 }
 
 
-
+/*name input box*/
 .form__name--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -322,6 +331,7 @@ body{min-height: 100vh;}
     font-size: 14px;
     width: 250px;
 }
+/*name label*/
 .form__name--label{
     font-size: 14px;
     width: 80px;
@@ -333,6 +343,7 @@ body{min-height: 100vh;}
     /* padding:3px; */
     text-align: center;
 }
+/*lname input box*/
 .form__lname--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -341,6 +352,8 @@ body{min-height: 100vh;}
     font-size: 14px;
     width: 250px;
 }
+
+/*lname label*/
 .form__lname--label{
     font-size: 14px;
     width: 80px;
@@ -352,6 +365,7 @@ body{min-height: 100vh;}
     /* padding:3px; */
     text-align: center;
 }
+/*address input box*/
 .form__address--input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -361,6 +375,7 @@ body{min-height: 100vh;}
     width:610px;
     
 }
+/*address label*/
 .form__address--label{
     font-size: 14px;
     width: 80px;
@@ -373,6 +388,8 @@ body{min-height: 100vh;}
     text-align: center;
 }
 /*javascript*/
+/*border colors and small message*/
+/*success ad failure scenarios*/
 .main__form__pass input:focus {
 	outline: 0;
 	border-color:rgb(247, 247, 247);

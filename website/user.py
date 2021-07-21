@@ -9,7 +9,7 @@ from flask_login import  login_required,current_user
 
 user = Blueprint('user', __name__)
 
-
+#add product to users shopping cart
 @user.route('/user/add_to_shop_basket', methods=['POST'])
 # @login_required
 def user_Tes():
@@ -42,7 +42,7 @@ def user_Tes():
     else:
         return make_response(jsonify({"message": "موجودی محصول کمتر از مقدار انتخاب شده است"}), 405)
 
-
+#items in a user's shopping cart
 @user.route('user/get_user_shop_basket', methods= ['POST'])
 @login_required
 def get_user_shop_basket():
@@ -61,7 +61,7 @@ def get_user_shop_basket():
     res = make_response(jsonify({"message": "bad request"}), 405)
     return res
 
-
+#delet4e item from basket
 @user.route('/user/delete_basket', methods= ['POST'])
 @login_required
 def delete_basket():
@@ -79,7 +79,7 @@ def delete_basket():
     res = make_response(jsonify({"message": "bad request"}), 405)
     return res
 
-
+#shop
 @user.route('/user/purchase', methods= ['POST'])
 @login_required
 def purchase():

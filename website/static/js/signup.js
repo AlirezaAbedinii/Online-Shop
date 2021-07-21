@@ -237,6 +237,8 @@ window.onclick = function(event) {
 //     }
     
 // }
+
+//set small message for boxes
 function setMessage(){
     passValue=pass.value;
     mailValue=email.value.trim();
@@ -279,7 +281,7 @@ function setMessage(){
 }
 
 
-
+//check pass box for every input
 pass.addEventListener('keyup',(event)=>{
     //value of the boxes
     passValue=pass.value;
@@ -328,7 +330,8 @@ pass.addEventListener('keyup',(event)=>{
 });
 
 ///
-    
+ 
+//check email box at every input
 email.addEventListener('keyup',(event)=>{
     //value of the boxes
     passValue=pass.value;
@@ -370,7 +373,7 @@ email.addEventListener('keyup',(event)=>{
     });
 }); 
 
-
+//sigin button at the top
 signin_btn=document.getElementById('signin_btn');
 if(signin_btn != null){
   signin_btn.onclick=function(){

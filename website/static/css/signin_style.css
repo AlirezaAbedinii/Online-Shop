@@ -6,6 +6,7 @@
     font-family: Yekan;
 }
 
+/*font*/
 @font-face {
     font-family: 'Yekan';
     src: url('Yekan-Font-2/Yekan.eot'); /* IE9 Compat Modes */
@@ -180,6 +181,7 @@ body{min-height: 100vh;}
     color: aliceblue;
 }
 
+/*main citent-middle of the page*/
 .main__main{
     
     background-color: rgb(247,247,247);
@@ -231,6 +233,7 @@ body{min-height: 100vh;}
 }
 
 /*javascript*/
+/*colors and hidden parts*/
 
 .main__form__mail input:focus {
 	outline: 0;

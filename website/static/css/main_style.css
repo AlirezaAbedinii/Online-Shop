@@ -6,6 +6,7 @@
     font-family: Yekan;
 }
 
+/*fonts*/
 @font-face {
     font-family: "Yekan";
     src: url("Yekan-Font-2/Yekan.eot"); /* IE9 Compat Modes */
@@ -39,6 +40,7 @@ body {
     border: solid;
 }
 
+/*all of the page*/
 .main {
     display: grid;
     grid-template-columns: 1fr;
@@ -46,11 +48,13 @@ body {
     /* grid-template-rows: auto; */
 }
 
+/*side bar*/
 .side-bar {
     background-color: white;
     padding: 5px;
 }
 
+/*all the items in main*/
 .main > div {
     align-content: center;
     /* border: solid; */
@@ -74,7 +78,7 @@ body {
     border: none;
     margin: 25px;
 }
-
+/*hover*/
 .main__menu__items > button:hover {
     color: aqua;
 }
@@ -84,6 +88,7 @@ body {
     font-size: 19.2px;
 }
 
+/*sign-in button*/
 .sign-in {
     width: fit-content;
     padding-top: 10px;
@@ -123,6 +128,7 @@ body {
     z-index: 50;
 }
 
+/*drop down menu*/
 .signed-in__dropdown-content {
     display: none;
     top: 50px;
@@ -181,6 +187,7 @@ body {
     color: aliceblue;
 }
 
+/*content*/
 .main__main {
     position: relative;
     background-color: rgb(249, 89, 58);
@@ -196,6 +203,7 @@ body {
     padding-bottom: 0px;
 }
 
+/*search box*/
 .main__main__p--search {
     font-size: 32px;
     color: aliceblue;
@@ -220,6 +228,7 @@ body {
     margin-bottom: 35px;
 }
 
+/*slides*/
 .change-slider {
     position: absolute;
     bottom: 300px;
@@ -266,6 +275,7 @@ img {
     background-color: rgb(232, 233, 237);
 }
 
+/*categorizing*/
 .main__bottom__sort {
     display: grid;
     margin: 15px;
@@ -435,6 +445,7 @@ section.range-slider input[type="range"]::-moz-focus-outer {
     padding: 15px;
 }
 
+/*choice for category*/
 .choice {
     display: grid;
     background-color: white;
@@ -473,6 +484,7 @@ section.range-slider input[type="range"]::-moz-focus-outer {
     margin-bottom: 15px;
 }
 
+/*product box*/
 .product {
     display: grid;
     background-color: white;
@@ -734,11 +746,13 @@ button {
       border: white;
     background-color: rgb(14,186,197);
     color: white;
+    padding: 3px;
   }
 
   .modal__input{
       align-self: center;
       width:50px;
+      padding: 3px;
   }
 
   .modal-body {

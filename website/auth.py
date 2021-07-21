@@ -11,6 +11,7 @@ auth = Blueprint('auth', __name__)
 def my_redirect(path):
     return redirect(url_for('path'))
 
+#sigin in validation
 @auth.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
@@ -45,7 +46,7 @@ def signin():
     return render_template("signin.html")
 
 
-
+#sign up validation
 @auth.route('/signup', methods = ['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -86,6 +87,7 @@ def signup():
     return render_template("signup.html",user=current_user)
 
 
+#add new user
 @auth.route('/signup/submit', methods = ['GET','POST'])
 def signup_submit():
     if request.method=='POST':
@@ -136,7 +138,7 @@ def signup_submit():
     return render_template("signup.html",user=current_user)
 
     
-
+#sign in user
 @auth.route('/signin/submit', methods = ['GET','POST'])
 def signin_submit():
     if request.method=='POST':
@@ -183,6 +185,7 @@ def signin_submit():
         return res 
     return render_template("signin.html",user=current_user)
 
+#logout user
 @auth.route('/logout')
 @login_required
 def logout():
@@ -214,6 +217,7 @@ def edit_profile():
         return res
     return render_template("user.html",user=current_user)
 
+#get user credit
 @auth.route('/credit', methods = ['GET'])
 def increase_credit():
     message = {"mail": "unk","pass":"unk"}
@@ -222,6 +226,7 @@ def increase_credit():
     db.session.commit()
     return render_template("user.html",user=current_user)
 
+#edit user info in profile
 @auth.route('/edit/submit', methods = ['GET','POST'])
 def edit_submit():
     checked=False
