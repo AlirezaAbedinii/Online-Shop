@@ -1,7 +1,7 @@
 import flask
 from flask.helpers import get_flashed_messages
 from website.models import Admin, Category, Product, Receipt
-from flask import Blueprint, render_template, request, make_response, jsonify, flash
+from flask import Blueprint, render_template, request, make_response, jsonify, flash, redirect, url_for
 from . import db
 import sys
 import json
@@ -13,6 +13,8 @@ admin = Blueprint('admin', __name__)
 @admin.route('/admin/create_product/submit', methods=['POST'])
 @login_required
 def create_product():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('submit req received', file=sys.stdout)
     req = request.get_json()
     name, category, price, av, sold = req.values()
@@ -41,6 +43,8 @@ def create_product():
 @admin.route('/admin/edit_product/delete', methods=['POST'])
 @login_required
 def delete_product():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('delete req received', file=sys.stdout)
     req = json.loads(request.get_data())
     name = req['product_name']
@@ -52,6 +56,8 @@ def delete_product():
 @admin.route('/admin/edit_product/submit', methods=['POST'])
 @login_required
 def update_product():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('change req received', file=sys.stdout)
     req = request.get_json()
     old_name, name, category, price, av, sold, image = req.values()
@@ -82,6 +88,8 @@ def update_product():
 @admin.route('/admin/delete_category', methods=['POST'])
 @login_required
 def delete_category():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('delete req received', file=sys.stdout)
     req = json.loads(request.get_data())
     name = req['cat_name']
@@ -103,6 +111,8 @@ def delete_category():
 @admin.route('/admin/add_category', methods=['POST'])
 @login_required
 def add_category():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('umad add', flush=True)
     print('add req received', file=sys.stdout)
     req = request.get_json()
@@ -125,6 +135,8 @@ def add_category():
 @admin.route('/admin/edit_category', methods=['POST'])
 @login_required
 def edit_category():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('edit req received', file=sys.stdout)
     req = request.get_json()
     old_name = req['old_name']
@@ -147,6 +159,8 @@ def edit_category():
 @admin.route('/admin/edit_receipt', methods=['POST'])
 @login_required
 def edit_receipt():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     print('edit req received', file=sys.stdout)
     req = request.get_json()
     id = req['old_name']

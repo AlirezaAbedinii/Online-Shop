@@ -3,7 +3,7 @@ from flask_login import  login_required,current_user
 from flask.helpers import url_for
 from werkzeug.datastructures import cache_property
 from website.models import Category, Product, Receipt
-from flask import Blueprint, render_template, request, make_response, jsonify, redirect
+from flask import Blueprint, render_template, request, make_response, jsonify, redirect, url_for
 from . import db
 import sys
 import json
@@ -13,6 +13,8 @@ views = Blueprint('views', __name__)
 
 @views.route('/main', methods = ['POST', 'GET'])
 def main():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     if request.method == 'POST':
         req = request.get_json()
         # print(req, file=sys.stdout)
@@ -71,6 +73,8 @@ def main():
 @views.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     if request.method == 'POST':
         req = request.get_json()
         if req['command'] == 'get_products':
@@ -133,6 +137,8 @@ def admin():
 @views.route('/user', methods = ['POST', 'GET'])
 @login_required
 def user():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     if request.method == 'POST':
         req = request.get_json()
         if req['command'] == 'get_receipts':
@@ -164,12 +170,16 @@ def signin():
 @views.route('/admin/create_product')
 @login_required
 def create_product():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     return render_template("create_product.html")
 
 
 @views.route('/admin/edit_product', methods = ['GET', 'POST'])
 @login_required
 def edit_product():
+    if current_user.is_admin == 0:
+        return redirect(url_for('views.user'))
     global current_product
     if request.method == 'POST':
         req = json.loads(request.get_data())
@@ -183,6 +193,8 @@ def edit_product():
 @views.route('/user/shop_basket', methods = ['GET'])
 @login_required
 def get_shop_basket():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     return render_template("shop_basket.html", user = current_user)
 
 

@@ -9,8 +9,10 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(100))
     address = db.Column(db.String(100))
     charge = db.Column(db.Integer, default = 0)
+    is_admin = db.Column(db.Integer, default = 0)
     receipts = db.relationship('Receipt')
     shop_basket = db.relationship('Basket')
+    
     
 class Admin(db.Model):
     id = db.Column(db.String(100), primary_key=True)

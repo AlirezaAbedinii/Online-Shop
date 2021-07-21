@@ -1,7 +1,7 @@
 from flask.helpers import total_seconds
 from sqlalchemy.sql.expression import and_
 from website.models import Admin, Basket, Category, Product, Receipt, User
-from flask import Blueprint, render_template, request, make_response, jsonify
+from flask import Blueprint, render_template, request, make_response, jsonify, redirect, url_for
 from . import db
 import sys
 import json
@@ -11,8 +11,10 @@ user = Blueprint('user', __name__)
 
 
 @user.route('/user/add_to_shop_basket', methods=['POST'])
-# @login_required
+@login_required
 def user_Tes():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     print('req received', file=sys.stdout)
     req = request.get_json()
     user_id = current_user.id
@@ -65,6 +67,8 @@ def get_user_shop_basket():
 @user.route('/user/delete_basket', methods= ['POST'])
 @login_required
 def delete_basket():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     req = request.get_json()
     if req['command'] == 'delete_basket':
         print(req)
@@ -83,6 +87,8 @@ def delete_basket():
 @user.route('/user/purchase', methods= ['POST'])
 @login_required
 def purchase():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     req = request.get_json()
     if req['command'] == 'purchase':
         user = User.query.filter_by(id = req['id']).first()

@@ -193,6 +193,8 @@ def logout():
 @auth.route('/user/profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    if current_user.is_admin == 1:
+        return redirect(url_for('views.admin'))
     if request.method == 'POST':
         print('umad')
         req = request.get_json()

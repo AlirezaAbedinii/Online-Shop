@@ -56,11 +56,16 @@ def create_database(app):
         print('Created Database!')
         
 def create_admin(app):
-    from .models import Admin
+    from .models import Admin, User
     with app.app_context():
         if not Admin.query.filter_by(id="admin@admin.com").first():
             admin = Admin(id = "admin@admin.com", password = generate_password_hash("adminpass1", method='sha256'))
+            
+            user_admin = User(id = "admin@admin.com", password = generate_password_hash("adminpass1", method='sha256'), 
+                              first_name = 'admin', last_name = 'admin', address = '', charge = 0, is_admin = 1)
+            
             db.session.add(admin)
+            db.session.add(user_admin)
             db.session.commit()
             print('admin added to db', file=sys.stdout)
         else:
@@ -88,37 +93,37 @@ def create_users(app):
     with app.app_context():
         if not User.query.filter_by(id="alireza@arezz.com").first():
             user = User(id = "alireza@arezz.com", password = generate_password_hash("arezzpass1", method='sha256'), first_name='alireza',
-                        last_name = "abedini", address='آدرس علیرضا', charge = 200000)
+                        last_name = "abedini", address='آدرس علیرضا', charge = 1000000)
             db.session.add(user)
             db.session.commit()
             print('user added to db', file=sys.stdout)
         else:
             print('user already exists in db', file=sys.stdout)
         
-        if not Receipt.query.filter_by().first():
-            alireza = User.query.filter_by(id="alireza@arezz.com").first()
-            product = Product.query.filter_by(id=1).first()
-            product2 = Product.query.filter_by(id=2).first()
-            product3 = Product.query.filter_by(id=3).first()
-            receipt = Receipt(product_name = product.name, purchase_number = 1, customer_first_name = alireza.first_name,
-                              customer_last_name = alireza.last_name, customer_address = alireza.address,
-                              total_price = product.price * 1, customer_id = alireza.id)
+        # if not Receipt.query.filter_by().first():
+        #     alireza = User.query.filter_by(id="alireza@arezz.com").first()
+        #     product = Product.query.filter_by(id=1).first()
+        #     product2 = Product.query.filter_by(id=2).first()
+        #     product3 = Product.query.filter_by(id=3).first()
+        #     receipt = Receipt(product_name = product.name, purchase_number = 1, customer_first_name = alireza.first_name,
+        #                       customer_last_name = alireza.last_name, customer_address = alireza.address,
+        #                       total_price = product.price * 1, customer_id = alireza.id)
             
-            receipt2 = Receipt(product_name = product2.name, purchase_number = 1, customer_first_name = alireza.first_name,
-                              customer_last_name = alireza.last_name, customer_address = alireza.address, 
-                              total_price = product2.price * 1, customer_id = alireza.id)
+        #     receipt2 = Receipt(product_name = product2.name, purchase_number = 1, customer_first_name = alireza.first_name,
+        #                       customer_last_name = alireza.last_name, customer_address = alireza.address, 
+        #                       total_price = product2.price * 1, customer_id = alireza.id)
             
-            receipt3 = Receipt(product_name = product3.name, purchase_number = 1, customer_first_name = alireza.first_name,
-                              customer_last_name = alireza.last_name, customer_address = alireza.address, 
-                              total_price = product3.price * 1, customer_id = alireza.id)
+        #     receipt3 = Receipt(product_name = product3.name, purchase_number = 1, customer_first_name = alireza.first_name,
+        #                       customer_last_name = alireza.last_name, customer_address = alireza.address, 
+        #                       total_price = product3.price * 1, customer_id = alireza.id)
             
-            db.session.add(receipt)
-            db.session.add(receipt2)
-            db.session.add(receipt3)
-            db.session.commit()
-            print('receipts added to db', file=sys.stdout)
-        else:
-            print('receipts already exists in db', file=sys.stdout)
+        #     db.session.add(receipt)
+        #     db.session.add(receipt2)
+        #     db.session.add(receipt3)
+        #     db.session.commit()
+        #     print('receipts added to db', file=sys.stdout)
+        # else:
+        #     print('receipts already exists in db', file=sys.stdout)
             
         
         
