@@ -113,6 +113,9 @@
             }).then(function (response) {
                 if (response.status !== 200) {
                     console.log(`bad request: ${response.status}`)
+                    window.alert(
+                        `Cant get your shop basket (server error. Error: ${response.status})`
+                    )
                     return
                 }
                 response.json().then(function (data) {
@@ -205,6 +208,9 @@
                 }).then(function (response) {
                     if (response.status !== 200) {
                         console.log("bad request")
+                        window.alert(
+                            `Cant Delete the basket (server error. Error: ${response.status})`
+                        )
                         return
                     }
                     get_all_basket(1)
@@ -233,6 +239,9 @@
             }).then(function (response) {
                 if (response.status !== 200 && response.status !== 405) {
                     console.log("bad request")
+                    window.alert(
+                        `Cant purchase your shop basket. Error: ${response.status}`
+                    )
                     return
                 }
                 response.json().then(function (data) {

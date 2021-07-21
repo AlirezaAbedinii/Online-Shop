@@ -1,43 +1,47 @@
 //first name box content
-const fname = document.getElementById('name');
+const fname = document.getElementById("name")
 //last name box content
-const lname = document.getElementById('lname');
+const lname = document.getElementById("lname")
 //email box content
-const email= document.getElementById('email');
+const email = document.getElementById("email")
 //pass box content
-const pass= document.getElementById('pass');
+const pass = document.getElementById("pass")
 //adrress box content
-const address=document.getElementById('address');
+const address = document.getElementById("address")
 //list of users and passoword, defined for phase2
-const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@b.c",password:"12345678b"},{email:"a@b.d",password:"12345678c"}];
+const user_pass_list = [
+    { mail: "salva_k4@yahoo.com", password: "12345678a" },
+    { mail: "a@b.c", password: "12345678b" },
+    { email: "a@b.d", password: "12345678c" },
+]
 
 //check mail content when user is typing
 //email.addEventListener('keyup',(event)=>{
-    
-    //checkMail();
+
+//checkMail();
 //});
 //check pass content when user is typing
 //pass.addEventListener('keyup',(event)=>{
-    //checkPass();
+//checkPass();
 //});
 //check first name content when user is typing
 //fname.addEventListener('keyup',(event)=>{
-    //checkName();
+//checkName();
 //});
 //check last name content when user is typing
 //lname.addEventListener('keyup',(event)=>{
- 
- //   checkLName();
+
+//   checkLName();
 //});
 //check address content when user is typing
 ////address.addEventListener('keyup',(event)=>{
-    
-    //checkAddress();
+
+//checkAddress();
 //});
 
 //checks mail box content
 //const checkMail = () => {
-    //boolean,return the correcness of box
+//boolean,return the correcness of box
 //    let check=false;
 //    const emailValue = email.value.trim(); //removing whitespace from end and begining
 //    if (emailValue === ''){ //error if input is deleted(empty)
@@ -51,87 +55,85 @@ const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@
 //        setSuccess(email);
 ///        check=true;
 ////    }
- //   return check;
+//   return check;
 //}
-
 
 //checks  the  name box content
 //const checkName = () => {
-    //boolean, defines rhe  correctnes at  th end
+//boolean, defines rhe  correctnes at  th end
 //    let check=false;
 //    const nameValue = fname.value.trim(); //removing whitespace from end and begining
 //    if (nameValue === ''){ //error if input is deleted(empty)
 //        setError(fname,'نام نمی‌تواند خالی باشد');
- //   }
- //   else if(nameValue.length >255){//max 255 charachters
+//   }
+//   else if(nameValue.length >255){//max 255 charachters
 //        setError(fname,'نام باید کمتر از ۲۵۵ کاراکتر باشد');
- //   } else{
-  //      setSuccess(fname);
-  //      check=true;
-  //  }
- ////   return check;
+//   } else{
+//      setSuccess(fname);
+//      check=true;
+//  }
+////   return check;
 //}
 
 //checks lastname box content
 //const checkLName = () => {
-    //boolean, defnes the coorecteness at the end
- //   let check=false;
+//boolean, defnes the coorecteness at the end
+//   let check=false;
 //    const lnameValue = lname.value.trim(); //removing whitespace from end and begining
 //    if (lnameValue === ''){ //error if input is deleted(empty)
 //        setError(lname,'نام خوانوادگی نمی‌تواند خالی باشد');
 //    }
 //    else if(lnameValue.length >255){//max 255 charachters
 //        setError(lname,'نام خوانوادگی باید کمتر از ۲۵۵ کاراکتر باشد');
- //   } else{
- //       setSuccess(lname);
- //       check=true;
- //   }
- //   return check;
+//   } else{
+//       setSuccess(lname);
+//       check=true;
+//   }
+//   return check;
 //}
 
 //checks address bo  content
 //const checkAddress = () => {
-    //boolean, defines correctness at the end
+//boolean, defines correctness at the end
 //    let check=false;
-    //address bax value without beginning or ending spaces
-//    const addressValue = address.value; 
+//address bax value without beginning or ending spaces
+//    const addressValue = address.value;
 //    if (addressValue === ''){ //error if input is deleted(empty)
- //       setErrorAddress(address,'آدرس نمی‌تواند خالی باشد');
- //   }
- //   else if(addressValue.length >1000){//max 1000 charachters
- //       setErrorAddress(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
- //   } else{
- //       setSuccessAddress(address,"success");
- //       check=true;
- //   }
- //   return check;
+//       setErrorAddress(address,'آدرس نمی‌تواند خالی باشد');
+//   }
+//   else if(addressValue.length >1000){//max 1000 charachters
+//       setErrorAddress(address,'آدرس باید کمتر از ۱۰۰۰ کاراکتر باشد');
+//   } else{
+//       setSuccessAddress(address,"success");
+//       check=true;
+//   }
+//   return check;
 //}
 
 //change state to erroneous=>red border and small message
 const setError = (input, msg) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
     //importanttt! changes all classes to main__from__mail error
-    inputType.className = 'main__form__mail error';
-    small.innerText = msg;
-    console.log("err");
-
+    inputType.className = "main__form__mail error"
+    small.innerText = msg
+    console.log("err")
 }
 //const setErrorAddress = (input, msg) => {
 //    const inputType = input.parentElement;
 //    const small = inputType.querySelector('small');
-    //importanttt! changes all classes to main__from__mail error
+//importanttt! changes all classes to main__from__mail error
 //    inputType.className = 'main__form__address error';
- //   small.innerText = msg;
- //   console.log("err");
+//   small.innerText = msg;
+//   console.log("err");
 
 //}
 
 //sets state to correct=> green border and no message
 const setSuccess = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'main__form__mail success';
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
+    inputType.className = "main__form__mail success"
 }
 // const setSuccessAddress = (input,msg) => {
 //     const inputType = input.parentElement;
@@ -141,7 +143,7 @@ const setSuccess = (input) => {
 // }
 
 //checks email format by comparing tho regex
-// function ValidateEmail(mail) 
+// function ValidateEmail(mail)
 // {
 //  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
 //   {
@@ -152,33 +154,33 @@ const setSuccess = (input) => {
 // }
 
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("myModal")
 
 // Get the button that opens the modal
 //the sign up button
-var btn = document.getElementById("button");
+var btn = document.getElementById("button")
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close")[0]
 
 // When the user clicks the button, open the modal and display specified message
-btn.onclick = function() {
-  modal.style.display = "block";
-  setMessage();
+btn.onclick = function () {
+    modal.style.display = "block"
+    setMessage()
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-  //setNewWindow();
+span.onclick = function () {
+    modal.style.display = "none"
+    //setNewWindow();
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-    //setNewWindow();
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none"
+        //setNewWindow();
+    }
 }
 // //vhanging the message displayed in modal
 // function setMessage(){
@@ -208,23 +210,23 @@ window.onclick = function(event) {
 //     }
 //     //if only mail is invalid
 //     else if(is_valid_mail==false){
-//         modal_msg.innerHTML='فیلد ایمیل را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد ایمیل را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_pass==false){
-//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید';
 //     }
 //     //if only name is invalid
 //     else if(is_valid_name==false){
-//          modal_msg.innerHTML='فیلد نام را کامل کنید'; 
+//          modal_msg.innerHTML='فیلد نام را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_lname==false){
-//         modal_msg.innerHTML='فیلد نام خوانوادگی را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد نام خوانوادگی را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_address==false){
-//         modal_msg.innerHTML='فیلد آدرس را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد آدرس را کامل کنید';
 //     }
 //     //if user name and passowrd arent in the list
 //     else if(duplicate_user>-1){
@@ -235,145 +237,133 @@ window.onclick = function(event) {
 //         modal_msg.innerHTML='ثبت نام موفق';
 
 //     }
-    
+
 // }
-function setMessage(){
-    passValue=pass.value;
-    mailValue=email.value.trim();
-    nameValue=fname.value.trim();
-    lnameValue=lname.value.trim();
-    addressValue=address.value;
-    modal_msg=document.getElementById('modal__msg');
+function setMessage() {
+    passValue = pass.value
+    mailValue = email.value.trim()
+    nameValue = fname.value.trim()
+    lnameValue = lname.value.trim()
+    addressValue = address.value
+    modal_msg = document.getElementById("modal__msg")
     fetch(`${window.origin}/signup/submit`, {
         method: "POST",
         body: JSON.stringify({
-            "first_name": nameValue,
-            "last_name": lnameValue,
-            "email": mailValue,
-            "password": passValue,
-            "address": addressValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            first_name: nameValue,
+            last_name: lnameValue,
+            email: mailValue,
+            password: passValue,
+            address: addressValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            window.alert("Cant signup with this data")
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-            if(data['state']=='success'){
-                modal_msg.innerHTML='ثبت نام موفق';
-                window.location.replace('/main');
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["state"] == "success") {
+                modal_msg.innerHTML = "ثبت نام موفق"
+                window.location.replace("/main")
+            } else if (data["state"] == "fail") {
+                modal_msg.innerHTML = "ثبت نام ناموفق"
+            } else if (data["state"] == "duplicate") {
+                modal_msg.innerHTML = "کاربری با این ایمیل وجود دارد"
             }
-            else if(data['state']=='fail'){
-                modal_msg.innerHTML='ثبت نام ناموفق';
-            }
-            else if(data['state']=='duplicate'){
-                modal_msg.innerHTML='کاربری با این ایمیل وجود دارد';
-            }
-            })
-    });
-
-
+        })
+    })
 }
 
-
-
-pass.addEventListener('keyup',(event)=>{
+pass.addEventListener("keyup", (event) => {
     //value of the boxes
-    passValue=pass.value;
-    mailValue=email.value.trim();
-    nameValue=fname.value.trim();
-    lnameValue=lname.value.trim();
-    addressValue=address.value;
+    passValue = pass.value
+    mailValue = email.value.trim()
+    nameValue = fname.value.trim()
+    lnameValue = lname.value.trim()
+    addressValue = address.value
     fetch(`${window.origin}/signup`, {
         method: "POST",
         body: JSON.stringify({
-            "first_name": nameValue,
-            "last_name": lnameValue,
-            "email": mailValue,
-            "password": passValue,
-            "address": addressValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            first_name: nameValue,
+            last_name: lnameValue,
+            email: mailValue,
+            password: passValue,
+            address: addressValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            window.alert("Cant signup with this data")
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-                if(data['pass']=="pass empty"){
-                    setError(pass,"رمز عبور نمی‌تواند خالی باشد");
-                }
-                else if(data['pass']=="pass min len invalid"){
-                    setError(pass,'رمز عبور باید حداقل ۸ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass num invalid"){
-                    setError(pass,'رمز عبور باید شامل اعداد نیز باشد');
-                }
-                else if(data['pass']=="pass max len invalid"){
-                    setError(pass,'رمز باید کمتر از ۲۵۵ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass char invalid"){
-                    setError(pass,'رمز عبور باید شامل حروف نیز باشد');
-                }
-                else{
-                    setSuccess(pass);
-                }
-            })
-    });
-});
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["pass"] == "pass empty") {
+                setError(pass, "رمز عبور نمی‌تواند خالی باشد")
+            } else if (data["pass"] == "pass min len invalid") {
+                setError(pass, "رمز عبور باید حداقل ۸ کاراکتر باشد")
+            } else if (data["pass"] == "pass num invalid") {
+                setError(pass, "رمز عبور باید شامل اعداد نیز باشد")
+            } else if (data["pass"] == "pass max len invalid") {
+                setError(pass, "رمز باید کمتر از ۲۵۵ کاراکتر باشد")
+            } else if (data["pass"] == "pass char invalid") {
+                setError(pass, "رمز عبور باید شامل حروف نیز باشد")
+            } else {
+                setSuccess(pass)
+            }
+        })
+    })
+})
 
 ///
-    
-email.addEventListener('keyup',(event)=>{
+
+email.addEventListener("keyup", (event) => {
     //value of the boxes
-    passValue=pass.value;
-    mailValue=email.value.trim();
-    nameValue=fname.value.trim();
-    lnameValue=lname.value.trim();
-    addressValue=address.value;
+    passValue = pass.value
+    mailValue = email.value.trim()
+    nameValue = fname.value.trim()
+    lnameValue = lname.value.trim()
+    addressValue = address.value
     fetch(`${window.origin}/signup`, {
         method: "POST",
         body: JSON.stringify({
-            "first_name": nameValue,
-            "last_name": lnameValue,
-            "email": mailValue,
-            "password": passValue,
-            "address": addressValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            first_name: nameValue,
+            last_name: lnameValue,
+            email: mailValue,
+            password: passValue,
+            address: addressValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            window.alert("Cant signup with this data")
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-                if(data['mail']=="mail empty"){
-                    setError(email,"ایمیل نمی‌تواند خالی باشد");
-                }
-                else if(data['mail']=="mail len invalid"){
-                    setError(email,'');
-                }
-                else if(data['mail']=="mail invalid"){
-                    setError(email,'ایمیل نامعتبر');
-                }
-                else{
-                    setSuccess(email);
-                }
-            })
-    });
-}); 
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["mail"] == "mail empty") {
+                setError(email, "ایمیل نمی‌تواند خالی باشد")
+            } else if (data["mail"] == "mail len invalid") {
+                setError(email, "")
+            } else if (data["mail"] == "mail invalid") {
+                setError(email, "ایمیل نامعتبر")
+            } else {
+                setSuccess(email)
+            }
+        })
+    })
+})
 
-
-signin_btn=document.getElementById('signin_btn');
-if(signin_btn != null){
-  signin_btn.onclick=function(){
-    window.location.replace('/signin');
-  }
+signin_btn = document.getElementById("signin_btn")
+if (signin_btn != null) {
+    signin_btn.onclick = function () {
+        window.location.replace("/signin")
+    }
 }

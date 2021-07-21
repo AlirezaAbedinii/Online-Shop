@@ -1,11 +1,11 @@
 //content of form box
-const form = document.getElementById('form');
+const form = document.getElementById("form")
 //content of mail box
-const email= document.getElementById('email');
+const email = document.getElementById("email")
 //content of pass box
-const pass= document.getElementById('pass');
+const pass = document.getElementById("pass")
 //sign-in button
-const button=document.getElementById('button');
+const button = document.getElementById("button")
 //console.log(email);
 //list of users and passoword, defined for phase2
 //const user_pass_list=[{mail:"salva_k4@yahoo.com",password:"12345678a"},{mail:"a@b.c",password:"12345678b"},{email:"a@b.d",password:"12345678c"}];
@@ -41,7 +41,7 @@ const button=document.getElementById('button');
 // }
 // //cheching the password input box content
 // const checkPass=() => {
-//     //bollean, determines if password is valid or not at the end 
+//     //bollean, determines if password is valid or not at the end
 //     let check=false;
 //     //value of the password box
 //     const passValue=pass.value;
@@ -70,26 +70,25 @@ const button=document.getElementById('button');
 
 //sets state to erroneous => red border and small message
 const setError = (input, msg) => {
-    const inputType = input.parentElement;
-    console.log(inputType);
-    const small = inputType.querySelector('small');
-    console.log(small);
+    const inputType = input.parentElement
+    console.log(inputType)
+    const small = inputType.querySelector("small")
+    console.log(small)
     //importanttt!!! changes all classes to main__form__mail.error
-    inputType.className = 'main__form__mail error';
-    small.innerText = msg;
-    console.log("err");
-
+    inputType.className = "main__form__mail error"
+    small.innerText = msg
+    console.log("err")
 }
 
 //function vhanges state to successful=>green border and now error message
 const setSuccess = (input) => {
-    const inputType = input.parentElement;
-    const small = inputType.querySelector('small');
-    inputType.className = 'main__form__mail success';
+    const inputType = input.parentElement
+    const small = inputType.querySelector("small")
+    inputType.className = "main__form__mail success"
 }
 
-// //function checks email format with regex 
-// function ValidateEmail(mail) 
+// //function checks email format with regex
+// function ValidateEmail(mail)
 // {
 //  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
 //   {
@@ -100,34 +99,32 @@ const setSuccess = (input) => {
 // }
 
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("myModal")
 
 // Get the button that opens the modal
-var btn = document.getElementById("button");
+var btn = document.getElementById("button")
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close")[0]
 
 // When the user clicks the button, open the modal and display specified message
-btn.onclick = function() {
-  modal.style.display = "block";
-  setMessage();
-  
-
+btn.onclick = function () {
+    modal.style.display = "block"
+    setMessage()
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-  setNewWindow();
+span.onclick = function () {
+    modal.style.display = "none"
+    setNewWindow()
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-    setNewWindow();
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none"
+        setNewWindow()
+    }
 }
 //vhanging the message displayed in modal
 // function setMessage(){
@@ -143,11 +140,11 @@ window.onclick = function(event) {
 //     }
 //     //if only mail is invalid
 //     else if(is_valid_mail==false){
-//         modal_msg.innerHTML='فیلد ایمیل را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد ایمیل را کامل کنید';
 //     }
 //     //if only pass is invalid
 //     else if(is_valid_pass==false){
-//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید'; 
+//         modal_msg.innerHTML='فیلد رمز عبور را کامل کنید';
 //     }
 //     //if user name and passowrd arent in the list
 //     else if(user_pass_pair==-1){
@@ -157,163 +154,147 @@ window.onclick = function(event) {
 //     else{
 //         modal_msg.innerHTML='ورود موفق';
 //     }
-    
+
 // }
-email.addEventListener('keyup',(event)=>{
+email.addEventListener("keyup", (event) => {
     //value of the boxes
-    passValue=pass.value;
-    mailValue=email.value.trim();
+    passValue = pass.value
+    mailValue = email.value.trim()
     fetch(`${window.origin}/signin`, {
         method: "POST",
         body: JSON.stringify({
-            "email": mailValue,
-            "password": passValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            email: mailValue,
+            password: passValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            window.alert("cant sign in (server error)!")
+            console.log(`bad request: ${response.status}`)
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-                if(data['mail']=="mail empty"){
-                    setError(email,"ایمیل نمی‌تواند خالی باشد");
-                }
-                else if(data['mail']=="mail len invalid"){
-                    setError(email,'');
-                }
-                else if(data['mail']=="mail invalid"){
-                    setError(email,'ایمیل نامعتبر');
-                }
-                else{
-                    setSuccess(email);
-                }
-            })
-    });
-}); 
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["mail"] == "mail empty") {
+                setError(email, "ایمیل نمی‌تواند خالی باشد")
+            } else if (data["mail"] == "mail len invalid") {
+                setError(email, "")
+            } else if (data["mail"] == "mail invalid") {
+                setError(email, "ایمیل نامعتبر")
+            } else {
+                setSuccess(email)
+            }
+        })
+    })
+})
 
-pass.addEventListener('keyup',(event)=>{
+pass.addEventListener("keyup", (event) => {
     //value of the boxes
-    passValue=pass.value;
-    mailValue=email.value.trim();
+    passValue = pass.value
+    mailValue = email.value.trim()
     fetch(`${window.origin}/signin`, {
         method: "POST",
         body: JSON.stringify({
-            "email": mailValue,
-            "password": passValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            email: mailValue,
+            password: passValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            window.alert("cant sign in (server error)!")
+            console.log(`bad request: ${response.status}`)
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-                if(data['pass']=="pass empty"){
-                    setError(pass,"رمز عبور نمی‌تواند خالی باشد");
-                }
-                else if(data['pass']=="pass min len invalid"){
-                    setError(pass,'رمز عبور باید حداقل ۸ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass num invalid"){
-                    setError(pass,'رمز عبور باید شامل اعداد نیز باشد');
-                }
-                else if(data['pass']=="pass max len invalid"){
-                    setError(pass,'رمز باید کمتر از ۲۵۵ کاراکتر باشد');
-                }
-                else if(data['pass']=="pass char invalid"){
-                    setError(pass,'رمز عبور باید شامل حروف نیز باشد');
-                }
-                else{
-                    setSuccess(pass);
-                }
-            })
-    });
-});
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["pass"] == "pass empty") {
+                setError(pass, "رمز عبور نمی‌تواند خالی باشد")
+            } else if (data["pass"] == "pass min len invalid") {
+                setError(pass, "رمز عبور باید حداقل ۸ کاراکتر باشد")
+            } else if (data["pass"] == "pass num invalid") {
+                setError(pass, "رمز عبور باید شامل اعداد نیز باشد")
+            } else if (data["pass"] == "pass max len invalid") {
+                setError(pass, "رمز باید کمتر از ۲۵۵ کاراکتر باشد")
+            } else if (data["pass"] == "pass char invalid") {
+                setError(pass, "رمز عبور باید شامل حروف نیز باشد")
+            } else {
+                setSuccess(pass)
+            }
+        })
+    })
+})
 
-
-
-function setMessage(){
-    
-    passValue=pass.value;
-    mailValue=email.value.trim();
-    modal_msg=document.getElementById('modal__msg');
+function setMessage() {
+    passValue = pass.value
+    mailValue = email.value.trim()
+    modal_msg = document.getElementById("modal__msg")
     fetch(`${window.origin}/signin/submit`, {
         method: "POST",
         body: JSON.stringify({
-            "email": mailValue,
-            "password": passValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            email: mailValue,
+            password: passValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            window.alert("Data cant be submited (server error)!")
+            return
         }
-        response.json().then(function (data){
-            new_window='';
-            console.log(data);
-            if(data['state']=='success'){
-                modal_msg.innerHTML='ورود موفق';
-                new_window='user';
+        response.json().then(function (data) {
+            new_window = ""
+            console.log(data)
+            if (data["state"] == "success") {
+                modal_msg.innerHTML = "ورود موفق"
+                new_window = "user"
                 //window.location.replace('/user');
-            }
-            else if(data['state']=='failure'){
-                modal_msg.innerHTML='رمز عبور غلط است';
-            }
-            else if(data['state']=='no user'){
-                modal_msg.innerHTML='کاربری با این ایمیل وجود ندارد';
+            } else if (data["state"] == "failure") {
+                modal_msg.innerHTML = "رمز عبور غلط است"
+            } else if (data["state"] == "no user") {
+                modal_msg.innerHTML = "کاربری با این ایمیل وجود ندارد"
                 //window.location.replace('/signup');
-                new_window='signup';
+                new_window = "signup"
+            } else if (data["state"] == "error") {
+                modal_msg.innerHTML = "ورود ناموفق"
             }
-            else if(data['state']=='error'){
-                modal_msg.innerHTML='ورود ناموفق';
-            }
-            return new_window;
-            })
-            
-    });
-
-
+            return new_window
+        })
+    })
 }
-function setNewWindow(){ 
-    passValue=pass.value;
-    mailValue=email.value.trim();
-    modal_msg=document.getElementById('modal__msg');
+function setNewWindow() {
+    passValue = pass.value
+    mailValue = email.value.trim()
+    modal_msg = document.getElementById("modal__msg")
     fetch(`${window.origin}/signin/submit`, {
         method: "POST",
         body: JSON.stringify({
-            "email": mailValue,
-            "password": passValue}),
-        headers: new Headers({"content-type": "application/json"}),
-        cache: 'no-cache'
-    })
-    .then(function (response){
-        if(response.status !== 200){
-            console.log(`bad request: ${response.status}`);
-            return;
+            email: mailValue,
+            password: passValue,
+        }),
+        headers: new Headers({ "content-type": "application/json" }),
+        cache: "no-cache",
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.log(`bad request: ${response.status}`)
+            window.alert("Data cant be submited (server error)!")
+            return
         }
-        response.json().then(function (data){
-            console.log(data);
-            if(data['state']=='success'){
-                window.location.replace('/main');
+        response.json().then(function (data) {
+            console.log(data)
+            if (data["state"] == "success") {
+                window.location.replace("/main")
+            } else if (data["state"] == "no user") {
+                window.location.replace("/signup")
             }
-            else if(data['state']=='no user'){
-                window.location.replace('/signup');
-            }
-            })  
-    });
-
-
+        })
+    })
 }
-signup_btn=document.getElementById('signup_btn');
-if(signup_btn != null){
-  signup_btn.onclick=function(){
-    window.location.replace('/signup');
-  }
+signup_btn = document.getElementById("signup_btn")
+if (signup_btn != null) {
+    signup_btn.onclick = function () {
+        window.location.replace("/signup")
+    }
 }

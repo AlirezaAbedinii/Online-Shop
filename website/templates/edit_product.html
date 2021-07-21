@@ -70,6 +70,7 @@
                 .then(function (response){
                     if(response.status !== 200){
                         console.log(`bad request: ${response.status}`)
+                        window.alert(`Cant Edit the product with this data. Error: ${response.status}`)
                         window.location.replace('/admin')
                     }
                     else{

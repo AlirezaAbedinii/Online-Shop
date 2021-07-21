@@ -52,6 +52,7 @@ function load_products(replace = 0) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert("products cant be load (server error)!")
             loading.style.display = "none"
         }
         response.json().then(function (data) {
@@ -81,6 +82,7 @@ function load_products(replace = 0) {
         cache: "no-cache",
     }).then(function (response) {
         if (response.status !== 200) {
+            window.alert("cant get categories (server error)!")
             console.log(`bad request: ${response.status}`)
             return
         }
@@ -121,6 +123,7 @@ function load_products(replace = 0) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert("cant get receipts (server error)!")
             return
         }
         response.json().then(function (data) {
@@ -226,6 +229,7 @@ function delete_cat(cat_name) {
         cache: "no-cache",
     }).then(function (response) {
         if (response.status !== 200) {
+            window.alert("This category cant be deleted")
             console.log(`bad request: ${response.status}`)
             loading.style.display = "none"
         }
@@ -357,6 +361,7 @@ function edit_category() {
         cache: "no-cache",
     }).then(function (response) {
         if (response.status !== 200) {
+            window.alert("The category cant be updated to this")
             console.log(`bad request: ${response.status}`)
             return
             loading.style.display = "none"
@@ -387,6 +392,7 @@ function edit_receipt() {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert("The receipt cant be updated to this name!")
             loading.style.display = "none"
             // load_products(1)
         }
@@ -412,6 +418,7 @@ function filter_receipt_func(rec_id) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert("Cant get filtered receipt")
             loading.style.display = "none"
         }
         response.json().then(function (data) {

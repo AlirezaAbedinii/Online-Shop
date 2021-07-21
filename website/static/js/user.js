@@ -63,6 +63,7 @@ if (user_logout != null) {
         }).then(function (response) {
             if (response.status !== 200) {
                 console.log(`bad request: ${response.status}`)
+                window.alert(`Cant logout. Error: ${response.status}`)
                 return
             }
             window.location.replace("/main")
@@ -327,6 +328,9 @@ pass.addEventListener("keyup", (event) => {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert(
+                `Cant Edit your info with this data Error: ${response.status}`
+            )
             return
         }
         response.json().then(function (data) {
@@ -360,6 +364,7 @@ if (increase_credit != null) {
         }).then(function (response) {
             if (response.status !== 200) {
                 console.log(`bad request: ${response.status}`)
+                window.alert(`Cant Increase credit. Error: ${response.status}`)
                 return
             }
             console.log("fetch main")
@@ -388,6 +393,7 @@ function setMessage() {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert(`Cant submit thi data. Error: ${response.status}`)
             return
         }
         response.json().then(function (data) {
@@ -412,6 +418,7 @@ function fill_data(inp_replace = 1) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert(`Cant get current user. Error: ${response.status}`)
             return
         }
         response.json().then(function (data) {
@@ -432,6 +439,7 @@ function fill_data(inp_replace = 1) {
     }).then(function (response) {
         if (response.status !== 200) {
             console.log(`bad request: ${response.status}`)
+            window.alert(`Cant get receipts. Error: ${response.status}`)
             return
         }
         response.json().then(function (data) {
