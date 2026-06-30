@@ -1,0 +1,33 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# SQLite database (generated and seeded on first run)
+*.db
+*.sqlite
+*.sqlite3
+
+# Instance / local config
+instance/
+.env
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp

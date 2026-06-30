@@ -1,0 +1,7 @@
+# Pinned to versions compatible with the existing code
+# (Werkzeug < 3 keeps the sha256 password hashing method working).
+Flask>=2.0,<3.0
+Flask-SQLAlchemy>=2.5,<3.0
+Flask-Login>=0.5,<0.7
+Werkzeug>=2.0,<3.0
+SQLAlchemy>=1.4,<2.0
